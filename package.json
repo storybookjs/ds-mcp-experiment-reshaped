@@ -1,0 +1,42 @@
+{
+  "name": "ds-mcp-experiment-reshaped",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.1",
+    "@eslint/js": "^9.33.0",
+    "@storybook/addon-a11y": "^10.0.0-beta.1",
+    "@storybook/addon-docs": "^10.0.0-beta.1",
+    "@storybook/addon-mcp": "^0.0.4",
+    "@storybook/addon-vitest": "^10.0.0-beta.1",
+    "@storybook/react-vite": "^10.0.0-beta.1",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@vitest/browser": "^3.2.4",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-storybook": "^10.0.0-beta.1",
+    "globals": "^16.3.0",
+    "playwright": "^1.55.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "reshaped": "^3.7.4",
+    "storybook": "^10.0.0-beta.1",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2",
+    "vitest": "^3.2.4"
+  }
+}

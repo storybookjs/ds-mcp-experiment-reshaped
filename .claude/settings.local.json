@@ -1,0 +1,11 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "storybook-mcp"
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(find:*)"
+    ]
+  }
+}
