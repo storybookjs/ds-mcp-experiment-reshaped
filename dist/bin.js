@@ -6,6 +6,7 @@
 */
 
 import * as fs from "node:fs/promises";
+import * as path from "node:path";
 import { McpServer } from "tmcp";
 import { ValibotJsonSchemaAdapter } from "@tmcp/adapter-valibot";
 import { StdioTransport } from "@tmcp/transport-stdio";
@@ -43,8 +44,8 @@ server.tool({
 Pass in the id that you get from the ${LIST_TOOL_NAME} tool, for the item you want documentation for.`,
 	schema: v.object({ id: v.string() })
 }, async ({ id }) => {
-	const path = `./llm-docs/${id}.md`;
-	const fileExists = await fs.access(path, fs.constants.F_OK).then(() => true).catch(() => false);
+	const resolvedPath = path.resolve(import.meta.dirname, `../llm-docs/${id}.md`);
+	const fileExists = await fs.access(resolvedPath, fs.constants.F_OK).then(() => true).catch(() => false);
 	if (!fileExists) return { content: [{
 		type: "text",
 		text: `ERROR id '${id}' not found

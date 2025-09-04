@@ -1,4 +1,5 @@
 import * as fs from "node:fs/promises";
+import * as path from "node:path";
 import { McpServer } from "tmcp";
 import { ValibotJsonSchemaAdapter } from "@tmcp/adapter-valibot";
 import { StdioTransport } from "@tmcp/transport-stdio";
@@ -46,9 +47,9 @@ Pass in the id that you get from the ${LIST_TOOL_NAME} tool, for the item you wa
     }),
   },
   async ({ id }) => {
-    const path = `./llm-docs/${id}.md`;
+	const resolvedPath = path.resolve(import.meta.dirname, `../llm-docs/${id}.md`);
     const fileExists = await fs
-      .access(path, fs.constants.F_OK)
+      .access(resolvedPath, fs.constants.F_OK)
       .then(() => true)
       .catch(() => false);
     if (!fileExists) {
