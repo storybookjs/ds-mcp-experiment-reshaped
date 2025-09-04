@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "bin": "./dist/bin.js",
   "scripts": {
     "build": "tsdown",
     "build-storybook": "storybook build",
