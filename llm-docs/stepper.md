@@ -18,33 +18,33 @@ The Stepper automatically handles step numbering, visual states (active, complet
 
 ### Stepper Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `activeId` | `string \| number` | No | `undefined` | The ID of the currently active step. Steps with IDs less than this value will be marked as completed |
-| `direction` | `"row" \| "column"` | No | `"row"` | Layout direction of the stepper. Row creates horizontal layout, column creates vertical layout |
-| `labelDisplay` | `Responsive<"inline" \| "hidden">` | No | `"inline"` | Controls visibility of step labels. Can be responsive object like `{ s: "hidden", m: "inline" }` |
-| `children` | `React.ReactNode` | No | `undefined` | Collection of `Stepper.Item` components representing individual steps |
-| `className` | `ClassName` | No | `undefined` | Additional CSS class names to apply to the stepper container |
-| `attributes` | `Attributes<"div">` | No | `undefined` | Additional HTML attributes and data attributes to apply to the container div |
+| Prop           | Type                               | Required | Default     | Description                                                                                          |
+| -------------- | ---------------------------------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| `activeId`     | `string \| number`                 | No       | `undefined` | The ID of the currently active step. Steps with IDs less than this value will be marked as completed |
+| `direction`    | `"row" \| "column"`                | No       | `"row"`     | Layout direction of the stepper. Row creates horizontal layout, column creates vertical layout       |
+| `labelDisplay` | `Responsive<"inline" \| "hidden">` | No       | `"inline"`  | Controls visibility of step labels. Can be responsive object like `{ s: "hidden", m: "inline" }`     |
+| `children`     | `React.ReactNode`                  | No       | `undefined` | Collection of `Stepper.Item` components representing individual steps                                |
+| `className`    | `ClassName`                        | No       | `undefined` | Additional CSS class names to apply to the stepper container                                         |
+| `attributes`   | `Attributes<"div">`                | No       | `undefined` | Additional HTML attributes and data attributes to apply to the container div                         |
 
 ### Stepper.Item Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `id` | `string` | No | Auto-generated index | Unique identifier for the step. Used with `activeId` to determine step state |
-| `title` | `React.ReactNode` | No | `undefined` | Primary label for the step, displayed prominently |
-| `subtitle` | `React.ReactNode` | No | `undefined` | Secondary descriptive text shown below the title in muted color |
-| `completed` | `boolean` | No | `false` | Manually override completion status. When true, shows checkmark icon regardless of activeId |
-| `children` | `React.ReactNode` | No | `undefined` | Content displayed within the step (only visible in column direction when step is active) |
-| `className` | `ClassName` | No | `undefined` | Additional CSS class names for the step item |
-| `attributes` | `Attributes<"div">` | No | `undefined` | Additional HTML attributes for the step item container |
+| Prop         | Type                | Required | Default              | Description                                                                                 |
+| ------------ | ------------------- | -------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| `id`         | `string`            | No       | Auto-generated index | Unique identifier for the step. Used with `activeId` to determine step state                |
+| `title`      | `React.ReactNode`   | No       | `undefined`          | Primary label for the step, displayed prominently                                           |
+| `subtitle`   | `React.ReactNode`   | No       | `undefined`          | Secondary descriptive text shown below the title in muted color                             |
+| `completed`  | `boolean`           | No       | `false`              | Manually override completion status. When true, shows checkmark icon regardless of activeId |
+| `children`   | `React.ReactNode`   | No       | `undefined`          | Content displayed within the step (only visible in column direction when step is active)    |
+| `className`  | `ClassName`         | No       | `undefined`          | Additional CSS class names for the step item                                                |
+| `attributes` | `Attributes<"div">` | No       | `undefined`          | Additional HTML attributes for the step item container                                      |
 
 ## Code Examples
 
 ### Basic Horizontal Stepper
 
 ```tsx
-import { Stepper } from 'reshaped';
+import { Stepper } from "reshaped";
 
 function BasicStepper() {
   return (
@@ -62,31 +62,29 @@ This example shows a simple horizontal stepper with three steps, where step 1 is
 ### Vertical Stepper with Content
 
 ```tsx
-import { Stepper, Button, View } from 'reshaped';
-import { useState } from 'react';
+import { Stepper, Button, View } from "reshaped";
+import { useState } from "react";
 
 function VerticalStepperWithContent() {
   const [activeStep, setActiveStep] = useState(1);
 
   return (
     <Stepper activeId={activeStep} direction="column">
-      <Stepper.Item 
-        id={1} 
-        title="Account Setup" 
+      <Stepper.Item
+        id={1}
+        title="Account Setup"
         subtitle="Create your account and verify email"
         completed={activeStep > 1}
       >
         <View gap={3}>
           <p>Enter your account details and verify your email address.</p>
-          <Button onClick={() => setActiveStep(2)}>
-            Complete Setup
-          </Button>
+          <Button onClick={() => setActiveStep(2)}>Complete Setup</Button>
         </View>
       </Stepper.Item>
-      
-      <Stepper.Item 
-        id={2} 
-        title="Profile Information" 
+
+      <Stepper.Item
+        id={2}
+        title="Profile Information"
         subtitle="Add your personal details"
         completed={activeStep > 2}
       >
@@ -96,16 +94,14 @@ function VerticalStepperWithContent() {
             <Button variant="ghost" onClick={() => setActiveStep(1)}>
               Back
             </Button>
-            <Button onClick={() => setActiveStep(3)}>
-              Continue
-            </Button>
+            <Button onClick={() => setActiveStep(3)}>Continue</Button>
           </View>
         </View>
       </Stepper.Item>
-      
-      <Stepper.Item 
-        id={3} 
-        title="Final Review" 
+
+      <Stepper.Item
+        id={3}
+        title="Final Review"
         subtitle="Review and submit your information"
         completed={activeStep > 3}
       >
@@ -115,9 +111,7 @@ function VerticalStepperWithContent() {
             <Button variant="ghost" onClick={() => setActiveStep(2)}>
               Back
             </Button>
-            <Button onClick={() => setActiveStep(4)}>
-              Submit
-            </Button>
+            <Button onClick={() => setActiveStep(4)}>Submit</Button>
           </View>
         </View>
       </Stepper.Item>
@@ -131,30 +125,19 @@ This example demonstrates a vertical stepper with interactive content areas that
 ### Responsive Label Display
 
 ```tsx
-import { Stepper } from 'reshaped';
+import { Stepper } from "reshaped";
 
 function ResponsiveStepper() {
   return (
-    <Stepper 
-      activeId="2" 
-      labelDisplay={{ s: "hidden", m: "inline" }}
-    >
-      <Stepper.Item 
-        id="1" 
-        completed 
-        title="Step 1" 
-        subtitle="First step description" 
+    <Stepper activeId="2" labelDisplay={{ s: "hidden", m: "inline" }}>
+      <Stepper.Item
+        id="1"
+        completed
+        title="Step 1"
+        subtitle="First step description"
       />
-      <Stepper.Item 
-        id="2" 
-        title="Step 2" 
-        subtitle="Second step description" 
-      />
-      <Stepper.Item 
-        id="3" 
-        title="Step 3" 
-        subtitle="Third step description" 
-      />
+      <Stepper.Item id="2" title="Step 2" subtitle="Second step description" />
+      <Stepper.Item id="3" title="Step 3" subtitle="Third step description" />
     </Stepper>
   );
 }
@@ -165,11 +148,11 @@ This example shows how to hide step labels on small screens while keeping them v
 ### Manual Completion Control
 
 ```tsx
-import { Stepper } from 'reshaped';
+import { Stepper } from "reshaped";
 
 function ManualCompletionStepper() {
   const [completedSteps, setCompletedSteps] = useState(new Set());
-  
+
   const toggleCompletion = (stepId) => {
     const newCompleted = new Set(completedSteps);
     if (newCompleted.has(stepId)) {
@@ -182,20 +165,20 @@ function ManualCompletionStepper() {
 
   return (
     <Stepper activeId="2">
-      <Stepper.Item 
-        id="1" 
+      <Stepper.Item
+        id="1"
         title="Review Documents"
         completed={completedSteps.has("1")}
         subtitle="Check all required documents"
       />
-      <Stepper.Item 
-        id="2" 
+      <Stepper.Item
+        id="2"
         title="Get Approval"
         completed={completedSteps.has("2")}
         subtitle="Wait for manager approval"
       />
-      <Stepper.Item 
-        id="3" 
+      <Stepper.Item
+        id="3"
         title="Final Submission"
         completed={completedSteps.has("3")}
         subtitle="Submit the completed form"
@@ -210,14 +193,14 @@ This example shows how to manually control step completion status independent of
 ### Complex Step Content
 
 ```tsx
-import { Stepper, Card, Text, Button, View } from 'reshaped';
+import { Stepper, Card, Text, Button, View } from "reshaped";
 
 function ComplexContentStepper() {
   return (
     <Stepper activeId="1" direction="column">
-      <Stepper.Item 
-        id="1" 
-        title="Project Setup" 
+      <Stepper.Item
+        id="1"
+        title="Project Setup"
         subtitle="Initialize your new project with required configurations"
       >
         <Card padding={4}>
@@ -235,10 +218,10 @@ function ComplexContentStepper() {
           </View>
         </Card>
       </Stepper.Item>
-      
-      <Stepper.Item 
-        id="2" 
-        title="Team Collaboration" 
+
+      <Stepper.Item
+        id="2"
+        title="Team Collaboration"
         subtitle="Add team members and set permissions"
       >
         <Card padding={4}>

@@ -17,6 +17,7 @@ The component is particularly valuable in complex UI patterns where visual cues 
 ## Props Documentation
 
 ### children
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Default**: `undefined`
@@ -25,8 +26,9 @@ The component is particularly valuable in complex UI patterns where visual cues 
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { HiddenVisually } from 'reshaped';
+import { HiddenVisually } from "reshaped";
 
 function SkipLink() {
   return (
@@ -40,8 +42,9 @@ function SkipLink() {
 This example creates a skip link that is only visible to screen reader users, allowing them to quickly navigate past navigation elements to the main content.
 
 ### Form Field Description
+
 ```tsx
-import { HiddenVisually, TextField } from 'reshaped';
+import { HiddenVisually, TextField } from "reshaped";
 
 function PasswordField() {
   return (
@@ -52,7 +55,8 @@ function PasswordField() {
         aria-describedby="password-help"
       />
       <HiddenVisually id="password-help">
-        Password must be at least 8 characters long and contain both letters and numbers
+        Password must be at least 8 characters long and contain both letters and
+        numbers
       </HiddenVisually>
     </div>
   );
@@ -62,9 +66,10 @@ function PasswordField() {
 This example provides password requirements that are accessible to screen readers while keeping the visual interface clean.
 
 ### Status Announcements
+
 ```tsx
-import { HiddenVisually, Button } from 'reshaped';
-import { useState } from 'react';
+import { HiddenVisually, Button } from "reshaped";
+import { useState } from "react";
 
 function SaveButton() {
   const [isSaving, setIsSaving] = useState(false);
@@ -81,13 +86,15 @@ function SaveButton() {
   return (
     <div>
       <Button onClick={handleSave} disabled={isSaving}>
-        {isSaving ? 'Saving...' : 'Save'}
+        {isSaving ? "Saving..." : "Save"}
       </Button>
       {isSaving && (
         <HiddenVisually>Saving your changes, please wait</HiddenVisually>
       )}
       {isSaved && (
-        <HiddenVisually>Your changes have been saved successfully</HiddenVisually>
+        <HiddenVisually>
+          Your changes have been saved successfully
+        </HiddenVisually>
       )}
     </div>
   );
@@ -97,8 +104,9 @@ function SaveButton() {
 This example announces save status updates to screen reader users without cluttering the visual interface.
 
 ### Contextual Button Labels
+
 ```tsx
-import { HiddenVisually, Button } from 'reshaped';
+import { HiddenVisually, Button } from "reshaped";
 
 function ProductCard({ product }) {
   return (
@@ -117,8 +125,9 @@ function ProductCard({ product }) {
 This example adds product context to the button label for screen reader users, making it clear which product will be added to the cart.
 
 ### Loading States
+
 ```tsx
-import { HiddenVisually, Loader } from 'reshaped';
+import { HiddenVisually, Loader } from "reshaped";
 
 function DataTable({ isLoading, data }) {
   return (
@@ -129,11 +138,7 @@ function DataTable({ isLoading, data }) {
           <HiddenVisually>Loading table data, please wait</HiddenVisually>
         </div>
       )}
-      {!isLoading && (
-        <table>
-          {/* Table content */}
-        </table>
-      )}
+      {!isLoading && <table>{/* Table content */}</table>}
     </div>
   );
 }

@@ -1,12 +1,15 @@
 # Tabs
 
 ## Component Name
+
 Tabs
 
 ## Brief Description
+
 A tabbed interface component that organizes content into panels with corresponding navigable tabs.
 
 ## Keywords
+
 Navigation, Tabs, Panels, Interface, Toggle, Selection, Content Organization, UI
 
 ## Usage Description
@@ -22,35 +25,46 @@ The Tabs component follows WAI-ARIA standards for accessibility, ensuring proper
 ### Tabs (Main Component)
 
 #### `children` (React.ReactNode, optional)
+
 The child components, typically Tabs.List and Tabs.Panel components.
 
-#### `value` (string, optional) 
+#### `value` (string, optional)
+
 The currently selected tab value for controlled usage. When provided, the component operates in controlled mode and requires an onChange handler to update the selection.
 
 #### `defaultValue` (string, optional)
+
 The initially selected tab value for uncontrolled usage. Only used when `value` is not provided. The component will manage its own state internally.
 
 #### `direction` ("column" | "row", optional, default: "row")
+
 The layout direction of the tab list. "row" displays tabs horizontally, "column" displays tabs vertically.
 
 #### `itemWidth` ("equal", optional)
+
 When set to "equal", all tab items will have equal width regardless of their content length.
 
 #### `variant` ("bordered" | "borderless" | "pills" | "pills-elevated", optional, default: "bordered")
+
 The visual style of the tabs:
+
 - "bordered": Default style with underline selection indicator
 - "borderless": Clean style without borders or background
 - "pills": Rounded pill-style tabs with background
 - "pills-elevated": Pill-style tabs with shadow elevation
 
 #### `size` ("medium" | "large", optional, default: "medium")
+
 The size of the tab items, affecting padding and text size.
 
 #### `name` (string, optional)
+
 When provided, renders tabs as radio buttons within a form group, enabling form submission and native form handling.
 
 #### `onChange` (function, optional)
+
 Callback function called when tab selection changes. Receives an object with `value` (selected tab value) and `name` (if provided) properties.
+
 ```typescript
 onChange?: (args: { value: string; name?: string }) => void
 ```
@@ -58,51 +72,65 @@ onChange?: (args: { value: string; name?: string }) => void
 ### Tabs.List
 
 #### `children` (React.ReactNode, optional)
+
 The tab items (Tabs.Item components) and any other content to display in the tab list.
 
 #### `className` (string, optional)
+
 Additional CSS class name to apply to the list container.
 
 #### `attributes` (object, optional)
+
 Additional HTML attributes to apply to the list container element.
 
 ### Tabs.Item
 
 #### `value` (string, required)
+
 Unique identifier for the tab item. This value is used to associate the tab with its corresponding panel and is passed to the onChange callback when selected.
 
 #### `children` (React.ReactNode, optional)
+
 The content to display in the tab button, typically text or other inline elements.
 
 #### `icon` (IconProps["svg"], optional)
+
 An icon component to display alongside or instead of the text content.
 
 #### `href` (string, optional)
+
 When provided, renders the tab as a link. The tab will not trigger onChange events when clicked if href is present and no onChange handler is provided.
 
 #### `disabled` (boolean, optional, default: false)
+
 Whether the tab item is disabled and cannot be selected.
 
 #### `attributes` (object, optional)
+
 Additional HTML attributes to apply to the tab item's container element.
 
 ### Tabs.Panel
 
 #### `value` (string, required)
+
 The value that associates this panel with its corresponding tab item. The panel is shown when this value matches the active tab value.
 
 #### `children` (React.ReactNode, optional)
+
 The content to display in the panel when it is active.
 
 #### `className` (string, optional)
+
 Additional CSS class name to apply to the panel container.
 
 #### `attributes` (object, optional)
+
 Additional HTML attributes to apply to the panel container element.
 
 ## Code Examples
 
 ### Basic Usage
+
 ```typescript
 import { Tabs } from 'reshaped'
 
@@ -114,7 +142,7 @@ function BasicTabs() {
         <Tabs.Item value="about">About</Tabs.Item>
         <Tabs.Item value="contact">Contact</Tabs.Item>
       </Tabs.List>
-      
+
       <Tabs.Panel value="home">
         <div>Welcome to our homepage!</div>
       </Tabs.Panel>
@@ -130,19 +158,20 @@ function BasicTabs() {
 ```
 
 ### Controlled Usage with State Management
+
 ```typescript
 import { Tabs } from 'reshaped'
 import { useState } from 'react'
 
 function ControlledTabs() {
   const [activeTab, setActiveTab] = useState('dashboard')
-  
+
   const handleTabChange = ({ value }) => {
     setActiveTab(value)
     // Additional logic like analytics tracking
     console.log('Tab changed to:', value)
   }
-  
+
   return (
     <Tabs value={activeTab} onChange={handleTabChange}>
       <Tabs.List>
@@ -150,7 +179,7 @@ function ControlledTabs() {
         <Tabs.Item value="analytics">Analytics</Tabs.Item>
         <Tabs.Item value="settings">Settings</Tabs.Item>
       </Tabs.List>
-      
+
       <Tabs.Panel value="dashboard">
         <div>Dashboard content with data visualizations</div>
       </Tabs.Panel>
@@ -166,6 +195,7 @@ function ControlledTabs() {
 ```
 
 ### Tabs with Icons and Different Variants
+
 ```typescript
 import { Tabs } from 'reshaped'
 import { HomeIcon, SettingsIcon, UserIcon } from './icons'
@@ -184,7 +214,7 @@ function StyledTabs() {
           Settings
         </Tabs.Item>
       </Tabs.List>
-      
+
       <Tabs.Panel value="profile">
         <div>User profile information and editing</div>
       </Tabs.Panel>
@@ -200,6 +230,7 @@ function StyledTabs() {
 ```
 
 ### Vertical Tabs Layout
+
 ```typescript
 import { Tabs } from 'reshaped'
 
@@ -214,7 +245,7 @@ function VerticalTabs() {
           <Tabs.Item value="billing">Billing</Tabs.Item>
         </Tabs.List>
       </Tabs>
-      
+
       <div>
         <Tabs.Panel value="general">
           <div>General settings and preferences</div>
@@ -235,6 +266,7 @@ function VerticalTabs() {
 ```
 
 ### Form Integration with Radio Button Behavior
+
 ```typescript
 import { Tabs } from 'reshaped'
 
@@ -251,7 +283,7 @@ function FormTabs() {
           <Tabs.Item value="list">List View</Tabs.Item>
           <Tabs.Item value="card">Card View</Tabs.Item>
         </Tabs.List>
-        
+
         <Tabs.Panel value="grid">
           <div>Grid layout for items</div>
         </Tabs.Panel>
@@ -262,7 +294,7 @@ function FormTabs() {
           <div>Card layout for items</div>
         </Tabs.Panel>
       </Tabs>
-      
+
       <button type="submit">Save View Preference</button>
     </form>
   )

@@ -1,12 +1,15 @@
 # ProgressIndicator
 
 ## Component Name
+
 ProgressIndicator
 
 ## Brief Description
+
 A visual indicator that shows the user's progress through a multi-step process or sequence with animated transitions and smart pagination.
 
 ## Keywords
+
 Progress, Stepper, Navigation, Multi-step, Indicator, Steps, Pagination, Workflow
 
 ## Usage Description
@@ -20,12 +23,14 @@ The ProgressIndicator is particularly useful in scenarios where users need clear
 ## Props Documentation
 
 ### total
+
 - **Type**: `number`
 - **Required**: Yes
 - **Description**: The total number of steps in the progress sequence. This determines how many dots will be rendered and affects the pagination behavior for sequences longer than 7 steps.
 - **Example**: `total={10}`
 
 ### activeIndex
+
 - **Type**: `number`
 - **Required**: No
 - **Default**: `0`
@@ -33,6 +38,7 @@ The ProgressIndicator is particularly useful in scenarios where users need clear
 - **Example**: `activeIndex={3}`
 
 ### color
+
 - **Type**: `"primary" | "media"`
 - **Required**: No
 - **Default**: `"primary"`
@@ -40,18 +46,21 @@ The ProgressIndicator is particularly useful in scenarios where users need clear
 - **Example**: `color="media"`
 
 ### ariaLabel
+
 - **Type**: `string`
 - **Required**: No
 - **Description**: Accessibility label for screen readers. When provided, adds ARIA attributes to make the component accessible as a progress indicator with proper role, value, min, and max attributes.
 - **Example**: `ariaLabel="Onboarding progress"`
 
 ### className
+
 - **Type**: `ClassName`
 - **Required**: No
 - **Description**: Additional CSS classes to apply to the root element. Accepts string, array of strings, or nested arrays of strings.
 - **Example**: `className="custom-progress"`
 
 ### attributes
+
 - **Type**: `Attributes<"div">`
 - **Required**: No
 - **Description**: Additional HTML attributes to apply to the root div element, including data attributes and standard div props.
@@ -60,50 +69,49 @@ The ProgressIndicator is particularly useful in scenarios where users need clear
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { ProgressIndicator } from 'reshaped';
+import { ProgressIndicator } from "reshaped";
 
 // Simple progress indicator with 5 steps
 function BasicProgress() {
   const [currentStep, setCurrentStep] = useState(0);
-  
-  return (
-    <ProgressIndicator 
-      total={5} 
-      activeIndex={currentStep} 
-    />
-  );
+
+  return <ProgressIndicator total={5} activeIndex={currentStep} />;
 }
 ```
 
 ### Interactive Progress with Controls
+
 ```tsx
-import { ProgressIndicator, Button, View } from 'reshaped';
+import { ProgressIndicator, Button, View } from "reshaped";
 
 // Progress indicator with navigation controls
 function InteractiveProgress() {
   const [activeIndex, setActiveIndex] = useState(0);
   const total = 10;
-  
+
   return (
     <View gap={4}>
       <View direction="row" gap={2} align="center">
-        <Button 
-          onClick={() => setActiveIndex(prev => Math.max(0, prev - 1))}
+        <Button
+          onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
           disabled={activeIndex === 0}
         >
           Previous
         </Button>
-        <Button 
-          onClick={() => setActiveIndex(prev => Math.min(total - 1, prev + 1))}
+        <Button
+          onClick={() =>
+            setActiveIndex((prev) => Math.min(total - 1, prev + 1))
+          }
           disabled={activeIndex === total - 1}
         >
           Next
         </Button>
       </View>
-      <ProgressIndicator 
-        total={total} 
-        activeIndex={activeIndex} 
+      <ProgressIndicator
+        total={total}
+        activeIndex={activeIndex}
         ariaLabel="Multi-step form progress"
       />
     </View>
@@ -112,22 +120,25 @@ function InteractiveProgress() {
 ```
 
 ### Media Overlay Usage
+
 ```tsx
-import { ProgressIndicator, View, Scrim } from 'reshaped';
+import { ProgressIndicator, View, Scrim } from "reshaped";
 
 // Progress indicator for media content with overlay
 function MediaProgress() {
   const [slideIndex, setSlideIndex] = useState(2);
-  
+
   return (
     <View borderRadius="medium" overflow="hidden" width="400px">
-      <Scrim 
-        position="bottom" 
-        backgroundSlot={<View aspectRatio={16/9} backgroundColor="neutral-faded" />}
+      <Scrim
+        position="bottom"
+        backgroundSlot={
+          <View aspectRatio={16 / 9} backgroundColor="neutral-faded" />
+        }
       >
         <View align="center">
-          <ProgressIndicator 
-            total={8} 
+          <ProgressIndicator
+            total={8}
             activeIndex={slideIndex}
             color="media"
             ariaLabel="Image gallery progress"
@@ -140,16 +151,17 @@ function MediaProgress() {
 ```
 
 ### Long Sequence with Pagination
+
 ```tsx
-import { ProgressIndicator } from 'reshaped';
+import { ProgressIndicator } from "reshaped";
 
 // Progress indicator with many steps (demonstrates smart pagination)
 function LongSequenceProgress() {
   const [currentStep, setCurrentStep] = useState(15);
-  
+
   return (
-    <ProgressIndicator 
-      total={25} 
+    <ProgressIndicator
+      total={25}
       activeIndex={currentStep}
       ariaLabel="Extended onboarding process"
       className="long-progress"
@@ -159,27 +171,28 @@ function LongSequenceProgress() {
 ```
 
 ### Accessible Implementation
+
 ```tsx
-import { ProgressIndicator, Text, View } from 'reshaped';
+import { ProgressIndicator, Text, View } from "reshaped";
 
 // Fully accessible progress indicator with additional context
 function AccessibleProgress() {
   const currentStep = 3;
   const totalSteps = 6;
-  
+
   return (
     <View gap={2} align="center">
       <Text size="small" color="neutral-faded">
         Step {currentStep + 1} of {totalSteps}
       </Text>
-      <ProgressIndicator 
-        total={totalSteps} 
+      <ProgressIndicator
+        total={totalSteps}
         activeIndex={currentStep}
         ariaLabel={`Setup progress: step ${currentStep + 1} of ${totalSteps}`}
         attributes={{
-          'data-testid': 'setup-progress',
-          role: 'region',
-          'aria-labelledby': 'progress-heading'
+          "data-testid": "setup-progress",
+          role: "region",
+          "aria-labelledby": "progress-heading",
         }}
       />
     </View>

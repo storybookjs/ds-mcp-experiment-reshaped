@@ -1,12 +1,15 @@
 # Card
 
 ## Component Name
+
 Card
 
 ## Brief Description
+
 A versatile container component that provides structured content areas with consistent styling, spacing, and interaction capabilities.
 
 ## Keywords
+
 Container, Layout, Surface, Elevation, Interaction, Content Area, Padding, Border
 
 ## Usage Description
@@ -22,12 +25,14 @@ The Card component leverages the design system's spacing scale and elevation tok
 ### Core Props
 
 **`children`**
+
 - Type: `React.ReactNode`
 - Required: No
 - Description: Content to be rendered inside the card
 - Example: JSX elements, text, or other React components
 
 **`padding`**
+
 - Type: `Responsive<number>`
 - Required: No
 - Default: `4`
@@ -35,12 +40,14 @@ The Card component leverages the design system's spacing scale and elevation tok
 - Example: `2`, `6`, `{ s: 4, m: 8 }`
 
 **`className`**
+
 - Type: `ClassName`
 - Required: No
 - Description: Additional CSS classes to apply to the card
 - Example: `"custom-card"`, `["card", "featured"]`
 
 **`as`**
+
 - Type: `keyof React.JSX.IntrinsicElements`
 - Required: No
 - Default: `"div"`
@@ -50,12 +57,14 @@ The Card component leverages the design system's spacing scale and elevation tok
 ### Interaction Props
 
 **`onClick`**
+
 - Type: `ActionableProps["onClick"]`
 - Required: No
 - Description: Click handler that makes the card interactive. Accepts mouse and keyboard events
 - Example: `() => console.log('Card clicked')`
 
 **`href`**
+
 - Type: `string`
 - Required: No
 - Description: URL that makes the card behave as a link element
@@ -64,6 +73,7 @@ The Card component leverages the design system's spacing scale and elevation tok
 ### Visual State Props
 
 **`selected`**
+
 - Type: `boolean`
 - Required: No
 - Default: `false`
@@ -71,6 +81,7 @@ The Card component leverages the design system's spacing scale and elevation tok
 - Example: `true`
 
 **`elevated`**
+
 - Type: `boolean`
 - Required: No
 - Default: `false`
@@ -80,12 +91,14 @@ The Card component leverages the design system's spacing scale and elevation tok
 ### Layout Props
 
 **`height`**
+
 - Type: `Responsive<string | number>` (inherited from ViewProps)
 - Required: No
 - Description: Explicit height constraint with responsive support
 - Example: `"200px"`, `300`, `{ s: "150px", m: "250px" }`
 
 **`bleed`**
+
 - Type: `Responsive<number>`
 - Required: No
 - Description: Negative margin that allows content to extend beyond the card's boundaries
@@ -94,6 +107,7 @@ The Card component leverages the design system's spacing scale and elevation tok
 ### Advanced Props
 
 **`attributes`**
+
 - Type: `Attributes<TagName> & ActionableProps["attributes"]`
 - Required: No
 - Description: Additional HTML attributes and accessibility properties
@@ -102,8 +116,9 @@ The Card component leverages the design system's spacing scale and elevation tok
 ## Code Examples
 
 ### Basic Usage
+
 ```jsx
-import { Card } from 'reshaped';
+import { Card } from "reshaped";
 
 function BasicCard() {
   return (
@@ -114,21 +129,23 @@ function BasicCard() {
   );
 }
 ```
-*A simple card container with default spacing and styling.*
+
+_A simple card container with default spacing and styling._
 
 ### Interactive Card with Click Handler
+
 ```jsx
-import { Card } from 'reshaped';
+import { Card } from "reshaped";
 
 function ClickableCard() {
   const handleCardClick = () => {
-    console.log('Card clicked!');
+    console.log("Card clicked!");
   };
 
   return (
-    <Card 
+    <Card
       onClick={handleCardClick}
-      attributes={{ 'aria-label': 'Clickable content card' }}
+      attributes={{ "aria-label": "Clickable content card" }}
     >
       <h3>Interactive Card</h3>
       <p>Click anywhere on this card to trigger an action.</p>
@@ -136,17 +153,19 @@ function ClickableCard() {
   );
 }
 ```
-*An interactive card that responds to clicks with proper accessibility support.*
+
+_An interactive card that responds to clicks with proper accessibility support._
 
 ### Card as Navigation Link
+
 ```jsx
-import { Card } from 'reshaped';
+import { Card } from "reshaped";
 
 function LinkCard() {
   return (
-    <Card 
+    <Card
       href="/user/profile"
-      attributes={{ 'aria-label': 'Navigate to user profile' }}
+      attributes={{ "aria-label": "Navigate to user profile" }}
     >
       <h3>User Profile</h3>
       <p>Click to view your profile settings.</p>
@@ -154,30 +173,30 @@ function LinkCard() {
   );
 }
 ```
-*A card that functions as a navigation link to another page.*
+
+_A card that functions as a navigation link to another page._
 
 ### Elevated Card with Custom Spacing
+
 ```jsx
-import { Card } from 'reshaped';
+import { Card } from "reshaped";
 
 function ElevatedCard() {
   return (
-    <Card 
-      elevated 
-      padding={6}
-      height="250px"
-    >
+    <Card elevated padding={6} height="250px">
       <h2>Premium Content</h2>
       <p>This elevated card stands out with increased padding and shadow.</p>
     </Card>
   );
 }
 ```
-*A visually prominent card with elevation shadow and custom spacing.*
+
+_A visually prominent card with elevation shadow and custom spacing._
 
 ### Responsive Card with Conditional States
+
 ```jsx
-import { Card } from 'reshaped';
+import { Card } from "reshaped";
 
 function ResponsiveCard({ isSelected, onSelect, content }) {
   return (
@@ -187,9 +206,9 @@ function ResponsiveCard({ isSelected, onSelect, content }) {
       onClick={onSelect}
       padding={{ s: 4, m: 6, l: 8 }}
       bleed={{ s: 2, m: 0 }}
-      attributes={{ 
-        'aria-pressed': isSelected,
-        'aria-label': `Content card ${isSelected ? 'selected' : 'unselected'}`
+      attributes={{
+        "aria-pressed": isSelected,
+        "aria-label": `Content card ${isSelected ? "selected" : "unselected"}`,
       }}
     >
       <h3>{content.title}</h3>
@@ -199,7 +218,8 @@ function ResponsiveCard({ isSelected, onSelect, content }) {
   );
 }
 ```
-*A responsive card that adapts spacing across breakpoints with conditional visual states.*
+
+_A responsive card that adapts spacing across breakpoints with conditional visual states._
 
 ## Accessibility Considerations
 
@@ -214,6 +234,7 @@ The Card component implements comprehensive accessibility features:
 - **Semantic HTML**: The `as` prop allows using semantic HTML elements like `<article>` or `<section>` when appropriate
 
 Best practices for accessibility:
+
 - Use descriptive `aria-label` values for interactive cards
 - Ensure card content has proper heading hierarchy
 - Provide focus-visible indicators for keyboard users

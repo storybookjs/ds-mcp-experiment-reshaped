@@ -15,18 +15,21 @@ The component is built on top of the Actionable component, inheriting its intera
 ## Props Documentation
 
 ### `children`
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Description**: The content to be displayed within the link
 - **Example**: `"Click here"` or `<span>Custom content</span>`
 
 ### `href`
+
 - **Type**: `string`
 - **Required**: No
 - **Description**: URL destination for the link. When provided, renders as an anchor tag; otherwise renders as a button
 - **Example**: `"/dashboard"`, `"https://example.com"`, `"#section"`
 
 ### `color`
+
 - **Type**: `"inherit" | "critical" | "primary" | "positive" | "warning"`
 - **Required**: No
 - **Default**: `"primary"`
@@ -34,6 +37,7 @@ The component is built on top of the Actionable component, inheriting its intera
 - **Example**: `"critical"` for error-related links, `"positive"` for success actions
 
 ### `variant`
+
 - **Type**: `"plain" | "underline"`
 - **Required**: No
 - **Default**: `"underline"`
@@ -41,12 +45,14 @@ The component is built on top of the Actionable component, inheriting its intera
 - **Example**: `"plain"` for subtle links, `"underline"` for traditional underlined links
 
 ### `icon`
+
 - **Type**: `React.ReactElement | React.ComponentType`
 - **Required**: No
 - **Description**: Optional icon to display alongside the link text. Accepts SVG elements or icon components
 - **Example**: `<ChevronRightIcon />` or imported icon component
 
 ### `disabled`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -54,30 +60,35 @@ The component is built on top of the Actionable component, inheriting its intera
 - **Example**: `true` to disable the link
 
 ### `onClick`
+
 - **Type**: `(e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void`
 - **Required**: No
 - **Description**: Click event handler for the link
 - **Example**: `() => console.log('Link clicked')`
 
 ### `type`
+
 - **Type**: `React.ButtonHTMLAttributes<HTMLButtonElement>["type"]`
 - **Required**: No
 - **Description**: Button type when rendering as button (no href provided)
 - **Example**: `"submit"`, `"button"`, `"reset"`
 
 ### `className`
+
 - **Type**: `string`
 - **Required**: No
 - **Description**: Additional CSS classes to apply to the link
 - **Example**: `"custom-link-style"`
 
 ### `attributes`
+
 - **Type**: `G.Attributes<"button"> & Omit<React.JSX.IntrinsicElements["a"], keyof G.Attributes<"button">>`
 - **Required**: No
 - **Description**: Additional HTML attributes to pass to the underlying element
 - **Example**: `{ "aria-label": "Navigate to dashboard" }`
 
 ### `stopPropagation`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -87,6 +98,7 @@ The component is built on top of the Actionable component, inheriting its intera
 ## Code Examples
 
 ### Basic Link Usage
+
 ```tsx
 import { Link } from 'reshaped';
 
@@ -102,6 +114,7 @@ import { Link } from 'reshaped';
 ```
 
 ### Button-Style Link
+
 ```tsx
 // Link that acts as a button (no href)
 <Link onClick={() => handleAction()} variant="plain">
@@ -115,6 +128,7 @@ import { Link } from 'reshaped';
 ```
 
 ### Links with Icons
+
 ```tsx
 import { ChevronRightIcon, ExternalLinkIcon } from './icons';
 
@@ -124,8 +138,8 @@ import { ChevronRightIcon, ExternalLinkIcon } from './icons';
 </Link>
 
 // External link with icon
-<Link 
-  href="https://docs.example.com" 
+<Link
+  href="https://docs.example.com"
   icon={<ExternalLinkIcon />}
   color="primary"
 >
@@ -134,6 +148,7 @@ import { ChevronRightIcon, ExternalLinkIcon } from './icons';
 ```
 
 ### Different Color Variants
+
 ```tsx
 // Critical action link
 <Link href="/delete-account" color="critical">
@@ -157,9 +172,10 @@ import { ChevronRightIcon, ExternalLinkIcon } from './icons';
 ```
 
 ### Advanced Configuration
+
 ```tsx
 // Disabled link with custom styling
-<Link 
+<Link
   href="/premium-feature"
   disabled={!isPremiumUser}
   color="primary"
@@ -173,7 +189,7 @@ import { ChevronRightIcon, ExternalLinkIcon } from './icons';
 </Link>
 
 // Link with event handling and propagation control
-<Link 
+<Link
   onClick={handleCardClick}
   stopPropagation={true}
   variant="plain"

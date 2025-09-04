@@ -37,16 +37,16 @@ The component can be rendered in different styles - from a prominent dashed bord
 ### Basic File Upload with Drop Zone
 
 ```tsx
-import FileUpload from 'reshaped/FileUpload';
-import View from 'reshaped/View';
-import Icon from 'reshaped/Icon';
-import IconMic from 'reshaped/icons/Mic';
+import FileUpload from "reshaped/FileUpload";
+import View from "reshaped/View";
+import Icon from "reshaped/Icon";
+import IconMic from "reshaped/icons/Mic";
 
 function BasicUpload() {
   const [files, setFiles] = React.useState<File[]>([]);
 
   const handleChange = ({ value }: { value: File[] }) => {
-    setFiles(prev => [...prev, ...value]);
+    setFiles((prev) => [...prev, ...value]);
   };
 
   return (
@@ -59,19 +59,20 @@ function BasicUpload() {
   );
 }
 ```
-*Demonstrates basic usage with a visual drop zone and file state management*
+
+_Demonstrates basic usage with a visual drop zone and file state management_
 
 ### Upload with Custom Trigger Button
 
 ```tsx
-import FileUpload from 'reshaped/FileUpload';
-import Link from 'reshaped/Link';
+import FileUpload from "reshaped/FileUpload";
+import Link from "reshaped/Link";
 
 function UploadWithTrigger() {
   return (
     <FileUpload name="attachments">
       <div>
-        Drop files to attach, or{' '}
+        Drop files to attach, or{" "}
         <FileUpload.Trigger>
           <Link variant="plain">browse</Link>
         </FileUpload.Trigger>
@@ -80,19 +81,20 @@ function UploadWithTrigger() {
   );
 }
 ```
-*Shows how to combine drag-and-drop with a clickable trigger for file browser access*
+
+_Shows how to combine drag-and-drop with a clickable trigger for file browser access_
 
 ### Inline Upload Button
 
 ```tsx
-import FileUpload from 'reshaped/FileUpload';
-import Button from 'reshaped/Button';
+import FileUpload from "reshaped/FileUpload";
+import Button from "reshaped/Button";
 
 function InlineUpload() {
   return (
-    <FileUpload 
-      name="profile-image" 
-      variant="headless" 
+    <FileUpload
+      name="profile-image"
+      variant="headless"
       inline
       onChange={console.log}
     >
@@ -101,19 +103,20 @@ function InlineUpload() {
   );
 }
 ```
-*Demonstrates inline styling with headless variant for seamless UI integration*
+
+_Demonstrates inline styling with headless variant for seamless UI integration_
 
 ### Upload with Render Props and Highlight State
 
 ```tsx
-import FileUpload from 'reshaped/FileUpload';
-import Button from 'reshaped/Button';
+import FileUpload from "reshaped/FileUpload";
+import Button from "reshaped/Button";
 
 function HighlightUpload() {
   return (
-    <FileUpload 
-      name="files" 
-      variant="headless" 
+    <FileUpload
+      name="files"
+      variant="headless"
       inline
       onChange={handleFileChange}
     >
@@ -126,15 +129,16 @@ function HighlightUpload() {
   );
 }
 ```
-*Shows dynamic rendering based on drag state using render props pattern*
+
+_Shows dynamic rendering based on drag state using render props pattern_
 
 ### Custom Height Upload Area
 
 ```tsx
-import FileUpload from 'reshaped/FileUpload';
-import View from 'reshaped/View';
-import Icon from 'reshaped/Icon';
-import IconDocument from 'reshaped/icons/Document';
+import FileUpload from "reshaped/FileUpload";
+import View from "reshaped/View";
+import Icon from "reshaped/Icon";
+import IconDocument from "reshaped/icons/Document";
 
 function LargeUploadArea() {
   return (
@@ -150,7 +154,8 @@ function LargeUploadArea() {
   );
 }
 ```
-*Demonstrates custom sizing for larger upload areas with enhanced visual design*
+
+_Demonstrates custom sizing for larger upload areas with enhanced visual design_
 
 ## Accessibility Considerations
 
@@ -163,6 +168,7 @@ The FileUpload component implements several accessibility features:
 - **ARIA Labels**: The internal input maintains proper form semantics and labeling
 
 When using the component, ensure that:
+
 - Provide clear instructions about accepted file types and size limits
 - Include appropriate error messaging for upload failures
 - Consider announcing file selection success to screen reader users

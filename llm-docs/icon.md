@@ -1,12 +1,15 @@
 # Icon Component Documentation
 
 ## Component Name
+
 Icon
 
 ## Brief Description
+
 A utility component for rendering SVG icons with consistent sizing, colors, and accessibility attributes.
 
 ## Keywords
+
 - Icon
 - SVG
 - Graphics
@@ -26,12 +29,14 @@ The Icon component integrates seamlessly with the Reshaped theming system, provi
 ## Props Documentation
 
 ### svg
+
 - **Type**: `React.ReactElement | React.ComponentType`
 - **Required**: Yes
 - **Description**: The SVG element or component to render as an icon. Can be either a JSX element or a component reference.
 - **Example**: `<Icon svg={<svg>...</svg>} />` or `<Icon svg={CheckmarkIcon} />`
 
 ### size
+
 - **Type**: `G.Responsive<number | string>`
 - **Required**: No
 - **Default**: `"1em"`
@@ -39,6 +44,7 @@ The Icon component integrates seamlessly with the Reshaped theming system, provi
 - **Example**: `size={24}`, `size="100%"`, `size={{ s: 16, m: 24 }}`
 
 ### color
+
 - **Type**: `"neutral" | "neutral-faded" | "positive" | "critical" | "warning" | "primary" | "disabled"`
 - **Required**: No
 - **Default**: Inherits from parent element
@@ -46,6 +52,7 @@ The Icon component integrates seamlessly with the Reshaped theming system, provi
 - **Example**: `color="primary"`, `color="critical"`
 
 ### autoWidth
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -53,12 +60,14 @@ The Icon component integrates seamlessly with the Reshaped theming system, provi
 - **Example**: `autoWidth={true}`
 
 ### className
+
 - **Type**: `G.ClassName`
 - **Required**: No
 - **Description**: Additional CSS class names to apply to the icon container. Can be a string, array of strings, or nested arrays.
 - **Example**: `className="my-icon-class"`
 
 ### attributes
+
 - **Type**: `G.Attributes<"span">`
 - **Required**: No
 - **Description**: Additional HTML attributes to apply to the icon's span container, including data attributes and event handlers.
@@ -67,6 +76,7 @@ The Icon component integrates seamlessly with the Reshaped theming system, provi
 ## Code Examples
 
 ### Basic Icon Usage
+
 ```tsx
 import { Icon } from 'reshaped';
 import CheckmarkIcon from './icons/Checkmark';
@@ -83,6 +93,7 @@ import CheckmarkIcon from './icons/Checkmark';
 ```
 
 ### Sized Icons
+
 ```tsx
 // Fixed pixel size
 <Icon svg={CheckmarkIcon} size={24} />
@@ -91,13 +102,13 @@ import CheckmarkIcon from './icons/Checkmark';
 <Icon svg={CheckmarkIcon} size="100%" />
 
 // Responsive sizing
-<Icon 
-  svg={CheckmarkIcon} 
-  size={{ 
+<Icon
+  svg={CheckmarkIcon}
+  size={{
     s: 16,  // Small screens: 16px
     m: 20,  // Medium screens: 20px
     l: 24   // Large screens: 24px
-  }} 
+  }}
 />
 
 // Inherits font size (default behavior)
@@ -107,6 +118,7 @@ import CheckmarkIcon from './icons/Checkmark';
 ```
 
 ### Colored Icons
+
 ```tsx
 // Themed colors
 <Icon svg={CheckmarkIcon} color="positive" />
@@ -128,6 +140,7 @@ import CheckmarkIcon from './icons/Checkmark';
 ```
 
 ### Auto-Width Icons
+
 ```tsx
 // Default: Square aspect ratio
 <Icon svg={MicrophoneIcon} size={32} />
@@ -137,21 +150,23 @@ import CheckmarkIcon from './icons/Checkmark';
 ```
 
 ### Icons with Custom Attributes
+
 ```tsx
 // With additional HTML attributes
-<Icon 
+<Icon
   svg={CheckmarkIcon}
   size={20}
   className="success-icon"
   attributes={{
-    'data-testid': 'success-indicator',
-    'data-status': 'complete',
-    id: 'completion-icon'
+    "data-testid": "success-indicator",
+    "data-status": "complete",
+    id: "completion-icon",
   }}
 />
 ```
 
 ### Icons in Button Context
+
 ```tsx
 import { Button, Icon } from 'reshaped';
 

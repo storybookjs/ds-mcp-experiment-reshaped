@@ -32,6 +32,7 @@ const useScrollLock = (options?: {
 ### Parameters
 
 #### `options` (optional)
+
 An object containing optional configuration for the scroll lock behavior.
 
 - **Type**: `{ containerRef?: React.RefObject<HTMLElement | null>; originRef?: React.RefObject<HTMLElement | null>; }`
@@ -39,11 +40,13 @@ An object containing optional configuration for the scroll lock behavior.
 - **Default**: `undefined`
 
 ##### `options.containerRef`
+
 - **Type**: `React.RefObject<HTMLElement | null>`
 - **Required**: No
 - **Description**: Reference to a specific container element to lock scrolling on. When provided, only this container's scrolling will be locked instead of the document body.
 
 ##### `options.originRef`
+
 - **Type**: `React.RefObject<HTMLElement | null>`
 - **Required**: No
 - **Description**: Reference to an origin element used to find the closest scrollable container. The hook will search for the nearest scrollable ancestor of this element and lock scrolling on that container.
@@ -53,14 +56,17 @@ An object containing optional configuration for the scroll lock behavior.
 The hook returns an object with three properties:
 
 #### `scrollLocked`
+
 - **Type**: `boolean`
 - **Description**: Indicates whether scroll is currently locked. `true` when scroll is locked, `false` when unlocked.
 
 #### `lockScroll`
+
 - **Type**: `() => void`
 - **Description**: Function to lock scrolling. When called, it will prevent scrolling on the target container (either the specified container, the closest scrollable ancestor of the origin element, or the document body).
 
 #### `unlockScroll`
+
 - **Type**: `() => void`
 - **Description**: Function to unlock scrolling. When called, it will restore normal scrolling behavior to the previously locked container.
 
@@ -69,17 +75,17 @@ The hook returns an object with three properties:
 ### Basic Usage (Global Body Lock)
 
 ```tsx
-import React from 'react';
-import useScrollLock from 'reshaped/dist/hooks/useScrollLock';
-import Button from 'reshaped/dist/components/Button';
+import React from "react";
+import useScrollLock from "reshaped/dist/hooks/useScrollLock";
+import Button from "reshaped/dist/components/Button";
 
 function ModalExample() {
   const { scrollLocked, lockScroll, unlockScroll } = useScrollLock();
-  
+
   return (
     <>
       <Button onClick={scrollLocked ? unlockScroll : lockScroll}>
-        {scrollLocked ? 'Unlock Scroll' : 'Lock Scroll'}
+        {scrollLocked ? "Unlock Scroll" : "Lock Scroll"}
       </Button>
       {/* Your modal content */}
     </>
@@ -90,26 +96,22 @@ function ModalExample() {
 ### Container-Specific Scroll Lock
 
 ```tsx
-import React from 'react';
-import useScrollLock from 'reshaped/dist/hooks/useScrollLock';
-import Button from 'reshaped/dist/components/Button';
-import View from 'reshaped/dist/components/View';
+import React from "react";
+import useScrollLock from "reshaped/dist/hooks/useScrollLock";
+import Button from "reshaped/dist/components/Button";
+import View from "reshaped/dist/components/View";
 
 function ScrollableContainerExample() {
   const containerRef = React.useRef(null);
-  const { scrollLocked, lockScroll, unlockScroll } = useScrollLock({ 
-    containerRef 
+  const { scrollLocked, lockScroll, unlockScroll } = useScrollLock({
+    containerRef,
   });
-  
+
   return (
-    <View 
-      height={25} 
-      overflow="auto"
-      attributes={{ ref: containerRef }}
-    >
+    <View height={25} overflow="auto" attributes={{ ref: containerRef }}>
       <View height={50} padding={4}>
         <Button onClick={scrollLocked ? unlockScroll : lockScroll}>
-          {scrollLocked ? 'Unlock Container' : 'Lock Container'}
+          {scrollLocked ? "Unlock Container" : "Lock Container"}
         </Button>
         {/* Scrollable content */}
       </View>
@@ -121,24 +123,20 @@ function ScrollableContainerExample() {
 ### Origin-Based Scroll Lock
 
 ```tsx
-import React from 'react';
-import useScrollLock from 'reshaped/dist/hooks/useScrollLock';
-import Button from 'reshaped/dist/components/Button';
-import View from 'reshaped/dist/components/View';
+import React from "react";
+import useScrollLock from "reshaped/dist/hooks/useScrollLock";
+import Button from "reshaped/dist/components/Button";
+import View from "reshaped/dist/components/View";
 
 function OriginBasedExample() {
   const originRef = React.useRef(null);
-  const { scrollLocked, lockScroll, unlockScroll } = useScrollLock({ 
-    originRef 
+  const { scrollLocked, lockScroll, unlockScroll } = useScrollLock({
+    originRef,
   });
-  
+
   return (
     <View overflow="auto" height={25}>
-      <View 
-        height={50} 
-        padding={4}
-        attributes={{ ref: originRef }}
-      >
+      <View height={50} padding={4} attributes={{ ref: originRef }}>
         <Button onClick={scrollLocked ? unlockScroll : lockScroll}>
           Toggle Scroll Lock
         </Button>
@@ -152,25 +150,25 @@ function OriginBasedExample() {
 ### Modal Dialog with Scroll Lock
 
 ```tsx
-import React from 'react';
-import useScrollLock from 'reshaped/dist/hooks/useScrollLock';
-import Button from 'reshaped/dist/components/Button';
-import View from 'reshaped/dist/components/View';
+import React from "react";
+import useScrollLock from "reshaped/dist/hooks/useScrollLock";
+import Button from "reshaped/dist/components/Button";
+import View from "reshaped/dist/components/View";
 
 function ModalDialog() {
   const [isOpen, setIsOpen] = React.useState(false);
   const { lockScroll, unlockScroll } = useScrollLock();
-  
+
   const openModal = () => {
     setIsOpen(true);
     lockScroll();
   };
-  
+
   const closeModal = () => {
     setIsOpen(false);
     unlockScroll();
   };
-  
+
   React.useEffect(() => {
     // Cleanup scroll lock when component unmounts
     return () => {
@@ -179,17 +177,17 @@ function ModalDialog() {
       }
     };
   }, [isOpen, unlockScroll]);
-  
+
   return (
     <>
       <Button onClick={openModal}>Open Modal</Button>
-      
+
       {isOpen && (
-        <View 
+        <View
           position="fixed"
           inset={0}
           backgroundColor="neutral-faded"
-          attributes={{ 'data-testid': 'modal-backdrop' }}
+          attributes={{ "data-testid": "modal-backdrop" }}
         >
           <View padding={8} backgroundColor="neutral">
             <Button onClick={closeModal}>Close Modal</Button>
@@ -205,28 +203,36 @@ function ModalDialog() {
 ### Multiple Scroll Locks
 
 ```tsx
-import React from 'react';
-import useScrollLock from 'reshaped/dist/hooks/useScrollLock';
-import Button from 'reshaped/dist/components/Button';
+import React from "react";
+import useScrollLock from "reshaped/dist/hooks/useScrollLock";
+import Button from "reshaped/dist/components/Button";
 
 function MultipleLocksExample() {
   const containerRef = React.useRef(null);
   const globalLock = useScrollLock();
   const scopedLock = useScrollLock({ containerRef });
-  
+
   return (
     <div>
-      <Button 
-        onClick={globalLock.scrollLocked ? globalLock.unlockScroll : globalLock.lockScroll}
+      <Button
+        onClick={
+          globalLock.scrollLocked
+            ? globalLock.unlockScroll
+            : globalLock.lockScroll
+        }
       >
-        Global Lock: {globalLock.scrollLocked ? 'Locked' : 'Unlocked'}
+        Global Lock: {globalLock.scrollLocked ? "Locked" : "Unlocked"}
       </Button>
-      
-      <div ref={containerRef} style={{ height: '200px', overflow: 'auto' }}>
-        <Button 
-          onClick={scopedLock.scrollLocked ? scopedLock.unlockScroll : scopedLock.lockScroll}
+
+      <div ref={containerRef} style={{ height: "200px", overflow: "auto" }}>
+        <Button
+          onClick={
+            scopedLock.scrollLocked
+              ? scopedLock.unlockScroll
+              : scopedLock.lockScroll
+          }
         >
-          Scoped Lock: {scopedLock.scrollLocked ? 'Locked' : 'Unlocked'}
+          Scoped Lock: {scopedLock.scrollLocked ? "Locked" : "Unlocked"}
         </Button>
         {/* Scrollable content */}
       </div>
@@ -247,6 +253,7 @@ The hook automatically detects the platform and applies appropriate scroll locki
 ### Lock Counting
 
 The hook implements a reference counting system for body scroll locks:
+
 - Multiple components can request body scroll locks simultaneously
 - The body scroll is only unlocked when all requesting components have unlocked
 - Container-specific locks operate independently of the global lock count
@@ -261,6 +268,7 @@ The hook implements a reference counting system for body scroll locks:
 ### Scrollbar Compensation
 
 For standard browsers, the hook:
+
 - Detects if the container is overflowing
 - Calculates the scrollbar width
 - Adds padding to prevent layout shifts when scrolling is disabled
@@ -335,7 +343,9 @@ React.useEffect(() => {
 const { scrollLocked, lockScroll } = useScrollLock();
 
 // Good: Use scrollLocked state for conditional rendering
-{scrollLocked && <div>Scroll is currently locked</div>}
+{
+  scrollLocked && <div>Scroll is currently locked</div>;
+}
 ```
 
 ### 6. Consider Origin Refs for Complex Layouts

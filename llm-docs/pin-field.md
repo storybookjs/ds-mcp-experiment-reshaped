@@ -1,9 +1,11 @@
 # PinField
 
 ## Brief Description
+
 A specialized input component for entering PIN codes, verification codes, or other sequential character inputs with individual character slots.
 
 ## Keywords
+
 PIN Input, Verification Code, OTP, Sequential Input, Character Fields, Authentication, Form Control, Input Validation
 
 ## Usage Description
@@ -18,33 +20,33 @@ Use PinField when you need users to enter a fixed-length sequence of characters 
 
 ### Required Props
 
-| Prop | Type | Description |
-|------|------|-------------|
+| Prop   | Type     | Description                                            |
+| ------ | -------- | ------------------------------------------------------ |
 | `name` | `string` | Form field name for form submission and identification |
 
 ### Optional Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | `undefined` | Controlled value - when provided, component operates in controlled mode |
-| `defaultValue` | `string` | `""` | Initial value for uncontrolled mode (ignored when `value` is provided) |
-| `valueLength` | `number` | `4` | Number of character slots to display |
-| `pattern` | `"alphabetic" \| "numeric" \| "alphanumeric"` | `"numeric"` | Input validation pattern constraint |
-| `size` | `Responsive<"small" \| "medium" \| "large" \| "xlarge">` | `"medium"` | Visual size of character slots |
-| `variant` | `"outline" \| "faded"` | `"outline"` | Visual style variant |
-| `onChange` | `ChangeHandler<string>` | `undefined` | Callback fired when value changes |
-| `className` | `ClassName` | `undefined` | Additional CSS class names |
-| `attributes` | `Attributes<"div">` | `undefined` | Additional HTML attributes for container |
-| `inputAttributes` | `Attributes<"input">` | `undefined` | Additional HTML attributes for hidden input |
+| Prop              | Type                                                     | Default     | Description                                                             |
+| ----------------- | -------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
+| `value`           | `string`                                                 | `undefined` | Controlled value - when provided, component operates in controlled mode |
+| `defaultValue`    | `string`                                                 | `""`        | Initial value for uncontrolled mode (ignored when `value` is provided)  |
+| `valueLength`     | `number`                                                 | `4`         | Number of character slots to display                                    |
+| `pattern`         | `"alphabetic" \| "numeric" \| "alphanumeric"`            | `"numeric"` | Input validation pattern constraint                                     |
+| `size`            | `Responsive<"small" \| "medium" \| "large" \| "xlarge">` | `"medium"`  | Visual size of character slots                                          |
+| `variant`         | `"outline" \| "faded"`                                   | `"outline"` | Visual style variant                                                    |
+| `onChange`        | `ChangeHandler<string>`                                  | `undefined` | Callback fired when value changes                                       |
+| `className`       | `ClassName`                                              | `undefined` | Additional CSS class names                                              |
+| `attributes`      | `Attributes<"div">`                                      | `undefined` | Additional HTML attributes for container                                |
+| `inputAttributes` | `Attributes<"input">`                                    | `undefined` | Additional HTML attributes for hidden input                             |
 
 ### Size Specifications
 
 The `size` prop controls the dimensions of each character slot:
 
-- `small`: 28px (7 * 4px base unit)
-- `medium`: 36px (9 * 4px base unit) 
-- `large`: 48px (12 * 4px base unit)
-- `xlarge`: 56px (14 * 4px base unit)
+- `small`: 28px (7 \* 4px base unit)
+- `medium`: 36px (9 \* 4px base unit)
+- `large`: 48px (12 \* 4px base unit)
+- `xlarge`: 56px (14 \* 4px base unit)
 
 ### Pattern Validation
 
@@ -77,13 +79,7 @@ function BasicPinField() {
     console.log(`${name}: ${value}`);
   };
 
-  return (
-    <PinField 
-      name="pin"
-      defaultValue=""
-      onChange={handleChange}
-    />
-  );
+  return <PinField name="pin" defaultValue="" onChange={handleChange} />;
 }
 ```
 
@@ -106,7 +102,7 @@ function ControlledPinField() {
 
   return (
     <div>
-      <PinField 
+      <PinField
         name="verification-code"
         value={pin}
         valueLength={6}
@@ -128,7 +124,7 @@ import { PinField } from "reshaped";
 
 function CustomPinField() {
   return (
-    <PinField 
+    <PinField
       name="custom-pin"
       valueLength={8}
       pattern="alphanumeric"
@@ -137,7 +133,7 @@ function CustomPinField() {
       className="custom-pin-field"
       inputAttributes={{
         autoComplete: "one-time-code",
-        "data-testid": "pin-input"
+        "data-testid": "pin-input",
       }}
     />
   );
@@ -153,13 +149,13 @@ import { PinField } from "reshaped";
 
 function ResponsivePinField() {
   return (
-    <PinField 
+    <PinField
       name="responsive-pin"
       size={{
         s: "small",
-        m: "medium", 
+        m: "medium",
         l: "large",
-        xl: "xlarge"
+        xl: "xlarge",
       }}
       pattern="numeric"
       valueLength={4}
@@ -187,16 +183,18 @@ function FormIntegratedPinField() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl 
+      <FormControl
         label="Enter Verification Code"
         caption="Check your phone for the 6-digit code"
       >
-        <PinField 
+        <PinField
           name="pin"
           value={formData.pin}
           valueLength={6}
           pattern="numeric"
-          onChange={({ value }) => setFormData(prev => ({ ...prev, pin: value }))}
+          onChange={({ value }) =>
+            setFormData((prev) => ({ ...prev, pin: value }))
+          }
         />
       </FormControl>
       <button type="submit" disabled={formData.pin.length !== 6}>

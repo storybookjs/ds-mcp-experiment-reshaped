@@ -1,9 +1,11 @@
 # TrapFocus
 
 ## Brief Description
+
 A utility class for managing keyboard focus within specific regions of the DOM, supporting multiple navigation modes including dialog, menu, and bar interactions.
 
 ## Keywords
+
 - Focus Management
 - Keyboard Navigation
 - Accessibility
@@ -24,11 +26,13 @@ TrapFocus integrates with screen reader technologies by automatically applying `
 ## Props Documentation
 
 ### Constructor
+
 - **Parameters**: None
 - **Returns**: TrapFocus instance
 - **Description**: Creates a new TrapFocus instance ready to be configured and activated
 
 ### trap(root, options?)
+
 - **root**: `HTMLElement` (required)
   - The DOM element that serves as the container for the focus trap
   - All focusable elements within this container will be included in the navigation cycle
@@ -62,6 +66,7 @@ TrapFocus integrates with screen reader technologies by automatically applying `
   - **Default**: First focusable element in the container
 
 ### release(releaseOptions?)
+
 - **releaseOptions**: `ReleaseOptions` (optional)
   - Configuration for how the trap should be released
 
@@ -84,48 +89,50 @@ TrapFocus integrates with screen reader technologies by automatically applying `
 ## Code Examples
 
 ### Basic Modal Dialog
+
 ```typescript
-import { TrapFocus } from 'reshaped/utilities/a11y';
+import { TrapFocus } from "reshaped/utilities/a11y";
 
 const trapFocus = new TrapFocus();
-const modalElement = document.getElementById('modal');
+const modalElement = document.getElementById("modal");
 
 // Trap focus when modal opens
 trapFocus.trap(modalElement, {
-  mode: 'dialog',
+  mode: "dialog",
   onRelease: () => {
-    console.log('Modal focus trap released');
-  }
+    console.log("Modal focus trap released");
+  },
 });
 
 // Release when modal closes
 function closeModal() {
   trapFocus.release();
-  modalElement.style.display = 'none';
+  modalElement.style.display = "none";
 }
 ```
 
 ### Dropdown Menu with Action Navigation
+
 ```typescript
-import { TrapFocus } from 'reshaped/utilities/a11y';
+import { TrapFocus } from "reshaped/utilities/a11y";
 
 const trapFocus = new TrapFocus();
-const dropdownMenu = document.querySelector('.dropdown-menu');
-const triggerButton = document.querySelector('.dropdown-trigger');
+const dropdownMenu = document.querySelector(".dropdown-menu");
+const triggerButton = document.querySelector(".dropdown-trigger");
 
 // Trap focus with arrow navigation
-triggerButton.addEventListener('click', () => {
+triggerButton.addEventListener("click", () => {
   trapFocus.trap(dropdownMenu, {
-    mode: 'action-menu',
+    mode: "action-menu",
     includeTrigger: true,
     onRelease: () => {
-      dropdownMenu.classList.remove('open');
-    }
+      dropdownMenu.classList.remove("open");
+    },
   });
 });
 
 // Auto-release on outside click
-document.addEventListener('click', (event) => {
+document.addEventListener("click", (event) => {
   if (!dropdownMenu.contains(event.target) && event.target !== triggerButton) {
     trapFocus.release();
   }
@@ -133,83 +140,87 @@ document.addEventListener('click', (event) => {
 ```
 
 ### Autocomplete with Selection Menu
+
 ```typescript
-import { TrapFocus } from 'reshaped/utilities/a11y';
+import { TrapFocus } from "reshaped/utilities/a11y";
 
 const trapFocus = new TrapFocus();
-const autocompleteContainer = document.querySelector('.autocomplete');
-const inputElement = document.querySelector('.autocomplete-input');
+const autocompleteContainer = document.querySelector(".autocomplete");
+const inputElement = document.querySelector(".autocomplete-input");
 
 // Setup pseudo-focus trap for autocomplete
-inputElement.addEventListener('focus', () => {
+inputElement.addEventListener("focus", () => {
   trapFocus.trap(autocompleteContainer, {
-    mode: 'selection-menu',
+    mode: "selection-menu",
     initialFocusEl: inputElement,
     onRelease: () => {
       // Clear pseudo-focus indicators
-      autocompleteContainer.querySelectorAll('[data-rs-focus]')
-        .forEach(el => el.removeAttribute('data-rs-focus'));
-    }
+      autocompleteContainer
+        .querySelectorAll("[data-rs-focus]")
+        .forEach((el) => el.removeAttribute("data-rs-focus"));
+    },
   });
 });
 ```
 
 ### Horizontal Action Bar Navigation
+
 ```typescript
-import { TrapFocus } from 'reshaped/utilities/a11y';
+import { TrapFocus } from "reshaped/utilities/a11y";
 
 const trapFocus = new TrapFocus();
-const actionBar = document.querySelector('.toolbar');
+const actionBar = document.querySelector(".toolbar");
 
 // Enable horizontal arrow navigation for toolbar
 function activateToolbar() {
   trapFocus.trap(actionBar, {
-    mode: 'action-bar',
+    mode: "action-bar",
     onRelease: () => {
-      actionBar.classList.remove('focused');
-    }
+      actionBar.classList.remove("focused");
+    },
   });
-  actionBar.classList.add('focused');
+  actionBar.classList.add("focused");
 }
 
 // Release trap on Escape key
-actionBar.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
+actionBar.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
     trapFocus.release();
   }
 });
 ```
 
 ### Nested Modal Management
+
 ```typescript
-import { TrapFocus } from 'reshaped/utilities/a11y';
+import { TrapFocus } from "reshaped/utilities/a11y";
 
 // Primary modal
 const primaryTrap = new TrapFocus();
-const primaryModal = document.getElementById('primary-modal');
+const primaryModal = document.getElementById("primary-modal");
 
 // Secondary modal (confirmation dialog)
 const secondaryTrap = new TrapFocus();
-const confirmModal = document.getElementById('confirm-modal');
+const confirmModal = document.getElementById("confirm-modal");
 
 // Open primary modal
 function openPrimaryModal() {
   primaryTrap.trap(primaryModal, {
-    mode: 'dialog',
+    mode: "dialog",
     onRelease: () => {
-      primaryModal.style.display = 'none';
-    }
+      primaryModal.style.display = "none";
+    },
   });
 }
 
 // Open confirmation dialog on top
 function openConfirmDialog() {
   secondaryTrap.trap(confirmModal, {
-    mode: 'dialog',
+    mode: "dialog",
     onRelease: () => {
-      confirmModal.style.display = 'none';
+      confirmModal.style.display = "none";
       // Focus automatically returns to primary modal
-    }
+    },
   });
 }
 
@@ -222,25 +233,30 @@ function closeConfirm() {
 ## Related Components
 
 ### Focus Utilities
+
 - **getFocusableElements**: Function used internally by TrapFocus to identify focusable elements within a container
 - **focusElement**: Utility for focusing elements with optional pseudo-focus support
 - **getActiveElement**: Function to determine the currently focused element, supporting shadow DOM
 - **focusNextElement / focusPreviousElement**: Navigation utilities for moving focus between elements
 
 ### Screen Reader Integration
+
 - **TrapScreenReader**: Internal class that manages `aria-hidden` attributes for elements outside the trap region
 - Works automatically with TrapFocus in dialog mode to improve screen reader experience
 
 ### Chain Management
+
 - **Chain**: Utility class that manages the stack of active focus traps
 - Handles automatic cleanup and focus restoration when nested traps are released
 - Prevents conflicts between multiple simultaneous traps
 
 ### Keyboard Mode Detection
+
 - **checkKeyboardMode**: Utility that determines if the user is navigating via keyboard
 - Used internally to optimize focus behavior and prevent unnecessary scroll prevention
 
 ### DOM Utilities
+
 - **getShadowRoot**: Helper for working with Shadow DOM elements
 - Ensures focus traps work correctly within web components and shadow DOM boundaries
 

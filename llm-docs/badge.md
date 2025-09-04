@@ -1,12 +1,15 @@
 # Badge
 
 ## Component Name
+
 Badge
 
 ## Brief Description
+
 A compact, versatile component for displaying status, counts, and labels with support for colors, sizes, icons, and interactive functionality.
 
 ## Keywords
+
 Status Indicator, Label, Counter, Notification, Tag, Chip, Icon Badge, Dismissible
 
 ## Usage Description
@@ -74,6 +77,7 @@ The Badge component can function as both a static display element and an interac
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
 import { Badge } from 'reshaped';
 
@@ -88,6 +92,7 @@ import { Badge } from 'reshaped';
 ```
 
 ### Variants and Colors
+
 ```tsx
 // Different variants
 <Badge variant="faded" color="positive">Success</Badge>
@@ -102,6 +107,7 @@ import { Badge } from 'reshaped';
 ```
 
 ### With Icons
+
 ```tsx
 import { Badge } from 'reshaped';
 import CheckmarkIcon from './icons/Checkmark';
@@ -111,8 +117,8 @@ import ChevronRightIcon from './icons/ChevronRight';
 <Badge icon={CheckmarkIcon} color="positive">Verified</Badge>
 
 // Badge with both start and end icons
-<Badge 
-  icon={CheckmarkIcon} 
+<Badge
+  icon={CheckmarkIcon}
   endIcon={ChevronRightIcon}
   color="primary"
 >
@@ -124,9 +130,10 @@ import ChevronRightIcon from './icons/ChevronRight';
 ```
 
 ### Interactive Badges
+
 ```tsx
 // Clickable badge
-<Badge 
+<Badge
   onClick={() => console.log('Badge clicked')}
   color="primary"
 >
@@ -147,6 +154,7 @@ import ChevronRightIcon from './icons/ChevronRight';
 ```
 
 ### Positioned Badges with Container
+
 ```tsx
 import { Badge, Avatar } from 'reshaped';
 
@@ -170,6 +178,7 @@ import { Badge, Avatar } from 'reshaped';
 ```
 
 ### Empty and Rounded Badges
+
 ```tsx
 // Empty badge (dot indicator)
 <Badge color="critical" />

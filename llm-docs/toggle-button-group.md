@@ -19,45 +19,54 @@ The component supports both controlled and uncontrolled usage patterns, making i
 ### Core Props
 
 **selectionMode** (optional)
+
 - Type: `"single" | "multiple"`
 - Default: `"single"`
 - Description: Determines whether users can select one option or multiple options simultaneously. In single mode, selecting a new button deselects the previously selected button. In multiple mode, each button can be toggled independently.
 
 **onChange** (optional)
+
 - Type: `(args: { value: string[]; event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement> }) => void`
 - Description: Callback function called when the selection state changes. The `value` parameter contains an array of selected button values, and `event` contains the triggering event.
 
 ### Controlled Mode Props
 
 **value** (required for controlled mode)
+
 - Type: `string[]`
 - Description: Array of currently selected button values. When provided, the component operates in controlled mode where the parent component manages the selection state.
 
 **defaultValue** (not allowed in controlled mode)
+
 - Type: `never`
 - Description: Cannot be used when `value` is provided.
 
 ### Uncontrolled Mode Props
 
 **value** (not allowed in uncontrolled mode)
+
 - Type: `never`
 - Description: Cannot be used when `defaultValue` is provided or when operating in uncontrolled mode.
 
 **defaultValue** (optional for uncontrolled mode)
+
 - Type: `string[]`
 - Description: Array of initially selected button values. When provided without `value`, the component operates in uncontrolled mode and manages its own selection state.
 
 ### Inherited Props from ButtonGroup
 
 **className** (optional)
+
 - Type: `string | string[] | (string | null | undefined | false)[]`
 - Description: CSS class name(s) to apply to the button group container.
 
 **attributes** (optional)
+
 - Type: `React.HTMLAttributes<HTMLDivElement> & Record<\`data-${string}\`, string | boolean>`
 - Description: Additional HTML attributes and data attributes to apply to the button group container.
 
 **children** (required)
+
 - Type: `React.ReactNode`
 - Description: ToggleButton components to be grouped together. Only ToggleButton components are processed; other children are rendered as-is.
 
@@ -66,11 +75,11 @@ The component supports both controlled and uncontrolled usage patterns, making i
 ### Basic Usage - Single Selection (Uncontrolled)
 
 ```tsx
-import { ToggleButtonGroup, ToggleButton } from 'reshaped';
+import { ToggleButtonGroup, ToggleButton } from "reshaped";
 
 function ViewModeSelector() {
   const handleChange = ({ value }) => {
-    console.log('Selected view:', value[0]); // In single mode, only one value
+    console.log("Selected view:", value[0]); // In single mode, only one value
   };
 
   return (
@@ -88,17 +97,17 @@ This example demonstrates basic single-selection functionality in uncontrolled m
 ### Multiple Selection with Default Values
 
 ```tsx
-import { ToggleButtonGroup, ToggleButton } from 'reshaped';
+import { ToggleButtonGroup, ToggleButton } from "reshaped";
 
 function FilterSelector() {
   const handleChange = ({ value }) => {
-    console.log('Active filters:', value);
+    console.log("Active filters:", value);
   };
 
   return (
-    <ToggleButtonGroup 
-      selectionMode="multiple" 
-      defaultValue={['new', 'featured']}
+    <ToggleButtonGroup
+      selectionMode="multiple"
+      defaultValue={["new", "featured"]}
       onChange={handleChange}
     >
       <ToggleButton value="new">New</ToggleButton>
@@ -115,11 +124,11 @@ This example shows multiple selection mode with initial default values. Users ca
 ### Controlled Mode with State Management
 
 ```tsx
-import { ToggleButtonGroup, ToggleButton } from 'reshaped';
-import { useState } from 'react';
+import { ToggleButtonGroup, ToggleButton } from "reshaped";
+import { useState } from "react";
 
 function ControlledToggleGroup() {
-  const [selectedValues, setSelectedValues] = useState(['option1']);
+  const [selectedValues, setSelectedValues] = useState(["option1"]);
 
   const handleChange = ({ value }) => {
     setSelectedValues(value);
@@ -127,7 +136,7 @@ function ControlledToggleGroup() {
 
   return (
     <div>
-      <ToggleButtonGroup 
+      <ToggleButtonGroup
         value={selectedValues}
         onChange={handleChange}
         selectionMode="single"
@@ -136,8 +145,8 @@ function ControlledToggleGroup() {
         <ToggleButton value="option2">Option 2</ToggleButton>
         <ToggleButton value="option3">Option 3</ToggleButton>
       </ToggleButtonGroup>
-      
-      <p>Selected: {selectedValues.join(', ')}</p>
+
+      <p>Selected: {selectedValues.join(", ")}</p>
     </div>
   );
 }
@@ -148,15 +157,15 @@ This example demonstrates controlled mode where the parent component manages the
 ### Advanced Usage with Custom Styling
 
 ```tsx
-import { ToggleButtonGroup, ToggleButton } from 'reshaped';
+import { ToggleButtonGroup, ToggleButton } from "reshaped";
 
 function StyledToggleGroup() {
   return (
-    <ToggleButtonGroup 
+    <ToggleButtonGroup
       className="my-custom-group"
-      attributes={{ 
+      attributes={{
         id: "priority-selector",
-        'data-testid': "priority-buttons"
+        "data-testid": "priority-buttons",
       }}
       selectionMode="single"
     >
@@ -179,20 +188,20 @@ This example shows how to apply custom styling and attributes to the button grou
 ### Integration with Form State
 
 ```tsx
-import { ToggleButtonGroup, ToggleButton } from 'reshaped';
+import { ToggleButtonGroup, ToggleButton } from "reshaped";
 
 function FormWithToggleGroup({ formState, setFormState }) {
   const handleNotificationChange = ({ value }) => {
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
-      notifications: value
+      notifications: value,
     }));
   };
 
   return (
     <form>
       <label>Notification Preferences:</label>
-      <ToggleButtonGroup 
+      <ToggleButtonGroup
         value={formState.notifications}
         onChange={handleNotificationChange}
         selectionMode="multiple"

@@ -9,34 +9,40 @@ This is an experimental React + TypeScript + Vite project with Storybook integra
 ## Development Commands
 
 ### Core Development
+
 - `pnpm dev` - Start Vite development server
 - `pnpm build` - Full TypeScript compilation and Vite build
 - `pnpm lint` - Run ESLint on all files
 - `pnpm preview` - Preview production build
 
 ### Storybook Development
+
 - `pnpm storybook` - Start Storybook dev server on port 6006
 - `pnpm build-storybook` - Build Storybook for production
 
 ### Package Manager
+
 This project uses **pnpm 10.15.0** as specified in `packageManager` field.
 
 ## Architecture and Code Organization
 
 ### Component Structure
+
 - Components follow atomic design principles with co-located `.stories.ts` files
 - Each component has its own CSS file (e.g., `Button.tsx`, `Button.css`, `Button.stories.ts`)
 - All components are in `src/stories/` directory
 - Component props use TypeScript interfaces with strict typing
 
 ### Storybook Configuration
+
 - Uses Storybook 10.0.0-beta.1 with modern story format
 - Stories use `satisfies Meta<typeof Component>` pattern
-- Autodocs enabled via `tags: ['autodocs']` 
+- Autodocs enabled via `tags: ['autodocs']`
 - Action spying with `fn()` for interaction testing
 - Accessibility testing integrated through `@storybook/addon-a11y`
 
 ### Testing Setup
+
 - **Vitest** for unit testing with browser support via Playwright
 - **Storybook Test Runner** integration through `@storybook/addon-vitest`
 - Browser testing configured with headless Chromium
@@ -44,6 +50,7 @@ This project uses **pnpm 10.15.0** as specified in `packageManager` field.
 - Test setup file: `.storybook/vitest.setup.ts`
 
 ### TypeScript Configuration
+
 - Strict mode enabled with comprehensive safety checks
 - Project uses TypeScript project references for app and build tools
 - ES2022 target for app code, ES2023 for build tools
@@ -51,6 +58,7 @@ This project uses **pnpm 10.15.0** as specified in `packageManager` field.
 - TypeScript handles type checking; Vite handles compilation
 
 ### Build System
+
 - **Vite 7.1.2** as primary build tool with React plugin
 - ES modules project (`"type": "module"` in package.json)
 - Hot Module Replacement (HMR) configured
@@ -69,22 +77,26 @@ This project uses **pnpm 10.15.0** as specified in `packageManager` field.
 Before doing any UI, frontend or React development, ALWAYS call the storybook MCP server to get further instructions.
 
 ### Story Creation
+
 Stories follow the modern Storybook format:
+
 ```typescript
 const meta = {
-  title: 'Example/Component',
+  title: "Example/Component",
   component: Component,
-  parameters: { layout: 'centered' },
-  tags: ['autodocs'],
+  parameters: { layout: "centered" },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Component>;
 ```
 
 ### Component Development
+
 - Components in `src/stories/` with TypeScript interfaces
 - CSS modules pattern with component-specific stylesheets
 - Accessibility-first development with a11y testing
 
 ### Code Quality
+
 - Flat ESLint configuration with React Hooks rules
 - Storybook-specific linting rules enabled
 - No unused locals/parameters allowed in TypeScript config

@@ -18,67 +18,67 @@ The Calendar supports comprehensive keyboard navigation following WAI-ARIA guide
 
 ### Core Selection Props
 
-**`value`** (SingleValue | RangeValue | null) - *Optional*  
+**`value`** (SingleValue | RangeValue | null) - _Optional_  
 The current selected date(s) in controlled mode. For single selection, pass a Date object. For range selection, pass an object with `start` and `end` Date properties. Only used in controlled mode.
 
-**`defaultValue`** (SingleValue | RangeValue) - *Optional*  
+**`defaultValue`** (SingleValue | RangeValue) - _Optional_  
 The initial selected date(s) in uncontrolled mode. Same format as `value` but only used when `value` is not provided.
 
-**`onChange`** ((args: { value: SingleValue | RangeValue }) => void) - *Optional*  
+**`onChange`** ((args: { value: SingleValue | RangeValue }) => void) - _Optional_  
 Callback fired when the selected date(s) change. Receives an object containing the new `value`.
 
-**`range`** (boolean) - *Optional, defaults to false*  
+**`range`** (boolean) - _Optional, defaults to false_  
 Whether to enable date range selection mode. When `true`, users can select a start and end date.
 
 ### Calendar Configuration
 
-**`defaultMonth`** (Date) - *Optional*  
+**`defaultMonth`** (Date) - _Optional_  
 The month to display when the calendar first renders. If not provided, defaults to the current month.
 
-**`min`** (Date) - *Optional*  
+**`min`** (Date) - _Optional_  
 The minimum selectable date. Dates before this will be disabled and not selectable.
 
-**`max`** (Date) - *Optional*  
+**`max`** (Date) - _Optional_  
 The maximum selectable date. Dates after this will be disabled and not selectable.
 
-**`firstWeekDay`** (number) - *Optional, defaults to 0*  
+**`firstWeekDay`** (number) - _Optional, defaults to 0_  
 The first day of the week where 0 is Sunday, 1 is Monday, etc. Changes the column order in the calendar grid.
 
-**`selectedDates`** (Date[]) - *Optional*  
+**`selectedDates`** (Date[]) - _Optional_  
 Array of additional dates to mark as selected (highlighted) without affecting the main selection value. Useful for showing multiple significant dates.
 
 ### Rendering Customization
 
-**`renderWeekDay`** ((args: { weekDay: number; date: Date }) => string) - *Optional*  
+**`renderWeekDay`** ((args: { weekDay: number; date: Date }) => string) - _Optional_  
 Function to customize weekday header labels. Receives the weekday number and a sample date for that day.
 
-**`renderSelectedMonthLabel`** ((args: { date: Date }) => string) - *Optional*  
+**`renderSelectedMonthLabel`** ((args: { date: Date }) => string) - _Optional_  
 Function to customize the month/year display in the header. Receives the current month date.
 
-**`renderMonthLabel`** ((args: { month: number; date: Date }) => string) - *Optional*  
+**`renderMonthLabel`** ((args: { month: number; date: Date }) => string) - _Optional_  
 Function to customize month labels in the month selection view. Receives the month number (0-11) and a date for that month.
 
 ### Accessibility Props
 
-**`previousMonthAriaLabel`** (string) - *Optional, defaults to "Previous month"*  
+**`previousMonthAriaLabel`** (string) - _Optional, defaults to "Previous month"_  
 ARIA label for the previous month navigation button.
 
-**`nextMonthAriaLabel`** (string) - *Optional, defaults to "Next month"*  
+**`nextMonthAriaLabel`** (string) - _Optional, defaults to "Next month"_  
 ARIA label for the next month navigation button.
 
-**`previousYearAriaLabel`** (string) - *Optional, defaults to "Previous year"*  
+**`previousYearAriaLabel`** (string) - _Optional, defaults to "Previous year"_  
 ARIA label for the previous year navigation button (in month selection mode).
 
-**`nextYearAriaLabel`** (string) - *Optional, defaults to "Next year"*  
+**`nextYearAriaLabel`** (string) - _Optional, defaults to "Next year"_  
 ARIA label for the next year navigation button (in month selection mode).
 
-**`monthSelectionAriaLabel`** (string) - *Optional, defaults to "Select a month"*  
+**`monthSelectionAriaLabel`** (string) - _Optional, defaults to "Select a month"_  
 ARIA label for the month/year header button that opens month selection.
 
-**`renderDateAriaLabel`** ((args: { date: Date }) => string) - *Optional*  
+**`renderDateAriaLabel`** ((args: { date: Date }) => string) - _Optional_  
 Function to customize ARIA labels for date buttons. Should return a descriptive label for screen readers.
 
-**`renderMonthAriaLabel`** ((args: { month: number }) => string) - *Optional*  
+**`renderMonthAriaLabel`** ((args: { month: number }) => string) - _Optional_  
 Function to customize ARIA labels for month buttons in month selection mode.
 
 ## Code Examples
@@ -86,7 +86,7 @@ Function to customize ARIA labels for month buttons in month selection mode.
 ### Basic Single Date Selection
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function BasicCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -106,13 +106,13 @@ This example shows the most basic usage for single date selection in controlled 
 ### Uncontrolled Calendar with Default Value
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function UncontrolledCalendar() {
   return (
     <Calendar
       defaultValue={new Date()}
-      onChange={({ value }) => console.log('Selected:', value)}
+      onChange={({ value }) => console.log("Selected:", value)}
       defaultMonth={new Date()}
     />
   );
@@ -124,12 +124,12 @@ This demonstrates uncontrolled usage where the component manages its own state i
 ### Date Range Selection
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function RangeCalendar() {
-  const [range, setRange] = useState<{start: Date | null, end: Date | null}>({
+  const [range, setRange] = useState<{ start: Date | null; end: Date | null }>({
     start: null,
-    end: null
+    end: null,
   });
 
   return (
@@ -148,27 +148,27 @@ Shows how to implement date range selection with controlled state management.
 ### Calendar with Constraints and Custom Rendering
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function CustomCalendar() {
   const today = new Date();
   const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 31);
-  
+
   return (
     <Calendar
       defaultMonth={today}
       min={today}
       max={nextMonth}
       firstWeekDay={1} // Start week on Monday
-      renderWeekDay={({ date }) => 
-        date.toLocaleDateString('en', { weekday: 'short' }).toUpperCase()
+      renderWeekDay={({ date }) =>
+        date.toLocaleDateString("en", { weekday: "short" }).toUpperCase()
       }
       renderSelectedMonthLabel={({ date }) =>
-        date.toLocaleDateString('en', { month: 'long', year: 'numeric' })
+        date.toLocaleDateString("en", { month: "long", year: "numeric" })
       }
       selectedDates={[
         new Date(today.getFullYear(), today.getMonth(), 15),
-        new Date(today.getFullYear(), today.getMonth(), 20)
+        new Date(today.getFullYear(), today.getMonth(), 20),
       ]}
     />
   );
@@ -180,30 +180,30 @@ This example demonstrates date constraints, custom week start day, custom render
 ### Internationalized Calendar
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function InternationalCalendar() {
   return (
     <Calendar
       defaultMonth={new Date()}
-      renderWeekDay={({ date }) => 
-        date.toLocaleDateString('de-DE', { weekday: 'short' })
+      renderWeekDay={({ date }) =>
+        date.toLocaleDateString("de-DE", { weekday: "short" })
       }
       renderSelectedMonthLabel={({ date }) =>
-        date.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })
+        date.toLocaleDateString("de-DE", { month: "long", year: "numeric" })
       }
       renderMonthLabel={({ date }) =>
-        date.toLocaleDateString('de-DE', { month: 'short' })
+        date.toLocaleDateString("de-DE", { month: "short" })
       }
       previousMonthAriaLabel="Vorheriger Monat"
       nextMonthAriaLabel="Nächster Monat"
       monthSelectionAriaLabel="Monat auswählen"
       renderDateAriaLabel={({ date }) =>
-        date.toLocaleDateString('de-DE', { 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
+        date.toLocaleDateString("de-DE", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
         })
       }
     />
@@ -216,7 +216,7 @@ Shows how to localize the calendar for different languages and regions using cus
 ### Calendar with Full Accessibility Labels
 
 ```tsx
-import { Calendar } from 'reshaped';
+import { Calendar } from "reshaped";
 
 function AccessibleCalendar() {
   return (
@@ -229,18 +229,28 @@ function AccessibleCalendar() {
       monthSelectionAriaLabel="Choose a different month"
       renderDateAriaLabel={({ date }) => {
         const isToday = date.toDateString() === new Date().toDateString();
-        const baseLabel = date.toLocaleDateString('en', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
+        const baseLabel = date.toLocaleDateString("en", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
         });
         return isToday ? `${baseLabel}, today` : baseLabel;
       }}
       renderMonthAriaLabel={({ month }) => {
         const monthNames = [
-          'January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December'
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
         ];
         return `Select ${monthNames[month]}`;
       }}

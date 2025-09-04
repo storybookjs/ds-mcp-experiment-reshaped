@@ -17,6 +17,7 @@ The Progress component follows accessibility best practices by implementing prop
 ## Props Documentation
 
 ### value
+
 - **Type**: `number`
 - **Required**: No
 - **Default**: `0`
@@ -24,13 +25,15 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `50` (represents 50% progress when min=0 and max=100)
 
 ### min
+
 - **Type**: `number`
-- **Required**: No  
+- **Required**: No
 - **Default**: `0`
 - **Description**: The minimum value of the progress range. Used as the starting point for progress calculation.
 - **Example**: `0`, `10`, `-50`
 
 ### max
+
 - **Type**: `number`
 - **Required**: No
 - **Default**: `100`
@@ -38,6 +41,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `100`, `200`, `1000`
 
 ### size
+
 - **Type**: `"small" | "medium"`
 - **Required**: No
 - **Default**: `"medium"`
@@ -45,6 +49,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `"small"` for compact layouts, `"medium"` for standard usage
 
 ### color
+
 - **Type**: `"primary" | "critical" | "warning" | "positive" | "media"`
 - **Required**: No
 - **Default**: `"primary"`
@@ -52,6 +57,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `"positive"` for success states, `"critical"` for error conditions, `"media"` for video/media contexts
 
 ### duration
+
 - **Type**: `number`
 - **Required**: No
 - **Default**: `undefined`
@@ -59,6 +65,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `2000` for a 2-second animation, `500` for quick transitions
 
 ### ariaLabel
+
 - **Type**: `string`
 - **Required**: No
 - **Default**: `undefined`
@@ -66,6 +73,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `"File upload progress"`, `"Form completion status"`
 
 ### className
+
 - **Type**: `string | string[] | (string | null | undefined | false)[]`
 - **Required**: No
 - **Default**: `undefined`
@@ -73,6 +81,7 @@ The Progress component follows accessibility best practices by implementing prop
 - **Example**: `"my-custom-progress"`, `["progress-bar", "highlighted"]`
 
 ### attributes
+
 - **Type**: `React.HTMLAttributes<HTMLDivElement> & { [key: data-${string}]: string | boolean }`
 - **Required**: No
 - **Default**: `undefined`
@@ -82,28 +91,31 @@ The Progress component follows accessibility best practices by implementing prop
 ## Code Examples
 
 ### Basic Usage
+
 ```jsx
-import { Progress } from 'reshaped';
+import { Progress } from "reshaped";
 
 // Simple progress bar at 50%
-<Progress value={50} ariaLabel="Task completion" />
+<Progress value={50} ariaLabel="Task completion" />;
 ```
 
 ### Custom Range with Animation
+
 ```jsx
-import { Progress } from 'reshaped';
+import { Progress } from "reshaped";
 
 // Progress with custom min/max and smooth animation
-<Progress 
-  value={75} 
-  min={0} 
-  max={150} 
+<Progress
+  value={75}
+  min={0}
+  max={150}
   duration={1000}
   ariaLabel="Download progress"
-/>
+/>;
 ```
 
 ### Different Sizes and Colors
+
 ```jsx
 import { Progress } from 'reshaped';
 
@@ -118,25 +130,26 @@ import { Progress } from 'reshaped';
 ```
 
 ### Dynamic Progress with State Management
+
 ```jsx
-import { Progress } from 'reshaped';
-import { useState, useEffect } from 'react';
+import { Progress } from "reshaped";
+import { useState, useEffect } from "react";
 
 function FileUploadProgress() {
   const [progress, setProgress] = useState(0);
-  
+
   useEffect(() => {
     // Simulate upload progress
     const interval = setInterval(() => {
-      setProgress(prev => prev < 100 ? prev + 10 : prev);
+      setProgress((prev) => (prev < 100 ? prev + 10 : prev));
     }, 500);
-    
+
     return () => clearInterval(interval);
   }, []);
-  
+
   return (
-    <Progress 
-      value={progress} 
+    <Progress
+      value={progress}
       duration={400}
       color={progress === 100 ? "positive" : "primary"}
       ariaLabel={`Upload ${progress}% complete`}
@@ -146,17 +159,14 @@ function FileUploadProgress() {
 ```
 
 ### Media Context Usage
+
 ```jsx
-import { Progress, View } from 'reshaped';
+import { Progress, View } from "reshaped";
 
 // Progress bar for video/media with dark background
 <View padding={4} backgroundColor="black" borderRadius="medium">
-  <Progress 
-    value={60} 
-    color="media" 
-    ariaLabel="Video playback progress"
-  />
-</View>
+  <Progress value={60} color="media" ariaLabel="Video playback progress" />
+</View>;
 ```
 
 ## Related Components

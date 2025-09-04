@@ -1,9 +1,11 @@
 # CheckboxGroup
 
 ## Brief Description
+
 A container component that manages multiple checkbox selections as a group, providing both controlled and uncontrolled behavior patterns.
 
 ## Keywords
+
 - Checkbox Group
 - Multi-selection
 - Form Control
@@ -70,8 +72,9 @@ The component integrates seamlessly with form validation libraries and supports 
 ## Code Examples
 
 ### Basic Uncontrolled Usage
+
 ```tsx
-import { CheckboxGroup, Checkbox, View } from 'reshaped';
+import { CheckboxGroup, Checkbox, View } from "reshaped";
 
 function BasicExample() {
   return (
@@ -85,27 +88,25 @@ function BasicExample() {
   );
 }
 ```
+
 This example demonstrates basic uncontrolled usage where the Apple checkbox starts selected.
 
 ### Controlled Component with State Management
+
 ```tsx
-import { CheckboxGroup, Checkbox, View } from 'reshaped';
-import { useState } from 'react';
+import { CheckboxGroup, Checkbox, View } from "reshaped";
+import { useState } from "react";
 
 function ControlledExample() {
-  const [selectedFruits, setSelectedFruits] = useState<string[]>(['apple']);
+  const [selectedFruits, setSelectedFruits] = useState<string[]>(["apple"]);
 
   const handleChange = ({ value }: { value: string[] }) => {
     setSelectedFruits(value);
-    console.log('Selected fruits:', value);
+    console.log("Selected fruits:", value);
   };
 
   return (
-    <CheckboxGroup 
-      name="fruits" 
-      value={selectedFruits} 
-      onChange={handleChange}
-    >
+    <CheckboxGroup name="fruits" value={selectedFruits} onChange={handleChange}>
       <View gap={3}>
         <Checkbox value="apple">Apple</Checkbox>
         <Checkbox value="banana">Banana</Checkbox>
@@ -116,12 +117,14 @@ function ControlledExample() {
   );
 }
 ```
+
 This example shows controlled usage with external state management and change handling.
 
 ### Form Integration with Validation
+
 ```tsx
-import { CheckboxGroup, Checkbox, View, Text } from 'reshaped';
-import { useState } from 'react';
+import { CheckboxGroup, Checkbox, View, Text } from "reshaped";
+import { useState } from "react";
 
 function FormExample() {
   const [preferences, setPreferences] = useState<string[]>([]);
@@ -131,7 +134,7 @@ function FormExample() {
     setPreferences(value);
     // Validation: at least one preference must be selected
     if (value.length === 0) {
-      setErrors(['Please select at least one preference']);
+      setErrors(["Please select at least one preference"]);
     } else {
       setErrors([]);
     }
@@ -142,9 +145,9 @@ function FormExample() {
   return (
     <form>
       <Text>Select your preferences:</Text>
-      <CheckboxGroup 
-        name="preferences" 
-        value={preferences} 
+      <CheckboxGroup
+        name="preferences"
+        value={preferences}
         onChange={handleChange}
         hasError={hasError}
       >
@@ -154,18 +157,18 @@ function FormExample() {
           <Checkbox value="newsletter">Newsletter subscription</Checkbox>
         </View>
       </CheckboxGroup>
-      {hasError && (
-        <Text color="critical">{errors[0]}</Text>
-      )}
+      {hasError && <Text color="critical">{errors[0]}</Text>}
     </form>
   );
 }
 ```
+
 This example demonstrates form integration with validation and error handling.
 
 ### Disabled State
+
 ```tsx
-import { CheckboxGroup, Checkbox, View } from 'reshaped';
+import { CheckboxGroup, Checkbox, View } from "reshaped";
 
 function DisabledExample() {
   return (
@@ -179,19 +182,27 @@ function DisabledExample() {
   );
 }
 ```
+
 This example shows how to disable an entire checkbox group.
 
 ### Using the useCheckboxGroup Hook
-```tsx
-import { CheckboxGroup, useCheckboxGroup } from 'reshaped';
 
-function CustomCheckboxItem({ value, children }: { value: string; children: React.ReactNode }) {
+```tsx
+import { CheckboxGroup, useCheckboxGroup } from "reshaped";
+
+function CustomCheckboxItem({
+  value,
+  children,
+}: {
+  value: string;
+  children: React.ReactNode;
+}) {
   const context = useCheckboxGroup();
-  
+
   if (!context) return null;
-  
+
   const isChecked = context.value?.includes(value) || false;
-  
+
   return (
     <label>
       <input
@@ -205,7 +216,7 @@ function CustomCheckboxItem({ value, children }: { value: string; children: Reac
             name: context.name,
             value,
             checked: event.target.checked,
-            event
+            event,
           });
         }}
       />
@@ -225,6 +236,7 @@ function HookExample() {
   );
 }
 ```
+
 This example demonstrates how to create custom checkbox components using the useCheckboxGroup hook.
 
 ## Related Components

@@ -3,9 +3,11 @@
 **Theme Provider and Hook for Design System Theming**
 
 ## Brief Description
+
 Theme component provides theming context and color mode management for the reshaped design system, while useTheme hook provides access to theme state and controls.
 
 ## Keywords
+
 Theme Provider, Color Mode, Dark Mode, Light Mode, Design System, Context, Theming, CSS Variables, Theme Switching, Color Scheme
 
 ## Usage Description
@@ -23,6 +25,7 @@ The useTheme hook provides components with access to the current theme state and
 ### Theme Component Props
 
 **name** (optional)
+
 - Type: `string | string[]`
 - Required: No
 - Default: undefined
@@ -30,6 +33,7 @@ The useTheme hook provides components with access to the current theme state and
 - Example: `"reshaped"` or `["reshaped", "custom"]`
 
 **defaultName** (optional)
+
 - Type: `string | string[]`
 - Required: No
 - Default: undefined
@@ -37,6 +41,7 @@ The useTheme hook provides components with access to the current theme state and
 - Example: `"reshaped"`
 
 **colorMode** (optional)
+
 - Type: `"light" | "dark" | "inverted"`
 - Required: No
 - Default: undefined (inherits from parent or global)
@@ -44,6 +49,7 @@ The useTheme hook provides components with access to the current theme state and
 - Example: `"dark"`
 
 **className** (optional)
+
 - Type: `string | string[] | (string | null | undefined | false)[]`
 - Required: No
 - Default: undefined
@@ -51,6 +57,7 @@ The useTheme hook provides components with access to the current theme state and
 - Example: `"custom-theme-wrapper"`
 
 **children** (optional)
+
 - Type: `React.ReactNode`
 - Required: No
 - Default: undefined
@@ -59,12 +66,14 @@ The useTheme hook provides components with access to the current theme state and
 ### PrivateTheme Additional Props (Internal)
 
 **scoped** (optional)
+
 - Type: `boolean`
 - Required: No
 - Default: undefined
 - Description: Internal prop for creating scoped theme boundaries.
 
 **scopeRef** (optional)
+
 - Type: `React.RefObject<HTMLDivElement | null>`
 - Required: No
 - Default: undefined
@@ -75,30 +84,37 @@ The useTheme hook provides components with access to the current theme state and
 The useTheme hook returns an object with the following properties:
 
 **theme**
+
 - Type: `string | string[]`
 - Description: The current active theme name(s).
 
 **setTheme**
+
 - Type: `(theme: string | string[]) => void`
 - Description: Function to change the current theme. Only works when Theme is in uncontrolled mode.
 
 **rootTheme**
+
 - Type: `string | string[]`
 - Description: The root theme name(s) of the theme tree.
 
 **setRootTheme**
+
 - Type: `(theme: string | string[]) => void`
 - Description: Function to change the root theme.
 
 **colorMode**
+
 - Type: `"light" | "dark"`
 - Description: The current active color mode.
 
 **setColorMode**
+
 - Type: `(mode: "light" | "dark") => void`
 - Description: Function to change the global color mode.
 
 **invertColorMode**
+
 - Type: `() => void`
 - Description: Function to toggle between light and dark color modes.
 
@@ -107,7 +123,7 @@ The useTheme hook returns an object with the following properties:
 ### Basic Theme Setup
 
 ```jsx
-import { Theme } from 'reshaped';
+import { Theme } from "reshaped";
 
 function App() {
   return (
@@ -126,7 +142,7 @@ This example shows the basic setup of a Theme provider with a specific theme and
 ### Multiple Themes
 
 ```jsx
-import { Theme } from 'reshaped';
+import { Theme } from "reshaped";
 
 function MultiThemeApp() {
   return (
@@ -145,27 +161,27 @@ This demonstrates how to apply multiple themes simultaneously, useful when combi
 ### Dynamic Theme Switching
 
 ```jsx
-import { Theme, useTheme, Button, View } from 'reshaped';
+import { Theme, useTheme, Button, View } from "reshaped";
 
 function ThemeController() {
   const { theme, setTheme, colorMode, invertColorMode } = useTheme();
-  
+
   return (
     <View direction="row" gap={3}>
-      <Button 
-        onClick={() => setTheme('slate')}
-        variant={theme === 'slate' ? 'solid' : 'ghost'}
+      <Button
+        onClick={() => setTheme("slate")}
+        variant={theme === "slate" ? "solid" : "ghost"}
       >
         Slate Theme
       </Button>
-      <Button 
-        onClick={() => setTheme('reshaped')}
-        variant={theme === 'reshaped' ? 'solid' : 'ghost'}
+      <Button
+        onClick={() => setTheme("reshaped")}
+        variant={theme === "reshaped" ? "solid" : "ghost"}
       >
         Reshaped Theme
       </Button>
       <Button onClick={invertColorMode}>
-        Switch to {colorMode === 'light' ? 'Dark' : 'Light'}
+        Switch to {colorMode === "light" ? "Dark" : "Light"}
       </Button>
     </View>
   );
@@ -186,14 +202,14 @@ This example shows how to create theme switching controls using the useTheme hoo
 ### Nested Themes with Color Mode Inversion
 
 ```jsx
-import { Theme, Card, Button } from 'reshaped';
+import { Theme, Card, Button } from "reshaped";
 
 function NestedThemeExample() {
   return (
     <Theme name="reshaped" colorMode="light">
       <Card>
         <h2>Main Content (Light Mode)</h2>
-        
+
         <Theme colorMode="inverted">
           <Card>
             <h3>Modal Content (Dark Mode)</h3>
@@ -211,24 +227,24 @@ This demonstrates nested themes where the inner theme uses inverted color mode t
 ### Theme-Aware Component
 
 ```jsx
-import { useTheme, Button, View } from 'reshaped';
+import { useTheme, Button, View } from "reshaped";
 
 function ThemeAwareComponent() {
   const { theme, colorMode, setColorMode } = useTheme();
-  
-  const isCustomTheme = Array.isArray(theme) 
-    ? theme.includes('custom')
-    : theme === 'custom';
-  
+
+  const isCustomTheme = Array.isArray(theme)
+    ? theme.includes("custom")
+    : theme === "custom";
+
   return (
     <View gap={3}>
-      <p>Current theme: {Array.isArray(theme) ? theme.join(', ') : theme}</p>
+      <p>Current theme: {Array.isArray(theme) ? theme.join(", ") : theme}</p>
       <p>Color mode: {colorMode}</p>
-      
+
       {isCustomTheme && (
-        <Button 
+        <Button
           color="secondary"
-          onClick={() => setColorMode(colorMode === 'light' ? 'dark' : 'light')}
+          onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
         >
           Toggle Color Mode
         </Button>

@@ -59,16 +59,16 @@ Use switches for settings that can be instantly toggled on or off, such as notif
 ### Basic Usage
 
 ```tsx
-import { Switch } from 'reshaped';
+import { Switch } from "reshaped";
 
 // Uncontrolled switch with default state
-<Switch 
-  name="notifications" 
+<Switch
+  name="notifications"
   defaultChecked={true}
   inputAttributes={{ "aria-label": "Enable notifications" }}
 >
   Enable notifications
-</Switch>
+</Switch>;
 ```
 
 Basic uncontrolled switch with a label and default checked state.
@@ -76,18 +76,18 @@ Basic uncontrolled switch with a label and default checked state.
 ### Controlled Switch with State Management
 
 ```tsx
-import { Switch } from 'reshaped';
-import { useState } from 'react';
+import { Switch } from "reshaped";
+import { useState } from "react";
 
 const [isEnabled, setIsEnabled] = useState(false);
 
-<Switch 
-  name="darkMode" 
+<Switch
+  name="darkMode"
   checked={isEnabled}
   onChange={({ checked }) => setIsEnabled(checked)}
 >
   Dark mode
-</Switch>
+</Switch>;
 ```
 
 Demonstrates controlled usage with external state management for immediate response to state changes.
@@ -99,12 +99,12 @@ import { Switch } from 'reshaped';
 
 // Different sizes
 <Switch name="small" size="small">Small switch</Switch>
-<Switch name="medium" size="medium">Medium switch</Switch>  
+<Switch name="medium" size="medium">Medium switch</Switch>
 <Switch name="large" size="large">Large switch</Switch>
 
 // Responsive sizing
-<Switch 
-  name="responsive" 
+<Switch
+  name="responsive"
   size={{ s: "small", m: "medium", l: "large" }}
 >
   Responsive switch
@@ -116,7 +116,7 @@ Shows various size options and responsive behavior across different viewport bre
 ### Advanced Form Integration
 
 ```tsx
-import { Switch, FormControl } from 'reshaped';
+import { Switch, FormControl } from "reshaped";
 
 <FormControl>
   <FormControl.Label>Privacy Settings</FormControl.Label>
@@ -126,7 +126,7 @@ import { Switch, FormControl } from 'reshaped';
   <FormControl.Helper>
     When enabled, your profile will only be visible to connections
   </FormControl.Helper>
-</FormControl>
+</FormControl>;
 ```
 
 Demonstrates integration with FormControl for comprehensive form layouts with labels and helper text.
@@ -137,10 +137,10 @@ Demonstrates integration with FormControl for comprehensive form layouts with la
 import { Switch } from 'reshaped';
 
 // Disabled switch
-<Switch 
-  name="premium" 
+<Switch
+  name="premium"
   disabled
-  inputAttributes={{ 
+  inputAttributes={{
     "aria-label": "Premium features (requires subscription)",
     "aria-describedby": "premium-description"
   }}
@@ -150,9 +150,9 @@ import { Switch } from 'reshaped';
 
 // With additional accessibility
 <div>
-  <Switch 
-    name="analytics" 
-    inputAttributes={{ 
+  <Switch
+    name="analytics"
+    inputAttributes={{
       "aria-describedby": "analytics-help",
       "aria-required": "true"
     }}

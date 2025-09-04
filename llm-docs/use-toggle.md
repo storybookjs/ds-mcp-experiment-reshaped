@@ -7,7 +7,8 @@ The `useToggle` hook is a custom React hook that provides a simple and efficient
 ## Purpose
 
 This hook is designed to simplify boolean state management in React components, particularly useful for:
-- Modal and dialog open/close states  
+
+- Modal and dialog open/close states
 - Sidebar or menu visibility toggling
 - Feature flags and settings toggles
 - Form field show/hide functionality
@@ -18,24 +19,25 @@ This hook is designed to simplify boolean state management in React components, 
 
 ### Parameters
 
-| Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
-| `defaultValue` | `boolean` | No | `false` | The initial boolean state value |
+| Parameter      | Type      | Required | Default | Description                     |
+| -------------- | --------- | -------- | ------- | ------------------------------- |
+| `defaultValue` | `boolean` | No       | `false` | The initial boolean state value |
 
 ### Return Value
 
 The hook returns an object with the following properties:
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `active` | `boolean` | The current boolean state value |
-| `activate` | `() => void` | Function to set state to `true` |
-| `deactivate` | `() => void` | Function to set state to `false` |
-| `toggle` | `(targetValue?: any) => void` | Function to toggle state or set to specific boolean value |
+| Property     | Type                          | Description                                               |
+| ------------ | ----------------------------- | --------------------------------------------------------- |
+| `active`     | `boolean`                     | The current boolean state value                           |
+| `activate`   | `() => void`                  | Function to set state to `true`                           |
+| `deactivate` | `() => void`                  | Function to set state to `false`                          |
+| `toggle`     | `(targetValue?: any) => void` | Function to toggle state or set to specific boolean value |
 
 ### Toggle Function Behavior
 
 The `toggle` function has special behavior for backwards compatibility:
+
 - When called without arguments: `toggle()` - toggles the current state
 - When called with a boolean: `toggle(true)` or `toggle(false)` - sets state to the specified value
 - When called with non-boolean values (like event objects): treats as toggle operation
@@ -51,7 +53,7 @@ import { useToggle } from 'reshaped';
 
 function ToggleButton() {
   const { active, toggle } = useToggle();
-  
+
   return (
     <button onClick={toggle}>
       {active ? 'On' : 'Off'}
@@ -67,7 +69,7 @@ import { useToggle } from 'reshaped';
 
 function ModalComponent() {
   const { active: isOpen, activate: openModal, deactivate: closeModal } = useToggle(false);
-  
+
   return (
     <>
       <button onClick={openModal}>Open Modal</button>
@@ -89,7 +91,7 @@ import { useToggle } from 'reshaped';
 
 function FeatureToggle() {
   const { active: featureEnabled, activate, deactivate, toggle } = useToggle(true);
-  
+
   return (
     <div>
       <p>Feature is {featureEnabled ? 'enabled' : 'disabled'}</p>
@@ -108,12 +110,12 @@ import { useToggle } from 'reshaped';
 
 function ConditionalToggle() {
   const { active, toggle } = useToggle();
-  
+
   const handleToggle = (condition: boolean) => {
     // Set specific value based on condition
     toggle(condition);
   };
-  
+
   return (
     <div>
       <p>State: {active ? 'Active' : 'Inactive'}</p>
@@ -133,24 +135,24 @@ import { useToggle } from 'reshaped';
 function FormWithToggle() {
   const { active: showAdvanced, toggle: toggleAdvanced } = useToggle();
   const { active: isSubscribed, activate: subscribe, deactivate: unsubscribe } = useToggle(true);
-  
+
   return (
     <form>
       <input type="text" placeholder="Name" />
-      
+
       <label>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={isSubscribed}
           onChange={(e) => e.target.checked ? subscribe() : unsubscribe()}
         />
         Subscribe to newsletter
       </label>
-      
+
       <button type="button" onClick={toggleAdvanced}>
         {showAdvanced ? 'Hide' : 'Show'} Advanced Options
       </button>
-      
+
       {showAdvanced && (
         <div>
           <input type="text" placeholder="Advanced setting" />
@@ -169,9 +171,13 @@ Use descriptive names when destructuring to improve code readability:
 
 ```typescript
 // Good: Descriptive names
-const { active: isModalOpen, activate: openModal, deactivate: closeModal } = useToggle();
+const {
+  active: isModalOpen,
+  activate: openModal,
+  deactivate: closeModal,
+} = useToggle();
 
-// Less clear: Generic names  
+// Less clear: Generic names
 const { active, activate, deactivate } = useToggle();
 ```
 
@@ -182,19 +188,19 @@ function MultiToggleComponent() {
   const sidebar = useToggle();
   const modal = useToggle();
   const notifications = useToggle(true); // Default enabled
-  
+
   return (
     <div>
       <button onClick={sidebar.toggle}>
         {sidebar.active ? 'Hide' : 'Show'} Sidebar
       </button>
-      
+
       <button onClick={modal.activate}>Open Modal</button>
-      
+
       <button onClick={notifications.toggle}>
         Notifications {notifications.active ? 'On' : 'Off'}
       </button>
-      
+
       {/* Render UI based on state */}
       {sidebar.active && <aside>Sidebar content</aside>}
       {modal.active && <div>Modal content</div>}
@@ -206,15 +212,21 @@ function MultiToggleComponent() {
 ## Best Practices
 
 ### 1. Use Descriptive Variable Names
+
 Always destructure with meaningful names that describe what the boolean represents:
 
 ```typescript
 // Preferred
 const { active: isVisible, toggle: toggleVisibility } = useToggle();
-const { active: isExpanded, activate: expand, deactivate: collapse } = useToggle();
+const {
+  active: isExpanded,
+  activate: expand,
+  deactivate: collapse,
+} = useToggle();
 ```
 
 ### 2. Initialize with Appropriate Defaults
+
 Consider the expected initial state of your component:
 
 ```typescript
@@ -226,6 +238,7 @@ const { active: isDarkMode } = useToggle(true);
 ```
 
 ### 3. Use Specific Methods for Clarity
+
 When you need to explicitly set a state, prefer `activate`/`deactivate` over `toggle` with parameters:
 
 ```typescript
@@ -239,6 +252,7 @@ const handleError = () => toggle(false);
 ```
 
 ### 4. Event Handler Compatibility
+
 The toggle function works seamlessly as an event handler:
 
 ```typescript
@@ -248,6 +262,7 @@ The toggle function works seamlessly as an event handler:
 ```
 
 ### 5. Memoization Benefits
+
 The hook uses React's `useMemo` and `useCallback` internally for optimal performance, preventing unnecessary re-renders in child components.
 
 ## Performance Considerations
@@ -272,10 +287,10 @@ The hook is fully typed with TypeScript:
 
 ```typescript
 declare const useToggle: (defaultValue?: boolean) => {
-    active: boolean;
-    activate: () => void;
-    deactivate: () => void;
-    toggle: (targetValue?: any) => void;
+  active: boolean;
+  activate: () => void;
+  deactivate: () => void;
+  toggle: (targetValue?: any) => void;
 };
 ```
 

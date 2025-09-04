@@ -1,12 +1,15 @@
 # MenuItem
 
 ## Component Name
+
 MenuItem
 
 ## Brief Description
+
 A flexible menu item component that provides actionable items for navigation menus, dropdown lists, and selection interfaces.
 
 ## Keywords
+
 Menu Item, Navigation, Selection, Actionable, Dropdown, Icon, Interactive List, User Interface
 
 ## Usage Description
@@ -22,12 +25,14 @@ The component is particularly useful in complex interfaces where you need standa
 ### Core Props
 
 #### `children` (required)
+
 - **Type**: `React.ReactNode`
 - **Required**: Yes
 - **Description**: The main content of the menu item, typically text or other React elements
 - **Example**: `"Settings"`, `<span>Profile Settings</span>`
 
 #### `color`
+
 - **Type**: `"neutral" | "critical" | "primary"`
 - **Required**: No
 - **Default**: `"primary"`
@@ -35,6 +40,7 @@ The component is particularly useful in complex interfaces where you need standa
 - **Example**: `"critical"` for destructive actions, `"neutral"` for secondary actions
 
 #### `size`
+
 - **Type**: `Responsive<"small" | "medium" | "large">`
 - **Required**: No
 - **Default**: `"medium"`
@@ -42,24 +48,28 @@ The component is particularly useful in complex interfaces where you need standa
 - **Example**: `"large"`, `{ s: "small", m: "medium" }`
 
 #### `selected`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Description**: Indicates if the menu item is currently selected, applying selected styling and preventing hover effects
 - **Example**: `true` for the currently active navigation item
 
 #### `highlighted`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Description**: Applies highlighted styling to the menu item, typically used for keyboard navigation or temporary emphasis
 - **Example**: `true` when navigating with arrow keys
 
 #### `disabled`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Description**: Disables the menu item, preventing interaction and applying disabled styling
 - **Example**: `true` for unavailable features
 
 #### `roundedCorners`
+
 - **Type**: `Responsive<boolean>`
 - **Required**: No
 - **Description**: Controls whether the menu item has rounded corners. Supports responsive values.
@@ -68,18 +78,21 @@ The component is particularly useful in complex interfaces where you need standa
 ### Icon and Content Props
 
 #### `icon`
+
 - **Type**: `React.ReactElement | React.ComponentType`
 - **Required**: No
 - **Description**: An icon to display at the start of the menu item. Should be an SVG element or icon component.
 - **Example**: `<ChevronIcon />`, `iconSvg`
 
 #### `startSlot`
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Description**: Custom content to display at the start of the menu item when not using the icon prop
 - **Example**: `<Avatar size="small" />`, `<Badge>New</Badge>`
 
 #### `endSlot`
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Description**: Content to display at the end of the menu item, such as keyboard shortcuts or secondary actions
@@ -88,24 +101,28 @@ The component is particularly useful in complex interfaces where you need standa
 ### Action Props (inherited from Actionable)
 
 #### `onClick`
+
 - **Type**: `(e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => void`
 - **Required**: No
 - **Description**: Handler function called when the menu item is clicked or activated via keyboard
 - **Example**: `() => navigate('/settings')`
 
 #### `href`
+
 - **Type**: `string`
 - **Required**: No
 - **Description**: URL for navigation. When provided, renders the menu item as a link element
 - **Example**: `"/profile"`, `"https://example.com"`
 
 #### `as`
+
 - **Type**: `keyof React.JSX.IntrinsicElements`
 - **Required**: No
 - **Description**: The HTML element type to render as. Overrides the default button/anchor behavior.
 - **Example**: `"div"`, `"span"`
 
 #### `stopPropagation`
+
 - **Type**: `boolean`
 - **Required**: No
 - **Description**: Prevents event bubbling when the menu item is clicked
@@ -114,12 +131,14 @@ The component is particularly useful in complex interfaces where you need standa
 ### Styling Props
 
 #### `className`
+
 - **Type**: `string | string[] | (string | null | undefined | false)[]`
 - **Required**: No
 - **Description**: Additional CSS class names to apply to the menu item
 - **Example**: `"custom-menu-item"`, `["item", "highlighted"]`
 
 #### `attributes`
+
 - **Type**: `React.HTMLAttributes & Record<string, any>`
 - **Required**: No
 - **Description**: Additional HTML attributes to apply to the menu item element
@@ -128,15 +147,16 @@ The component is particularly useful in complex interfaces where you need standa
 ## Code Examples
 
 ### Basic Usage
+
 ```jsx
-import { MenuItem } from 'reshaped';
-import { SettingsIcon } from './icons';
+import { MenuItem } from "reshaped";
+import { SettingsIcon } from "./icons";
 
 function BasicMenuItem() {
   return (
     <MenuItem
       icon={<SettingsIcon />}
-      onClick={() => console.log('Settings clicked')}
+      onClick={() => console.log("Settings clicked")}
     >
       Settings
     </MenuItem>
@@ -145,33 +165,31 @@ function BasicMenuItem() {
 ```
 
 ### Menu with Different States
+
 ```jsx
-import { MenuItem } from 'reshaped';
-import { HomeIcon, ProfileIcon, SettingsIcon } from './icons';
+import { MenuItem } from "reshaped";
+import { HomeIcon, ProfileIcon, SettingsIcon } from "./icons";
 
 function NavigationMenu() {
-  const [selectedItem, setSelectedItem] = useState('home');
+  const [selectedItem, setSelectedItem] = useState("home");
 
   return (
     <div>
       <MenuItem
         icon={<HomeIcon />}
-        selected={selectedItem === 'home'}
-        onClick={() => setSelectedItem('home')}
+        selected={selectedItem === "home"}
+        onClick={() => setSelectedItem("home")}
       >
         Home
       </MenuItem>
       <MenuItem
         icon={<ProfileIcon />}
-        selected={selectedItem === 'profile'}
-        onClick={() => setSelectedItem('profile')}
+        selected={selectedItem === "profile"}
+        onClick={() => setSelectedItem("profile")}
       >
         Profile
       </MenuItem>
-      <MenuItem
-        icon={<SettingsIcon />}
-        disabled
-      >
+      <MenuItem icon={<SettingsIcon />} disabled>
         Settings (Coming Soon)
       </MenuItem>
     </div>
@@ -180,9 +198,10 @@ function NavigationMenu() {
 ```
 
 ### Menu with Custom Content and Sizing
+
 ```jsx
-import { MenuItem, Text, Badge } from 'reshaped';
-import { NotificationIcon, KeyboardIcon } from './icons';
+import { MenuItem, Text, Badge } from "reshaped";
+import { NotificationIcon, KeyboardIcon } from "./icons";
 
 function AdvancedMenu() {
   return (
@@ -198,7 +217,11 @@ function AdvancedMenu() {
       <MenuItem
         size="medium"
         icon={<KeyboardIcon />}
-        endSlot={<Text size="small" color="neutral-faded">⌘K</Text>}
+        endSlot={
+          <Text size="small" color="neutral-faded">
+            ⌘K
+          </Text>
+        }
         onClick={() => openKeyboardShortcuts()}
       >
         Keyboard Shortcuts
@@ -209,15 +232,16 @@ function AdvancedMenu() {
 ```
 
 ### Responsive MenuItem with Rounded Corners
+
 ```jsx
-import { MenuItem } from 'reshaped';
-import { DocumentIcon } from './icons';
+import { MenuItem } from "reshaped";
+import { DocumentIcon } from "./icons";
 
 function ResponsiveMenuItem() {
   return (
     <MenuItem
       icon={<DocumentIcon />}
-      size={{ s: 'small', m: 'medium', l: 'large' }}
+      size={{ s: "small", m: "medium", l: "large" }}
       roundedCorners={{ s: false, m: true }}
       href="/documents"
     >
@@ -228,9 +252,10 @@ function ResponsiveMenuItem() {
 ```
 
 ### MenuItem with Aligner for Layout
+
 ```jsx
-import { MenuItem } from 'reshaped';
-import { EditIcon, DeleteIcon } from './icons';
+import { MenuItem } from "reshaped";
+import { EditIcon, DeleteIcon } from "./icons";
 
 function AlignedMenuItems() {
   return (

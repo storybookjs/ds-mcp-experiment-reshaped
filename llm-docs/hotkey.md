@@ -1,12 +1,15 @@
 # Hotkey
 
 ## Component Name
+
 Hotkey
 
 ## Brief Description
+
 A styled keyboard shortcut indicator component that displays keyboard combinations with visual emphasis and active states.
 
 ## Keywords
+
 Keyboard Shortcut, Hotkey, Keystroke, Command, Key Combination, Accessibility, Text Element, User Interface
 
 ## Usage Description
@@ -20,12 +23,14 @@ The Hotkey component integrates seamlessly with the reshaped design system's use
 ## Props Documentation
 
 ### children
+
 - **Type**: `React.ReactNode`
 - **Required**: Yes
 - **Description**: The content to display inside the hotkey indicator, typically the key combination text (e.g., "⌘K", "Ctrl+S", "Esc")
 - **Example values**: "⌘K", "Ctrl+C", "F1", "Alt+Tab"
 
 ### active
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `undefined`
@@ -33,6 +38,7 @@ The Hotkey component integrates seamlessly with the reshaped design system's use
 - **Example values**: `true`, `false`
 
 ### className
+
 - **Type**: `ClassName` (string | string[] | ClassNameValue[])
 - **Required**: No
 - **Default**: `undefined`
@@ -40,6 +46,7 @@ The Hotkey component integrates seamlessly with the reshaped design system's use
 - **Example values**: `"custom-hotkey"`, `["hotkey", "primary"]`
 
 ### attributes
+
 - **Type**: `Attributes<"span">` (extends HTML span attributes with data attributes)
 - **Required**: No
 - **Default**: `undefined`
@@ -49,8 +56,9 @@ The Hotkey component integrates seamlessly with the reshaped design system's use
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { Hotkey } from 'reshaped';
+import { Hotkey } from "reshaped";
 
 // Simple keyboard shortcut display
 function SearchInput() {
@@ -64,28 +72,26 @@ function SearchInput() {
 ```
 
 ### Active State with useHotkeys Integration
+
 ```tsx
-import { Hotkey, useHotkeys } from 'reshaped';
+import { Hotkey, useHotkeys } from "reshaped";
 
 function DynamicHotkeyDisplay() {
   const { checkHotkeyState } = useHotkeys({
     "Meta+k": () => {
       // Handle search action
       openSearch();
-    }
+    },
   });
 
-  return (
-    <Hotkey active={checkHotkeyState("Meta+k")}>
-      ⌘K
-    </Hotkey>
-  );
+  return <Hotkey active={checkHotkeyState("Meta+k")}>⌘K</Hotkey>;
 }
 ```
 
 ### TextField Integration
+
 ```tsx
-import { TextField, Hotkey, View } from 'reshaped';
+import { TextField, Hotkey, View } from "reshaped";
 
 function SearchField() {
   return (
@@ -102,20 +108,21 @@ function SearchField() {
 ```
 
 ### Multiple Hotkeys in Menu
+
 ```tsx
-import { Hotkey } from 'reshaped';
+import { Hotkey } from "reshaped";
 
 function CommandMenu() {
   const menuItems = [
     { label: "New File", hotkey: "⌘N" },
     { label: "Open", hotkey: "⌘O" },
     { label: "Save", hotkey: "⌘S" },
-    { label: "Copy", hotkey: "⌘C" }
+    { label: "Copy", hotkey: "⌘C" },
   ];
 
   return (
     <div className="menu">
-      {menuItems.map(item => (
+      {menuItems.map((item) => (
         <div key={item.label} className="menu-item">
           <span>{item.label}</span>
           <Hotkey className="menu-hotkey">{item.hotkey}</Hotkey>
@@ -127,8 +134,9 @@ function CommandMenu() {
 ```
 
 ### Custom Styled Hotkey with Data Attributes
+
 ```tsx
-import { Hotkey } from 'reshaped';
+import { Hotkey } from "reshaped";
 
 function CustomHotkey() {
   return (
@@ -138,7 +146,7 @@ function CustomHotkey() {
       attributes={{
         "data-testid": "escape-key",
         "aria-describedby": "help-text",
-        "data-key": "escape"
+        "data-key": "escape",
       }}
     >
       Esc

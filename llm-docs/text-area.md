@@ -53,15 +53,12 @@ The component supports both controlled and uncontrolled usage patterns, making i
 ### Basic Usage
 
 ```tsx
-import { TextArea } from 'reshaped';
+import { TextArea } from "reshaped";
 
 // Basic uncontrolled textarea
 function BasicExample() {
   return (
-    <TextArea 
-      name="description" 
-      placeholder="Enter your description here..." 
-    />
+    <TextArea name="description" placeholder="Enter your description here..." />
   );
 }
 ```
@@ -69,15 +66,15 @@ function BasicExample() {
 ### Controlled Usage with State Management
 
 ```tsx
-import { TextArea } from 'reshaped';
-import { useState } from 'react';
+import { TextArea } from "reshaped";
+import { useState } from "react";
 
 function ControlledExample() {
-  const [value, setValue] = useState('');
-  
+  const [value, setValue] = useState("");
+
   return (
-    <TextArea 
-      name="message" 
+    <TextArea
+      name="message"
       value={value}
       placeholder="Type your message..."
       onChange={({ value }) => setValue(value)}
@@ -89,23 +86,21 @@ function ControlledExample() {
 ### Form Integration with FormControl
 
 ```tsx
-import { TextArea, FormControl } from 'reshaped';
+import { TextArea, FormControl } from "reshaped";
 
 function FormExample() {
   return (
     <FormControl>
       <FormControl.Label>Feedback</FormControl.Label>
-      <TextArea 
-        name="feedback" 
+      <TextArea
+        name="feedback"
         placeholder="Share your thoughts..."
         size="large"
       />
       <FormControl.Helper>
         Please provide detailed feedback to help us improve.
       </FormControl.Helper>
-      <FormControl.Error>
-        This field is required
-      </FormControl.Error>
+      <FormControl.Error>This field is required</FormControl.Error>
     </FormControl>
   );
 }
@@ -114,12 +109,12 @@ function FormExample() {
 ### Auto-resizing TextArea
 
 ```tsx
-import { TextArea } from 'reshaped';
+import { TextArea } from "reshaped";
 
 function AutoResizeExample() {
   return (
-    <TextArea 
-      name="content" 
+    <TextArea
+      name="content"
       placeholder="This textarea will grow as you type..."
       resize="auto"
       variant="faded"
@@ -131,14 +126,14 @@ function AutoResizeExample() {
 ### Responsive Sizing and Error Handling
 
 ```tsx
-import { TextArea } from 'reshaped';
-import { useState } from 'react';
+import { TextArea } from "reshaped";
+import { useState } from "react";
 
 function ResponsiveExample() {
   const [hasError, setHasError] = useState(false);
-  
+
   return (
-    <TextArea 
+    <TextArea
       name="description"
       placeholder="Enter description..."
       size={{ s: "xlarge", m: "medium" }}
@@ -154,17 +149,15 @@ function ResponsiveExample() {
 ### Using TextArea.Aligner for Layout
 
 ```tsx
-import { TextArea, View, Text, Button } from 'reshaped';
+import { TextArea, View, Text, Button } from "reshaped";
 
 function AlignerExample() {
   return (
     <View gap={2}>
-      <Text variant="featured-2">
-        What problem are you trying to solve?
-      </Text>
+      <Text variant="featured-2">What problem are you trying to solve?</Text>
       <TextArea.Aligner>
-        <TextArea 
-          variant="headless" 
+        <TextArea
+          variant="headless"
           placeholder="Try something like 'I have a job'"
           name="description"
         />

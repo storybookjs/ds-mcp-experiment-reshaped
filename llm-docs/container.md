@@ -17,12 +17,14 @@ The component supports responsive design through its props, allowing different p
 ## Props Documentation
 
 ### `children`
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Default**: `undefined`
 - **Description**: The content to be rendered inside the container
 
 ### `padding`
+
 - **Type**: `G.Responsive<number>`
 - **Required**: No
 - **Default**: `4`
@@ -30,6 +32,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `0`, `2`, `4`, `6`, `{ s: 2, m: 4, l: 6 }`
 
 ### `width`
+
 - **Type**: `G.Responsive<string | number>`
 - **Required**: No
 - **Default**: `undefined`
@@ -37,6 +40,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"100%"`, `"200px"`, `{ s: "100%", m: "800px" }`
 
 ### `align`
+
 - **Type**: `G.Responsive<"start" | "center" | "end" | "stretch" | "baseline">`
 - **Required**: No
 - **Default**: `undefined`
@@ -44,6 +48,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"center"`, `"start"`, `{ s: "start", m: "center" }`
 
 ### `justify`
+
 - **Type**: `G.Responsive<"start" | "center" | "end" | "space-between">`
 - **Required**: No
 - **Default**: `undefined`
@@ -51,6 +56,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"center"`, `"space-between"`, `{ s: "start", m: "center" }`
 
 ### `height`
+
 - **Type**: `G.Responsive<string | number>`
 - **Required**: No
 - **Default**: `undefined`
@@ -58,6 +64,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"200px"`, `"100vh"`, `{ s: "300px", m: "400px" }`
 
 ### `maxHeight`
+
 - **Type**: `G.Responsive<string | number>`
 - **Required**: No
 - **Default**: `undefined`
@@ -65,6 +72,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"300px"`, `"50vh"`, `{ s: "200px", m: "400px" }`
 
 ### `className`
+
 - **Type**: `G.ClassName`
 - **Required**: No
 - **Default**: `undefined`
@@ -72,6 +80,7 @@ The component supports responsive design through its props, allowing different p
 - **Example Values**: `"custom-container"`, `["class1", "class2"]`
 
 ### `attributes`
+
 - **Type**: `G.Attributes<"div">`
 - **Required**: No
 - **Default**: `undefined`
@@ -81,8 +90,9 @@ The component supports responsive design through its props, allowing different p
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { Container } from 'reshaped';
+import { Container } from "reshaped";
 
 function App() {
   return (
@@ -93,19 +103,17 @@ function App() {
   );
 }
 ```
-*Demonstrates the simplest usage with default padding (4) and automatic centering.*
+
+_Demonstrates the simplest usage with default padding (4) and automatic centering._
 
 ### Custom Padding and Dimensions
+
 ```tsx
-import { Container } from 'reshaped';
+import { Container } from "reshaped";
 
 function HeroSection() {
   return (
-    <Container 
-      padding={6} 
-      width="800px" 
-      height="400px"
-    >
+    <Container padding={6} width="800px" height="400px">
       <div>
         <h1>Hero Content</h1>
         <p>Custom container with larger padding and fixed dimensions.</p>
@@ -114,15 +122,17 @@ function HeroSection() {
   );
 }
 ```
-*Shows how to customize padding and set specific width and height values.*
+
+_Shows how to customize padding and set specific width and height values._
 
 ### Responsive Layout
+
 ```tsx
-import { Container } from 'reshaped';
+import { Container } from "reshaped";
 
 function ResponsiveSection() {
   return (
-    <Container 
+    <Container
       padding={{ s: 2, m: 4, l: 6 }}
       width={{ s: "100%", m: "800px", l: "1000px" }}
       height={{ s: "300px", m: "400px" }}
@@ -130,27 +140,29 @@ function ResponsiveSection() {
     >
       <div>
         <h2>Responsive Container</h2>
-        <p>This container adapts its padding, width, and height based on viewport size.</p>
+        <p>
+          This container adapts its padding, width, and height based on viewport
+          size.
+        </p>
       </div>
     </Container>
   );
 }
 ```
-*Demonstrates responsive design with different values for small (s), medium (m), and large (l) viewports.*
+
+_Demonstrates responsive design with different values for small (s), medium (m), and large (l) viewports._
 
 ### Centered Content with Flexbox Alignment
+
 ```tsx
-import { Container } from 'reshaped';
+import { Container } from "reshaped";
 
 function CenteredCard() {
   return (
-    <Container 
-      align="center" 
-      justify="center" 
-      height="400px"
-      padding={4}
-    >
-      <div style={{ background: '#f5f5f5', padding: '2rem', borderRadius: '8px' }}>
+    <Container align="center" justify="center" height="400px" padding={4}>
+      <div
+        style={{ background: "#f5f5f5", padding: "2rem", borderRadius: "8px" }}
+      >
         <h3>Perfectly Centered</h3>
         <p>This content is centered both horizontally and vertically.</p>
       </div>
@@ -158,20 +170,22 @@ function CenteredCard() {
   );
 }
 ```
-*Shows how to use align and justify props to center content both horizontally and vertically.*
+
+_Shows how to use align and justify props to center content both horizontally and vertically._
 
 ### Container with Custom Attributes and Styling
+
 ```tsx
-import { Container } from 'reshaped';
+import { Container } from "reshaped";
 
 function CustomContainer() {
   return (
-    <Container 
+    <Container
       className="main-content-area"
       attributes={{
         id: "content-container",
         "data-section": "main",
-        role: "main"
+        role: "main",
       }}
       padding={0}
       width="100%"
@@ -184,21 +198,27 @@ function CustomContainer() {
   );
 }
 ```
-*Demonstrates adding custom CSS classes and HTML attributes, including accessibility attributes.*
+
+_Demonstrates adding custom CSS classes and HTML attributes, including accessibility attributes._
 
 ## Related Components
 
 ### View
+
 The Container component extends and builds upon the View component, inheriting its layout and styling capabilities. View provides the foundational flexbox layout system that Container uses.
 
 ### Layout Components
+
 Container works well with other layout components in the design system:
+
 - **Grid**: For creating grid-based layouts within containers
 - **Stack**: For vertical spacing of content within containers
 - **Divider**: For creating visual separation between container sections
 
 ### Content Components
+
 Container is commonly used to wrap:
+
 - **Card**: Multiple cards arranged within a container
 - **Text**: Text content that needs consistent margins
 - **Button**: Action elements that need proper spacing from edges

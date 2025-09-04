@@ -1,12 +1,15 @@
 # Timeline
 
 ## Component Name
+
 Timeline
 
 ## Brief Description
+
 A component for displaying chronological sequences of events or content items with optional visual markers and connecting lines.
 
 ## Keywords
+
 Timeline, Chronology, Events, Sequence, History, Progress, Steps, Markers, Vertical Layout
 
 ## Usage Description
@@ -14,8 +17,9 @@ Timeline, Chronology, Events, Sequence, History, Progress, Steps, Markers, Verti
 The Timeline component is designed to display a series of events, activities, or content items in chronological order. It provides a clean, vertical layout with optional visual markers and connecting lines that help users understand the sequence and relationship between different timeline items.
 
 Use Timeline when you need to show:
+
 - Historical events or milestones
-- Step-by-step processes or workflows  
+- Step-by-step processes or workflows
 - Activity feeds or logs
 - Progress through multi-stage processes
 - News feeds or updates in chronological order
@@ -26,30 +30,31 @@ The component automatically handles the visual connections between items and pro
 
 ### Timeline Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `children` | `React.ReactNode` | No | `undefined` | The timeline items to display. Can be Timeline.Item components or any React nodes that will be automatically wrapped |
-| `className` | `ClassName` | No | `undefined` | Additional CSS classes to apply to the timeline container |
-| `attributes` | `Attributes<"ul">` | No | `undefined` | Additional HTML attributes to apply to the underlying `<ul>` element including data attributes and event handlers |
+| Prop         | Type               | Required | Default     | Description                                                                                                          |
+| ------------ | ------------------ | -------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`  | No       | `undefined` | The timeline items to display. Can be Timeline.Item components or any React nodes that will be automatically wrapped |
+| `className`  | `ClassName`        | No       | `undefined` | Additional CSS classes to apply to the timeline container                                                            |
+| `attributes` | `Attributes<"ul">` | No       | `undefined` | Additional HTML attributes to apply to the underlying `<ul>` element including data attributes and event handlers    |
 
 ### Timeline.Item Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `children` | `React.ReactNode` | No | `undefined` | The content to display in this timeline item |
-| `markerSlot` | `React.ReactNode \| null` | No | `undefined` | Custom marker content to display. When `null`, no marker is shown and item takes full width. When `undefined`, a default circular marker is displayed |
-| `className` | `ClassName` | No | `undefined` | Additional CSS classes to apply to the timeline item |
-| `attributes` | `Attributes<"li">` | No | `undefined` | Additional HTML attributes to apply to the underlying `<li>` element including data attributes and event handlers |
+| Prop         | Type                      | Required | Default     | Description                                                                                                                                           |
+| ------------ | ------------------------- | -------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `children`   | `React.ReactNode`         | No       | `undefined` | The content to display in this timeline item                                                                                                          |
+| `markerSlot` | `React.ReactNode \| null` | No       | `undefined` | Custom marker content to display. When `null`, no marker is shown and item takes full width. When `undefined`, a default circular marker is displayed |
+| `className`  | `ClassName`               | No       | `undefined` | Additional CSS classes to apply to the timeline item                                                                                                  |
+| `attributes` | `Attributes<"li">`        | No       | `undefined` | Additional HTML attributes to apply to the underlying `<li>` element including data attributes and event handlers                                     |
 
 ### Type Definitions
 
 ```typescript
 type ClassName = string | null | undefined | false | ClassName[];
 
-type Attributes<TagName extends keyof React.JSX.IntrinsicElements> = 
-  React.JSX.IntrinsicElements[TagName] & 
-  Record<`data-${string}`, string | boolean> & 
-  { style?: React.CSSProperties };
+type Attributes<TagName extends keyof React.JSX.IntrinsicElements> =
+  React.JSX.IntrinsicElements[TagName] &
+    Record<`data-${string}`, string | boolean> & {
+      style?: React.CSSProperties;
+    };
 ```
 
 ## Code Examples
@@ -57,7 +62,7 @@ type Attributes<TagName extends keyof React.JSX.IntrinsicElements> =
 ### Basic Timeline with Automatic Item Wrapping
 
 ```tsx
-import Timeline from 'reshaped/Timeline';
+import Timeline from "reshaped/Timeline";
 
 function BasicTimeline() {
   return (
@@ -84,8 +89,8 @@ This example shows the simplest usage where children are automatically wrapped i
 ### Timeline with Explicit Items and Custom Markers
 
 ```tsx
-import Timeline from 'reshaped/Timeline';
-import { Icon } from 'reshaped';
+import Timeline from "reshaped/Timeline";
+import { Icon } from "reshaped";
 
 function CustomMarkerTimeline() {
   return (
@@ -97,7 +102,7 @@ function CustomMarkerTimeline() {
           <small>January 15, 2024</small>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item markerSlot={<Icon name="code" />}>
         <div>
           <h4>Development Sprint 1</h4>
@@ -105,7 +110,7 @@ function CustomMarkerTimeline() {
           <small>February 1, 2024</small>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item markerSlot={<Icon name="check" />}>
         <div>
           <h4>MVP Release</h4>
@@ -123,8 +128,8 @@ This example demonstrates using custom icon markers to visually distinguish diff
 ### Timeline with Mixed Marker Types
 
 ```tsx
-import Timeline from 'reshaped/Timeline';
-import { Badge, Avatar } from 'reshaped';
+import Timeline from "reshaped/Timeline";
+import { Badge, Avatar } from "reshaped";
 
 function MixedMarkerTimeline() {
   return (
@@ -135,14 +140,14 @@ function MixedMarkerTimeline() {
           <p>Requirements gathering and architecture design</p>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item markerSlot={<Avatar src="/user-avatar.jpg" size="s" />}>
         <div>
           <h4>Code Review</h4>
           <p>John Smith reviewed and approved the initial implementation</p>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item>
         <div>
           <h4>Testing Complete</h4>
@@ -159,26 +164,40 @@ This example shows mixing different marker types including badges, avatars, and 
 ### Timeline with Full-Width Items
 
 ```tsx
-import Timeline from 'reshaped/Timeline';
+import Timeline from "reshaped/Timeline";
 
 function FullWidthTimeline() {
   return (
     <Timeline>
       <Timeline.Item markerSlot={null}>
-        <div style={{ padding: '16px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
+        <div
+          style={{
+            padding: "16px",
+            backgroundColor: "#f5f5f5",
+            borderRadius: "8px",
+          }}
+        >
           <h4>System Maintenance</h4>
           <p>Scheduled downtime for database migration and server updates</p>
-          <p><strong>Duration:</strong> 2 hours</p>
+          <p>
+            <strong>Duration:</strong> 2 hours
+          </p>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item markerSlot={null}>
-        <div style={{ padding: '16px', backgroundColor: '#e8f4fd', borderRadius: '8px' }}>
+        <div
+          style={{
+            padding: "16px",
+            backgroundColor: "#e8f4fd",
+            borderRadius: "8px",
+          }}
+        >
           <h4>Feature Announcement</h4>
           <p>New dashboard analytics now available to all premium users</p>
         </div>
       </Timeline.Item>
-      
+
       <Timeline.Item>
         <div>
           <h4>Back to Normal</h4>
@@ -195,24 +214,26 @@ This example demonstrates using `markerSlot={null}` to create full-width timelin
 ### Timeline with Custom Styling
 
 ```tsx
-import Timeline from 'reshaped/Timeline';
+import Timeline from "reshaped/Timeline";
 
 function StyledTimeline() {
   return (
-    <Timeline 
+    <Timeline
       className="custom-timeline"
-      attributes={{ 'data-testid': 'project-timeline' }}
+      attributes={{ "data-testid": "project-timeline" }}
     >
-      <Timeline.Item 
+      <Timeline.Item
         className="priority-high"
-        attributes={{ 'data-priority': 'high' }}
+        attributes={{ "data-priority": "high" }}
         markerSlot={
-          <div style={{ 
-            width: '20px', 
-            height: '20px', 
-            backgroundColor: '#ff4757', 
-            borderRadius: '50%' 
-          }} />
+          <div
+            style={{
+              width: "20px",
+              height: "20px",
+              backgroundColor: "#ff4757",
+              borderRadius: "50%",
+            }}
+          />
         }
       >
         <div>
@@ -220,10 +241,10 @@ function StyledTimeline() {
           <p>Security vulnerability patched immediately</p>
         </div>
       </Timeline.Item>
-      
-      <Timeline.Item 
+
+      <Timeline.Item
         className="priority-medium"
-        attributes={{ 'data-priority': 'medium' }}
+        attributes={{ "data-priority": "medium" }}
       >
         <div>
           <h4>Feature Update</h4>
@@ -261,7 +282,7 @@ The Timeline component is built with accessibility in mind:
 ## Implementation Details
 
 - Timeline automatically wraps non-Timeline.Item children in Timeline.Item components
-- Default markers are created using CSS pseudo-elements when no markerSlot is provided  
+- Default markers are created using CSS pseudo-elements when no markerSlot is provided
 - Connecting lines between markers are handled automatically with CSS
 - The last item in a timeline doesn't show a connecting line to avoid visual confusion
 - Full-width items (markerSlot={null}) include separator lines to maintain visual hierarchy

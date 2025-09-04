@@ -7,6 +7,7 @@ The `useHotkeys` hook provides a declarative way to handle keyboard shortcuts in
 ## Purpose
 
 This hook enables developers to:
+
 - Register keyboard shortcuts with callback functions
 - Handle complex key combinations and modifier keys
 - Scope hotkeys to specific DOM elements
@@ -25,26 +26,29 @@ function useHotkeys<Element extends HTMLElement>(
     ref?: React.RefObject<Element | null>;
     disabled?: boolean;
     preventDefault?: boolean;
-  }
+  },
 ): {
   ref: React.RefObject<Element | null>;
   checkHotkeyState: (key: string) => boolean;
-}
+};
 ```
 
 ### Parameters
 
 #### `hotkeys: Hotkeys`
+
 **Type:** `Record<string, ((e?: KeyboardEvent) => void) | null>`
 **Required:** Yes
 
 An object mapping hotkey combinations to callback functions. Keys can be:
+
 - Single keys: `"a"`, `"Enter"`, `"Escape"`
 - Key combinations: `"ctrl+a"`, `"shift+b+n"`, `"meta+k"`
 - Multiple hotkeys: `"a,b"` (comma-separated for alternative triggers)
 - Cross-platform modifier: `"mod+v"` (represents Cmd on Mac, Ctrl on Windows/Linux)
 
 #### `deps?: unknown[]`
+
 **Type:** `unknown[]`
 **Required:** No
 **Default:** `[]`
@@ -52,16 +56,19 @@ An object mapping hotkey combinations to callback functions. Keys can be:
 Additional dependencies for the effect that registers hotkeys. Similar to `useEffect` dependencies.
 
 #### `options?: object`
+
 **Type:** Object with optional properties
 **Required:** No
 
 ##### `options.ref?: React.RefObject<Element | null>`
+
 **Type:** `React.RefObject<Element | null>`
 **Required:** No
 
 Custom ref to scope hotkeys to a specific DOM element. If not provided, a ref is automatically created.
 
 ##### `options.disabled?: boolean`
+
 **Type:** `boolean`
 **Required:** No
 **Default:** `false`
@@ -69,6 +76,7 @@ Custom ref to scope hotkeys to a specific DOM element. If not provided, a ref is
 When `true`, disables all registered hotkeys.
 
 ##### `options.preventDefault?: boolean`
+
 **Type:** `boolean`
 **Required:** No
 **Default:** `false`
@@ -78,9 +86,11 @@ When `true`, prevents the default browser behavior for the registered hotkeys.
 ### Return Value
 
 #### `ref: React.RefObject<Element | null>`
+
 A React ref that should be attached to the DOM element where hotkeys should be active. If a custom ref was provided in options, returns that ref.
 
 #### `checkHotkeyState: (key: string) => boolean`
+
 A function to check if a specific key or key combination is currently pressed.
 
 ## Usage Examples
@@ -188,7 +198,7 @@ import { useHotkeys } from 'reshaped';
 
 function ScopedComponent() {
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   useHotkeys({
     'ctrl+enter': () => submitForm(),
     'escape': () => clearInput(),
@@ -198,7 +208,7 @@ function ScopedComponent() {
   });
 
   return (
-    <input 
+    <input
       ref={inputRef}
       placeholder="Press Ctrl+Enter to submit, Escape to clear"
     />
@@ -242,6 +252,7 @@ function ComponentWithDeps({ selectedId }: { selectedId: string }) {
 ### Key Combination Support
 
 The hook supports various key combination formats:
+
 - **Single keys**: `"a"`, `"Enter"`, `" "` (space)
 - **Combinations**: `"ctrl+a"`, `"shift+b+n"`
 - **Alternative keys**: `"a,b"` (either key triggers)
@@ -257,6 +268,7 @@ The hook supports various key combination formats:
 ### Event Scoping
 
 Hotkeys are scoped to the element referenced by the returned `ref`. Events only trigger when:
+
 - The target element or its descendants have focus
 - The event target is within the scoped element
 
@@ -272,32 +284,35 @@ Hotkeys are scoped to the element referenced by the returned `ref`. Events only 
 
 ```typescript
 // Good: Use standard modifier conventions
-'ctrl+s', 'meta+k', 'shift+enter'
+("ctrl+s", "meta+k", "shift+enter");
 
 // Good: Use mod for cross-platform shortcuts
-'mod+c', 'mod+v', 'mod+z'
+("mod+c", "mod+v", "mod+z");
 
 // Avoid: Complex combinations that conflict with browser shortcuts
-'ctrl+shift+alt+t' // Too complex
+("ctrl+shift+alt+t"); // Too complex
 ```
 
 ### Performance Considerations
 
 ```typescript
 // Good: Include relevant dependencies
-useHotkeys({
-  'delete': () => deleteItem(selectedId)
-}, [selectedId]);
+useHotkeys(
+  {
+    delete: () => deleteItem(selectedId),
+  },
+  [selectedId],
+);
 
 // Good: Disable when not needed
-useHotkeys(hotkeys, deps, { 
-  disabled: !isActive 
+useHotkeys(hotkeys, deps, {
+  disabled: !isActive,
 });
 
 // Good: Use null for conditional hotkeys
 useHotkeys({
-  'space': isPlaying ? () => pause() : () => play(),
-  'r': canRecord ? () => record() : null,
+  space: isPlaying ? () => pause() : () => play(),
+  r: canRecord ? () => record() : null,
 });
 ```
 
@@ -311,7 +326,7 @@ function HotkeyButton() {
   });
 
   return (
-    <button 
+    <button
       ref={ref}
       className={checkHotkeyState('space') ? 'pressed' : ''}
     >
@@ -325,18 +340,26 @@ function HotkeyButton() {
 
 ```typescript
 // Good: Prevent default for custom shortcuts
-useHotkeys({
-  'ctrl+k': () => openSearch(),
-}, [], {
-  preventDefault: true, // Prevents browser's address bar focus
-});
+useHotkeys(
+  {
+    "ctrl+k": () => openSearch(),
+  },
+  [],
+  {
+    preventDefault: true, // Prevents browser's address bar focus
+  },
+);
 
 // Good: Scope to specific areas
-useHotkeys({
-  'arrow keys': () => navigate(),
-}, [], {
-  ref: gameAreaRef, // Only active in game area
-});
+useHotkeys(
+  {
+    "arrow keys": () => navigate(),
+  },
+  [],
+  {
+    ref: gameAreaRef, // Only active in game area
+  },
+);
 ```
 
 ## Integration with Reshaped Components
@@ -368,7 +391,7 @@ import { useHotkeys, TextField, Button } from 'reshaped';
 
 function SearchForm() {
   const searchRef = useRef<HTMLInputElement>(null);
-  
+
   useHotkeys({
     'ctrl+f': () => searchRef.current?.focus(),
     'escape': () => searchRef.current?.blur(),

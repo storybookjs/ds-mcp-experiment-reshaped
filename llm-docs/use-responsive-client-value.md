@@ -18,9 +18,9 @@ The hook uses Reshaped's standardized breakpoint system (s, m, l, xl) and follow
 
 ### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `value` | `Responsive<T>` | Yes | Either a single value of type `T` or a responsive object with breakpoint keys (s, m, l, xl) mapping to values of type `T` |
+| Parameter | Type            | Required | Description                                                                                                               |
+| --------- | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `value`   | `Responsive<T>` | Yes      | Either a single value of type `T` or a responsive object with breakpoint keys (s, m, l, xl) mapping to values of type `T` |
 
 ### Return Type
 
@@ -29,6 +29,7 @@ The hook uses Reshaped's standardized breakpoint system (s, m, l, xl) and follow
 ### Responsive Value Type
 
 The `Responsive<T>` type accepts either:
+
 - A single value of type `T` (non-responsive)
 - A `ResponsiveOnly<T>` object with optional breakpoint properties:
   ```typescript
@@ -43,12 +44,14 @@ The `Responsive<T>` type accepts either:
 ### Breakpoint System
 
 The hook uses these default breakpoints:
+
 - **s (small)**: `max-width: 659px`
 - **m (medium)**: `min-width: 660px` and `max-width: 899px`
 - **l (large)**: `min-width: 900px` and `max-width: 1279px`
 - **xl (extra large)**: `min-width: 1280px`
 
 Custom breakpoints can be defined via CSS custom properties on the `[data-rs-theme]` element:
+
 - `--rs-viewport-m-min`
 - `--rs-viewport-l-min`
 - `--rs-viewport-xl-min`
@@ -58,21 +61,18 @@ Custom breakpoints can be defined via CSS custom properties on the `[data-rs-the
 ### Basic Responsive Values
 
 ```tsx
-import { useResponsiveClientValue } from 'reshaped';
+import { useResponsiveClientValue } from "reshaped";
 
 function ResponsiveComponent() {
   const backgroundColor = useResponsiveClientValue({
-    s: 'neutral',
-    m: 'critical', 
-    l: 'positive',
-    xl: 'primary'
+    s: "neutral",
+    m: "critical",
+    l: "positive",
+    xl: "primary",
   });
 
   return (
-    <View 
-      backgroundColor={backgroundColor}
-      padding={4}
-    >
+    <View backgroundColor={backgroundColor} padding={4}>
       Background changes color based on viewport size
     </View>
   );
@@ -82,27 +82,25 @@ function ResponsiveComponent() {
 ### Boolean Values for Conditional Rendering
 
 ```tsx
-import { useResponsiveClientValue } from 'reshaped';
+import { useResponsiveClientValue } from "reshaped";
 
 function ConditionalComponent() {
   const showSidebar = useResponsiveClientValue({
-    s: false,  // Hide on mobile
-    l: true    // Show on large screens and up
+    s: false, // Hide on mobile
+    l: true, // Show on large screens and up
   });
 
   const columns = useResponsiveClientValue({
     s: 1,
     m: 2,
     l: 3,
-    xl: 4
+    xl: 4,
   });
 
   return (
     <View direction="row">
       {showSidebar && <Sidebar />}
-      <Grid columns={columns}>
-        {/* Content */}
-      </Grid>
+      <Grid columns={columns}>{/* Content */}</Grid>
     </View>
   );
 }
@@ -111,13 +109,13 @@ function ConditionalComponent() {
 ### Fallback Behavior
 
 ```tsx
-import { useResponsiveClientValue } from 'reshaped';
+import { useResponsiveClientValue } from "reshaped";
 
 function FallbackExample() {
   // Only defines s and xl - m and l will fall back to s
   const fontSize = useResponsiveClientValue({
-    s: 'small',
-    xl: 'large'
+    s: "small",
+    xl: "large",
   });
 
   // Resolution logic:
@@ -133,12 +131,12 @@ function FallbackExample() {
 ### Non-Responsive Values
 
 ```tsx
-import { useResponsiveClientValue } from 'reshaped';
+import { useResponsiveClientValue } from "reshaped";
 
 function StaticValue() {
   // Passing a non-object value returns it directly
-  const staticColor = useResponsiveClientValue('primary');
-  
+  const staticColor = useResponsiveClientValue("primary");
+
   return <View backgroundColor={staticColor}>Always primary</View>;
 }
 ```
@@ -146,13 +144,13 @@ function StaticValue() {
 ### Complex Object Values
 
 ```tsx
-import { useResponsiveClientValue } from 'reshaped';
+import { useResponsiveClientValue } from "reshaped";
 
 function ComplexResponsiveProps() {
   const modalConfig = useResponsiveClientValue({
-    s: { size: 'fullscreen', position: 'bottom' },
-    m: { size: 'medium', position: 'center' },
-    l: { size: 'large', position: 'center' }
+    s: { size: "fullscreen", position: "bottom" },
+    m: { size: "medium", position: "center" },
+    l: { size: "large", position: "center" },
   });
 
   return (
@@ -176,8 +174,8 @@ The hook follows a mobile-first philosophy where smaller breakpoint values serve
 ```tsx
 // This pattern ensures mobile compatibility
 const spacing = useResponsiveClientValue({
-  s: 2,    // Base mobile spacing
-  l: 4     // Larger spacing for desktop
+  s: 2, // Base mobile spacing
+  l: 4, // Larger spacing for desktop
 });
 // Medium (m) viewport will use s value (2)
 ```
@@ -189,7 +187,7 @@ function ProgressiveComponent() {
   const features = useResponsiveClientValue({
     s: { animations: false, sidebar: false },
     m: { animations: true, sidebar: false },
-    l: { animations: true, sidebar: true }
+    l: { animations: true, sidebar: true },
   });
 
   return (
@@ -206,17 +204,17 @@ function ProgressiveComponent() {
 ```tsx
 function AdaptiveLayout() {
   const layoutType = useResponsiveClientValue({
-    s: 'stack',
-    m: 'grid',
-    xl: 'masonry'
+    s: "stack",
+    m: "grid",
+    xl: "masonry",
   });
 
   switch (layoutType) {
-    case 'stack':
+    case "stack":
       return <StackLayout />;
-    case 'grid':
+    case "grid":
       return <GridLayout />;
-    case 'masonry':
+    case "masonry":
       return <MasonryLayout />;
     default:
       return <DefaultLayout />;
@@ -227,22 +225,24 @@ function AdaptiveLayout() {
 ## Best Practices
 
 ### 1. Define Mobile-First Values
+
 Always define values for the `s` breakpoint as they serve as fallbacks:
 
 ```tsx
 // Good - has mobile fallback
 const value = useResponsiveClientValue({
-  s: 'mobile-value',
-  l: 'desktop-value'
+  s: "mobile-value",
+  l: "desktop-value",
 });
 
 // Potentially problematic - no mobile fallback
 const value = useResponsiveClientValue({
-  l: 'desktop-only-value'
+  l: "desktop-only-value",
 });
 ```
 
 ### 2. Handle Undefined Values
+
 The hook can return `undefined`, so handle this case appropriately:
 
 ```tsx
@@ -251,28 +251,30 @@ const finalValue = responsiveValue ?? defaultValue;
 ```
 
 ### 3. Use TypeScript for Type Safety
+
 Leverage TypeScript to ensure consistent types across breakpoints:
 
 ```tsx
-type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonVariant = "primary" | "secondary" | "ghost";
 
 const variant = useResponsiveClientValue<ButtonVariant>({
-  s: 'ghost',
-  l: 'primary'
+  s: "ghost",
+  l: "primary",
 });
 ```
 
 ### 4. Combine with Other Responsive Utilities
+
 Use alongside other Reshaped responsive utilities for comprehensive responsive design:
 
 ```tsx
 function ResponsiveCard() {
   const padding = useResponsiveClientValue({ s: 2, l: 4 });
-  
+
   return (
-    <View 
+    <View
       padding={padding}
-      width={{ s: '100%', m: 'auto' }}
+      width={{ s: "100%", m: "auto" }}
       maxWidth={{ l: 600 }}
     >
       Card content
@@ -284,14 +286,17 @@ function ResponsiveCard() {
 ## Implementation Details
 
 ### Client-Side Only
+
 This hook only works on the client side and uses browser APIs like `window.matchMedia()` and `document.querySelector()`. It will not resolve values during server-side rendering.
 
 ### Performance Considerations
+
 - The hook sets up media query listeners only once per component instance
 - Event listeners are properly cleaned up when the component unmounts
 - Viewport detection is cached and shared across components through context
 
 ### Theme Integration
+
 The hook integrates with Reshaped's theming system by reading custom breakpoint values from CSS custom properties on the theme root element.
 
 ## Related Components

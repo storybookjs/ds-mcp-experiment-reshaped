@@ -1,12 +1,15 @@
 # RadioGroup
 
 ## Component Name
+
 RadioGroup
 
 ## Brief Description
+
 A form control component that manages a group of radio buttons for single-value selection from multiple options.
 
 ## Keywords
+
 - Radio Buttons
 - Form Control
 - Single Selection
@@ -50,7 +53,7 @@ The component integrates seamlessly with individual Radio components through a c
 ### Basic Usage (Uncontrolled)
 
 ```tsx
-import { RadioGroup, Radio } from 'reshaped';
+import { RadioGroup, Radio } from "reshaped";
 
 function BasicRadioGroup() {
   return (
@@ -66,23 +69,19 @@ function BasicRadioGroup() {
 ### Controlled Usage with Change Handler
 
 ```tsx
-import { useState } from 'react';
-import { RadioGroup, Radio } from 'reshaped';
+import { useState } from "react";
+import { RadioGroup, Radio } from "reshaped";
 
 function ControlledRadioGroup() {
-  const [selectedSize, setSelectedSize] = useState('medium');
+  const [selectedSize, setSelectedSize] = useState("medium");
 
   const handleSizeChange = ({ value }) => {
     setSelectedSize(value);
-    console.log('Selected size:', value);
+    console.log("Selected size:", value);
   };
 
   return (
-    <RadioGroup 
-      name="size" 
-      value={selectedSize} 
-      onChange={handleSizeChange}
-    >
+    <RadioGroup name="size" value={selectedSize} onChange={handleSizeChange}>
       <Radio value="small">Small</Radio>
       <Radio value="medium">Medium</Radio>
       <Radio value="large">Large</Radio>
@@ -94,7 +93,7 @@ function ControlledRadioGroup() {
 ### Disabled Radio Group
 
 ```tsx
-import { RadioGroup, Radio } from 'reshaped';
+import { RadioGroup, Radio } from "reshaped";
 
 function DisabledRadioGroup() {
   return (
@@ -110,7 +109,7 @@ function DisabledRadioGroup() {
 ### Radio Group with Error State
 
 ```tsx
-import { RadioGroup, Radio } from 'reshaped';
+import { RadioGroup, Radio } from "reshaped";
 
 function ErrorRadioGroup() {
   const [selection, setSelection] = useState(null);
@@ -118,9 +117,9 @@ function ErrorRadioGroup() {
 
   return (
     <div>
-      <RadioGroup 
-        name="subscription" 
-        value={selection} 
+      <RadioGroup
+        name="subscription"
+        value={selection}
         onChange={({ value }) => setSelection(value)}
         hasError={hasError}
       >
@@ -128,7 +127,9 @@ function ErrorRadioGroup() {
         <Radio value="premium">Premium Plan</Radio>
         <Radio value="enterprise">Enterprise Plan</Radio>
       </RadioGroup>
-      {hasError && <Text color="critical">Please select a subscription plan</Text>}
+      {hasError && (
+        <Text color="critical">Please select a subscription plan</Text>
+      )}
     </div>
   );
 }
@@ -137,17 +138,17 @@ function ErrorRadioGroup() {
 ### Using with Custom Hook
 
 ```tsx
-import { useRadioGroup, RadioGroup, Radio } from 'reshaped';
+import { useRadioGroup, RadioGroup, Radio } from "reshaped";
 
 function CustomRadio({ value, children }) {
   const context = useRadioGroup();
-  
+
   if (!context) {
-    throw new Error('CustomRadio must be used within RadioGroup');
+    throw new Error("CustomRadio must be used within RadioGroup");
   }
 
   const isSelected = context.value === value;
-  
+
   return (
     <label>
       <input
@@ -247,7 +248,7 @@ type ChangeHandler<Value> = (args: {
 ## Implementation Notes
 
 - The component automatically switches between controlled and uncontrolled modes based on the presence of the `value` prop
-- Uses React Context to share state and configuration between the group and individual radio components  
+- Uses React Context to share state and configuration between the group and individual radio components
 - The controlled version delegates to RadioGroupControlled, while uncontrolled uses RadioGroupUncontrolled with internal state
 - All radio buttons in the group share the same `name`, `disabled`, `hasError`, and change handler through context
 - The component follows React's controlled/uncontrolled component patterns consistently

@@ -1,12 +1,15 @@
 # Text
 
 ## Component Name
+
 Text
 
 ## Brief Description
+
 A flexible typography component for displaying text content with consistent styling and semantic HTML structure.
 
 ## Keywords
+
 Typography, Text Display, Headings, Body Text, Semantic HTML, Responsive Typography, Font Weight, Text Alignment
 
 ## Usage Description
@@ -20,6 +23,7 @@ The component excels in scenarios requiring responsive typography, semantic acce
 ## Props Documentation
 
 ### variant
+
 **Type:** `Responsive<"title-1" | "title-2" | "title-3" | "title-4" | "title-5" | "title-6" | "featured-1" | "featured-2" | "featured-3" | "body-1" | "body-2" | "body-3" | "caption-1" | "caption-2">`  
 **Required:** No  
 **Default:** `undefined` (renders as div with no specific typography)
@@ -31,6 +35,7 @@ Supports responsive values: `{ s: "body-3", m: "title-4" }` allows different var
 **Example values:** `"title-1"`, `"body-2"`, `{ s: "caption-1", m: "body-1" }`
 
 ### weight
+
 **Type:** `Responsive<"regular" | "medium" | "bold">`  
 **Required:** No  
 **Default:** `undefined` (uses variant's default weight)
@@ -42,6 +47,7 @@ Supports responsive values for different weights across viewports.
 **Example values:** `"bold"`, `{ s: "regular", m: "bold" }`
 
 ### color
+
 **Type:** `"neutral" | "neutral-faded" | "critical" | "warning" | "positive" | "primary" | "disabled"`  
 **Required:** No  
 **Default:** `undefined` (inherits parent color)
@@ -51,6 +57,7 @@ Sets the text color using the design system's semantic color palette. Colors are
 **Example values:** `"primary"`, `"critical"`, `"neutral-faded"`
 
 ### align
+
 **Type:** `Responsive<"start" | "center" | "end">`  
 **Required:** No  
 **Default:** `undefined` (inherits text alignment)
@@ -62,6 +69,7 @@ Supports responsive alignment for different viewport sizes.
 **Example values:** `"center"`, `{ s: "center", m: "start" }`
 
 ### decoration
+
 **Type:** `"line-through"`  
 **Required:** No  
 **Default:** `undefined`
@@ -71,6 +79,7 @@ Applies text decoration styling. Currently supports line-through for indicating 
 **Example values:** `"line-through"`
 
 ### maxLines
+
 **Type:** `number`  
 **Required:** No  
 **Default:** `undefined`
@@ -80,6 +89,7 @@ Limits text to a specified number of lines using CSS line clamping. Text exceedi
 **Example values:** `1`, `2`, `3`
 
 ### wrap
+
 **Type:** `"balance"`  
 **Required:** No  
 **Default:** `undefined`
@@ -89,6 +99,7 @@ Controls text wrapping behavior. The "balance" value uses CSS text-wrap: balance
 **Example values:** `"balance"`
 
 ### monospace
+
 **Type:** `boolean`  
 **Required:** No  
 **Default:** `undefined`
@@ -98,6 +109,7 @@ Renders text using the system's monospace font family. Ideal for code snippets, 
 **Example values:** `true`, `false`
 
 ### as
+
 **Type:** `keyof React.JSX.IntrinsicElements`  
 **Required:** No  
 **Default:** Auto-determined based on variant or "div"
@@ -107,6 +119,7 @@ Overrides the rendered HTML element. By default, title variants render as their 
 **Example values:** `"p"`, `"span"`, `"h1"`, `"section"`
 
 ### children
+
 **Type:** `React.ReactNode`  
 **Required:** No  
 **Default:** `undefined`
@@ -114,6 +127,7 @@ Overrides the rendered HTML element. By default, title variants render as their 
 The text content or child elements to be rendered within the component.
 
 ### className
+
 **Type:** `ClassName` (string | array of strings)  
 **Required:** No  
 **Default:** `undefined`
@@ -121,6 +135,7 @@ The text content or child elements to be rendered within the component.
 Additional CSS classes to apply to the component for custom styling.
 
 ### attributes
+
 **Type:** `Attributes<TagName>` (HTML attributes + data attributes)  
 **Required:** No  
 **Default:** `undefined`
@@ -130,6 +145,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ## Code Examples
 
 ### Basic Typography Variants
+
 ```tsx
 // Page title with semantic h1
 <Text variant="title-1">Main Page Heading</Text>
@@ -150,6 +166,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ```
 
 ### Responsive Typography
+
 ```tsx
 // Mobile-first responsive variant
 <Text variant={{ s: "body-3", m: "body-2", l: "body-1" }}>
@@ -157,7 +174,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 </Text>
 
 // Responsive weight and alignment
-<Text 
+<Text
   variant="title-2"
   weight={{ s: "medium", m: "bold" }}
   align={{ s: "center", m: "start" }}
@@ -167,6 +184,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ```
 
 ### Text Truncation and Wrapping
+
 ```tsx
 // Truncate to 2 lines for card layouts
 <Text variant="body-2" maxLines={2}>
@@ -186,6 +204,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ```
 
 ### Semantic Colors and States
+
 ```tsx
 // Status messages with semantic colors
 <Text color="positive">Operation completed successfully</Text>
@@ -204,6 +223,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ```
 
 ### Monospace and Code Display
+
 ```tsx
 // Inline code snippet
 <Text monospace variant="body-2">
@@ -211,12 +231,12 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 </Text>
 
 // Monospace with custom styling
-<Text 
-  monospace 
-  variant="caption-1" 
+<Text
+  monospace
+  variant="caption-1"
   as="code"
-  attributes={{ 
-    style: { backgroundColor: "var(--rs-color-background-neutral-faded)" } 
+  attributes={{
+    style: { backgroundColor: "var(--rs-color-background-neutral-faded)" }
   }}
 >
   npm install reshaped
@@ -224,6 +244,7 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 ```
 
 ### Custom Element Rendering
+
 ```tsx
 // Override default heading mapping
 <Text variant="title-2" as="h1">
@@ -236,13 +257,13 @@ HTML attributes to apply to the rendered element, including data attributes, ARI
 </Text>
 
 // Span for inline text with custom attributes
-<Text 
-  as="span" 
-  variant="body-2" 
+<Text
+  as="span"
+  variant="body-2"
   weight="medium"
-  attributes={{ 
+  attributes={{
     id: "username",
-    "data-testid": "user-display-name" 
+    "data-testid": "user-display-name"
   }}
 >
   John Doe

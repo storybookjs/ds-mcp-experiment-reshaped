@@ -17,6 +17,7 @@ For accessibility, the component implements proper ARIA semantics with role="sep
 ## Props Documentation
 
 ### `vertical`
+
 - **Type:** `boolean | Responsive<boolean>`
 - **Required:** No
 - **Default:** `false` (horizontal)
@@ -24,30 +25,35 @@ For accessibility, the component implements proper ARIA semantics with role="sep
 - **Examples:** `true`, `false`, `{ s: false, m: true }` (horizontal on small screens, vertical on medium and up)
 
 ### `blank`
+
 - **Type:** `boolean`
 - **Required:** No
 - **Default:** `false`
 - **Description:** When true, creates an invisible divider that takes up no visual space but maintains structural spacing. Useful for creating layout spacing without visible lines.
 
 ### `children`
+
 - **Type:** `React.ReactNode`
 - **Required:** No
 - **Default:** `undefined`
 - **Description:** Optional text content to display within the divider line. When provided, the divider will show the content as a label with the line extending on either side.
 
 ### `contentPosition`
+
 - **Type:** `"start" | "center" | "end"`
 - **Required:** No
 - **Default:** `"center"`
 - **Description:** Controls the horizontal alignment of the label content when children are provided. Only applies when children prop is used.
 
 ### `className`
+
 - **Type:** `string | string[] | ClassNameValue[]`
 - **Required:** No
 - **Default:** `undefined`
 - **Description:** Additional CSS class names to apply to the divider for custom styling.
 
 ### `attributes`
+
 - **Type:** `Attributes<"hr">`
 - **Required:** No
 - **Default:** `undefined`
@@ -56,8 +62,9 @@ For accessibility, the component implements proper ARIA semantics with role="sep
 ## Code Examples
 
 ### Basic Horizontal Divider
+
 ```tsx
-import { Divider } from 'reshaped';
+import { Divider } from "reshaped";
 
 function ContentSeparator() {
   return (
@@ -69,11 +76,13 @@ function ContentSeparator() {
   );
 }
 ```
+
 Creates a simple horizontal line divider between content sections.
 
 ### Vertical Divider
+
 ```tsx
-import { Divider, View } from 'reshaped';
+import { Divider, View } from "reshaped";
 
 function SideBySideLayout() {
   return (
@@ -85,11 +94,13 @@ function SideBySideLayout() {
   );
 }
 ```
+
 Creates a vertical divider between horizontally arranged content.
 
 ### Responsive Divider Orientation
+
 ```tsx
-import { Divider, View } from 'reshaped';
+import { Divider, View } from "reshaped";
 
 function ResponsiveDivider() {
   return (
@@ -101,11 +112,13 @@ function ResponsiveDivider() {
   );
 }
 ```
+
 Creates a divider that is horizontal on small screens and vertical on medium screens and above, adapting to the parent container's flex direction.
 
 ### Divider with Label Content
+
 ```tsx
-import { Divider } from 'reshaped';
+import { Divider } from "reshaped";
 
 function LabeledSections() {
   return (
@@ -119,16 +132,18 @@ function LabeledSections() {
   );
 }
 ```
+
 Shows dividers with text labels, demonstrating both centered and start-aligned content positioning.
 
 ### Blank Divider for Spacing
+
 ```tsx
-import { Divider } from 'reshaped';
+import { Divider } from "reshaped";
 
 function InvisibleSpacer() {
   return (
     <div>
-      <div style={{ backgroundColor: 'blue', padding: '10px' }}>
+      <div style={{ backgroundColor: "blue", padding: "10px" }}>
         Box content
       </div>
       <Divider blank />
@@ -139,6 +154,7 @@ function InvisibleSpacer() {
   );
 }
 ```
+
 Uses a blank divider to create structural spacing without a visible line, useful when you need consistent spacing but don't want visual separation.
 
 ## Related Components

@@ -1,12 +1,15 @@
 # useFormControl
 
 ## Component Name
+
 useFormControl
 
 ## Brief Description
+
 A React hook that provides form control context data including attributes, required status, error state, and disabled state for form input components.
 
 ## Keywords
+
 Form Control, Context Hook, Form State, Input Attributes, Error Handling, Accessibility, Form Validation, React Hook
 
 ## Usage Description
@@ -50,12 +53,12 @@ The hook returns an object with the following properties:
 ### Basic Usage in a Custom Input Component
 
 ```tsx
-import React from 'react';
-import { useFormControl } from 'reshaped';
+import React from "react";
+import { useFormControl } from "reshaped";
 
 const CustomInput = ({ name, value, onChange, ...props }) => {
   const formControl = useFormControl();
-  
+
   return (
     <input
       {...formControl?.attributes}
@@ -64,7 +67,7 @@ const CustomInput = ({ name, value, onChange, ...props }) => {
       onChange={onChange}
       disabled={formControl?.disabled}
       required={formControl?.required}
-      className={formControl?.hasError ? 'error' : ''}
+      className={formControl?.hasError ? "error" : ""}
       {...props}
     />
   );
@@ -74,8 +77,8 @@ const CustomInput = ({ name, value, onChange, ...props }) => {
 ### Using with FormControl Provider
 
 ```tsx
-import React from 'react';
-import { FormControl } from 'reshaped';
+import React from "react";
+import { FormControl } from "reshaped";
 
 const ContactForm = () => {
   return (
@@ -91,23 +94,23 @@ const ContactForm = () => {
 ### Conditional Logic Based on Form State
 
 ```tsx
-import React from 'react';
-import { useFormControl } from 'reshaped';
+import React from "react";
+import { useFormControl } from "reshaped";
 
 const SmartInput = ({ name, value, onChange }) => {
   const formControl = useFormControl();
-  
+
   // Apply different styling based on form control state
   const inputClassName = React.useMemo(() => {
-    const classes = ['input'];
-    
-    if (formControl?.hasError) classes.push('input--error');
-    if (formControl?.disabled) classes.push('input--disabled');
-    if (formControl?.required) classes.push('input--required');
-    
-    return classes.join(' ');
+    const classes = ["input"];
+
+    if (formControl?.hasError) classes.push("input--error");
+    if (formControl?.disabled) classes.push("input--disabled");
+    if (formControl?.required) classes.push("input--required");
+
+    return classes.join(" ");
   }, [formControl]);
-  
+
   return (
     <input
       {...formControl?.attributes}
@@ -125,12 +128,12 @@ const SmartInput = ({ name, value, onChange }) => {
 ### Integration with Existing Form Components
 
 ```tsx
-import React from 'react';
-import { useFormControl, TextField } from 'reshaped';
+import React from "react";
+import { useFormControl, TextField } from "reshaped";
 
 const EnhancedTextField = (props) => {
   const formControl = useFormControl();
-  
+
   // Override props with form control values
   return (
     <TextField
@@ -149,12 +152,12 @@ const EnhancedTextField = (props) => {
 ### Advanced Usage with Multiple Form Controls
 
 ```tsx
-import React from 'react';
-import { FormControl } from 'reshaped';
+import React from "react";
+import { FormControl } from "reshaped";
 
 const AddressForm = () => {
   const [errors, setErrors] = React.useState({});
-  
+
   return (
     <form>
       <FormControl required hasError={!!errors.street}>
@@ -164,13 +167,11 @@ const AddressForm = () => {
           <FormControl.Error>{errors.street}</FormControl.Error>
         )}
       </FormControl>
-      
+
       <FormControl required hasError={!!errors.city}>
         <FormControl.Label>City</FormControl.Label>
         <CustomInput name="city" />
-        {errors.city && (
-          <FormControl.Error>{errors.city}</FormControl.Error>
-        )}
+        {errors.city && <FormControl.Error>{errors.city}</FormControl.Error>}
       </FormControl>
     </form>
   );

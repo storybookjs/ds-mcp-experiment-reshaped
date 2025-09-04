@@ -1,12 +1,15 @@
 # TextField
 
 ## Component Name
+
 TextField
 
 ## Brief Description
+
 A versatile text input component that supports various visual styles, icons, affixes, and slot-based attachments for form data collection.
 
 ## Keywords
+
 Input Field, Form Control, Text Entry, Validation, Prefix, Suffix, Icon, Attachment, Responsive
 
 ## Usage Description
@@ -70,13 +73,14 @@ The component excels in scenarios requiring enhanced visual context through icon
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { TextField } from 'reshaped';
+import { TextField } from "reshaped";
 
 // Simple controlled input
 function ContactForm() {
-  const [name, setName] = useState('');
-  
+  const [name, setName] = useState("");
+
   return (
     <TextField
       name="name"
@@ -89,6 +93,7 @@ function ContactForm() {
 ```
 
 ### Visual Variants and Sizing
+
 ```tsx
 // Different visual styles
 <TextField name="outlined" variant="outline" placeholder="Outlined input" />
@@ -96,7 +101,7 @@ function ContactForm() {
 <TextField name="headless" variant="headless" placeholder="Seamless integration" />
 
 // Responsive sizing
-<TextField 
+<TextField
   name="responsive"
   size={{ s: "large", m: "medium", l: "small" }}
   placeholder="Responsive sizing"
@@ -107,6 +112,7 @@ function ContactForm() {
 ```
 
 ### Icons and Affixes
+
 ```tsx
 import { IconSearch, IconUser } from 'reshaped/icons';
 
@@ -139,6 +145,7 @@ import { IconSearch, IconUser } from 'reshaped/icons';
 ```
 
 ### Advanced Slot Usage
+
 ```tsx
 import { Button, Badge } from 'reshaped';
 
@@ -169,8 +176,9 @@ import { Button, Badge } from 'reshaped';
 ```
 
 ### FormControl Integration
+
 ```tsx
-import { FormControl, TextField } from 'reshaped';
+import { FormControl, TextField } from "reshaped";
 
 // Complete form field with validation
 <FormControl hasError>
@@ -184,13 +192,12 @@ import { FormControl, TextField } from 'reshaped';
   <FormControl.Helper>
     We'll never share your email with anyone else.
   </FormControl.Helper>
-  <FormControl.Error>
-    Please enter a valid email address.
-  </FormControl.Error>
-</FormControl>
+  <FormControl.Error>Please enter a valid email address.</FormControl.Error>
+</FormControl>;
 ```
 
 ### Layout Alignment
+
 ```tsx
 // Using TextField.Aligner for consistent alignment
 <TextField.Aligner>
@@ -214,6 +221,7 @@ The TextField component is built with comprehensive accessibility support:
 - **Icon Labels**: Icon attachments are properly labeled and linked to the input via htmlFor attributes
 
 ### Best Practices
+
 - Always provide descriptive placeholder text or use with FormControl.Label
 - Use hasError prop consistently with FormControl for validation feedback
 - Ensure sufficient color contrast for all visual variants
@@ -223,7 +231,7 @@ The TextField component is built with comprehensive accessibility support:
 ## Related Components
 
 - **FormControl**: Essential companion for labels, validation, and error handling
-- **Icon**: Used for icon prop values throughout the attachment system  
+- **Icon**: Used for icon prop values throughout the attachment system
 - **Button**: Commonly used in endSlot for action-enhanced inputs
 - **Badge**: Frequently used in slots for tag-based or categorized inputs
 - **View**: Layout component that works well with TextField alignment

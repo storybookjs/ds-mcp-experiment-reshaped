@@ -79,7 +79,7 @@ The Grid.Item sub-component provides granular control over individual grid items
 ### Basic Grid Layout
 
 ```tsx
-import { Grid } from 'reshaped';
+import { Grid } from "reshaped";
 
 // Simple 3-column grid with gap
 function BasicGridExample() {
@@ -101,22 +101,22 @@ This example demonstrates a basic grid with 3 equal-width columns and consistent
 ### Responsive Grid with Custom Templates
 
 ```tsx
-import { Grid } from 'reshaped';
+import { Grid } from "reshaped";
 
 // Responsive grid that adapts column count by breakpoint
 function ResponsiveGridExample() {
   return (
-    <Grid 
+    <Grid
       columns={{
         s: 1,
         m: 2,
         l: 3,
-        xl: 4
+        xl: 4,
       }}
       gap={{
         s: 1,
         m: 2,
-        l: 3
+        l: 3,
       }}
     >
       <div>Responsive Item 1</div>
@@ -133,7 +133,7 @@ This example shows how to create responsive grids that adapt their structure acr
 ### Named Grid Areas Layout
 
 ```tsx
-import { Grid } from 'reshaped';
+import { Grid } from "reshaped";
 
 // Layout using named grid areas
 function GridAreasExample() {
@@ -144,7 +144,7 @@ function GridAreasExample() {
       areas={[
         "header header header",
         "sidebar main aside",
-        "footer footer footer"
+        "footer footer footer",
       ]}
       gap={2}
     >
@@ -173,7 +173,7 @@ This example demonstrates how to create semantic layouts using named grid areas 
 ### Grid Items with Spanning
 
 ```tsx
-import { Grid } from 'reshaped';
+import { Grid } from "reshaped";
 
 // Grid with items spanning multiple columns and rows
 function SpanningGridExample() {
@@ -201,7 +201,7 @@ This example shows how to create grid items that span multiple columns or rows f
 ### Advanced Grid with Auto-Placement
 
 ```tsx
-import { Grid } from 'reshaped';
+import { Grid } from "reshaped";
 
 // Grid with auto-flow and mixed sizing
 function AdvancedGridExample() {

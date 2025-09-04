@@ -78,7 +78,7 @@ Additional HTML attributes to apply directly to the input element.
 ### Basic Usage
 
 ```tsx
-import { Checkbox } from 'reshaped';
+import { Checkbox } from "reshaped";
 
 function BasicCheckbox() {
   return (
@@ -94,8 +94,8 @@ This example demonstrates a simple uncontrolled checkbox with a text label.
 ### Controlled Checkbox with State Management
 
 ```tsx
-import { useState } from 'react';
-import { Checkbox } from 'reshaped';
+import { useState } from "react";
+import { Checkbox } from "reshaped";
 
 function ControlledCheckbox() {
   const [isChecked, setIsChecked] = useState(false);
@@ -122,7 +122,7 @@ This example shows how to use the checkbox in controlled mode with React state.
 ### Different Sizes and States
 
 ```tsx
-import { Checkbox, View } from 'reshaped';
+import { Checkbox, View } from "reshaped";
 
 function CheckboxVariants() {
   return (
@@ -130,23 +130,23 @@ function CheckboxVariants() {
       <Checkbox name="small" value="1" size="small" defaultChecked>
         Small checkbox
       </Checkbox>
-      
+
       <Checkbox name="medium" value="2" size="medium" defaultChecked>
         Medium checkbox (default)
       </Checkbox>
-      
+
       <Checkbox name="large" value="3" size="large" defaultChecked>
         Large checkbox
       </Checkbox>
-      
+
       <Checkbox name="indeterminate" value="4" indeterminate>
         Indeterminate state
       </Checkbox>
-      
+
       <Checkbox name="error" value="5" hasError>
         Checkbox with error
       </Checkbox>
-      
+
       <Checkbox name="disabled" value="6" disabled>
         Disabled checkbox
       </Checkbox>
@@ -160,7 +160,7 @@ This example demonstrates various sizes and visual states available for the chec
 ### Responsive Sizing
 
 ```tsx
-import { Checkbox } from 'reshaped';
+import { Checkbox } from "reshaped";
 
 function ResponsiveCheckbox() {
   return (
@@ -181,8 +181,8 @@ This example shows how to use responsive sizing that adapts to different viewpor
 ### Form Integration with Validation
 
 ```tsx
-import { useState } from 'react';
-import { Checkbox, FormControl, View } from 'reshaped';
+import { useState } from "react";
+import { Checkbox, FormControl, View } from "reshaped";
 
 function FormCheckbox() {
   const [accepted, setAccepted] = useState(false);
@@ -219,10 +219,8 @@ function FormCheckbox() {
           </FormControl.Feedback>
         )}
       </FormControl>
-      
-      <button onClick={handleSubmit}>
-        Submit
-      </button>
+
+      <button onClick={handleSubmit}>Submit</button>
     </View>
   );
 }

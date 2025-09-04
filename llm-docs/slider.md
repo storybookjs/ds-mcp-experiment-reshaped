@@ -1,12 +1,15 @@
 # Slider Component Documentation
 
 ## Component Name
+
 Slider
 
 ## Brief Description
+
 A versatile slider input component that supports both single value and range selection with customizable styling and accessibility features.
 
 ## Keywords
+
 - Range Input
 - Slider Control
 - Value Selection
@@ -161,8 +164,8 @@ Built with touch and mouse interaction support, the Slider component provides sm
 ### Basic Single Value Slider
 
 ```tsx
-import { Slider } from 'reshaped';
-import { useState } from 'react';
+import { Slider } from "reshaped";
+import { useState } from "react";
 
 function BasicSlider() {
   const [volume, setVolume] = useState(50);
@@ -174,7 +177,7 @@ function BasicSlider() {
       min={0}
       max={100}
       onChange={({ value }) => setVolume(value)}
-      onChangeCommit={({ value }) => console.log('Final volume:', value)}
+      onChangeCommit={({ value }) => console.log("Final volume:", value)}
     />
   );
 }
@@ -183,8 +186,8 @@ function BasicSlider() {
 ### Price Range Slider
 
 ```tsx
-import { Slider } from 'reshaped';
-import { useState } from 'react';
+import { Slider } from "reshaped";
+import { useState } from "react";
 
 function PriceRangeSlider() {
   const [priceRange, setPriceRange] = useState({ min: 100, max: 500 });
@@ -199,11 +202,11 @@ function PriceRangeSlider() {
       step={25}
       name="price"
       renderValue={({ value }) => `$${value}`}
-      onChange={({ minValue, maxValue }) => 
+      onChange={({ minValue, maxValue }) =>
         setPriceRange({ min: minValue, max: maxValue })
       }
-      onChangeCommit={({ minValue, maxValue }) => 
-        console.log('Search price range:', minValue, '-', maxValue)
+      onChangeCommit={({ minValue, maxValue }) =>
+        console.log("Search price range:", minValue, "-", maxValue)
       }
     />
   );
@@ -213,13 +216,13 @@ function PriceRangeSlider() {
 ### Vertical Temperature Slider
 
 ```tsx
-import { Slider } from 'reshaped';
+import { Slider } from "reshaped";
 
 function TemperatureSlider() {
   const [temperature, setTemperature] = useState(22);
 
   return (
-    <div style={{ height: '200px' }}>
+    <div style={{ height: "200px" }}>
       <Slider
         value={temperature}
         name="temperature"
@@ -239,7 +242,7 @@ function TemperatureSlider() {
 ### Uncontrolled Slider with Custom Formatting
 
 ```tsx
-import { Slider } from 'reshaped';
+import { Slider } from "reshaped";
 
 function UncontrolledSlider() {
   const handleChange = ({ value, name }) => {
@@ -263,8 +266,8 @@ function UncontrolledSlider() {
 ### Disabled State and Form Integration
 
 ```tsx
-import { Slider } from 'reshaped';
-import { FormControl } from 'reshaped';
+import { Slider } from "reshaped";
+import { FormControl } from "reshaped";
 
 function FormSlider() {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -282,8 +285,8 @@ function FormSlider() {
         onChange={({ value }) => setBrightness(value)}
         renderValue={({ value }) => `${value}%`}
         attributes={{
-          'data-testid': 'brightness-slider',
-          'aria-label': 'Adjust screen brightness'
+          "data-testid": "brightness-slider",
+          "aria-label": "Adjust screen brightness",
         }}
       />
     </FormControl>

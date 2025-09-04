@@ -64,11 +64,12 @@ The component automatically handles loading and error states, provides accessibi
 ## Code Examples
 
 ### Basic Usage
+
 ```jsx
 // Simple image with alt text
-<Image 
-  src="https://example.com/photo.jpg" 
-  alt="A beautiful landscape" 
+<Image
+  src="https://example.com/photo.jpg"
+  alt="A beautiful landscape"
 />
 
 // Decorative image without alt text
@@ -76,24 +77,25 @@ The component automatically handles loading and error states, provides accessibi
 ```
 
 ### Responsive Sizing
+
 ```jsx
 // Fixed dimensions
-<Image 
-  src="https://example.com/photo.jpg" 
+<Image
+  src="https://example.com/photo.jpg"
   alt="Product photo"
   width="300px"
   height="200px"
 />
 
 // Responsive width across breakpoints
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Hero image"
   width={{ s: "100%", m: "600px", l: "800px" }}
 />
 
 // Aspect ratio constraint
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Square thumbnail"
   width="200px"
@@ -102,9 +104,10 @@ The component automatically handles loading and error states, provides accessibi
 ```
 
 ### Display Modes and Styling
+
 ```jsx
 // Cover mode (default) with border radius
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Profile picture"
   width="100px"
@@ -114,7 +117,7 @@ The component automatically handles loading and error states, provides accessibi
 />
 
 // Contain mode to show full image
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Product diagram"
   width="400px"
@@ -124,23 +127,24 @@ The component automatically handles loading and error states, provides accessibi
 ```
 
 ### Fallback Handling
+
 ```jsx
 // Boolean fallback shows default background
-<Image 
+<Image
   src="https://unreliable-source.com/image.jpg"
   alt="User avatar"
   fallback={true}
 />
 
 // String fallback provides alternative image
-<Image 
+<Image
   src="https://unreliable-source.com/image.jpg"
   alt="Product photo"
   fallback="https://example.com/placeholder.jpg"
 />
 
 // Custom JSX fallback with icon
-<Image 
+<Image
   src="https://unreliable-source.com/image.jpg"
   alt="Profile picture"
   fallback={
@@ -150,25 +154,27 @@ The component automatically handles loading and error states, provides accessibi
 ```
 
 ### Event Handling
+
 ```jsx
 // Handle load and error events
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Dynamic content"
-  onLoad={(e) => console.log('Image loaded successfully')}
-  onError={(e) => console.log('Failed to load image')}
+  onLoad={(e) => console.log("Image loaded successfully")}
+  onError={(e) => console.log("Failed to load image")}
   fallback={<div>Image unavailable</div>}
 />
 ```
 
 ### Custom Rendering
+
 ```jsx
 // Custom image rendering with third-party library
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Optimized image"
   renderImage={(attributes) => (
-    <NextImage 
+    <NextImage
       {...attributes}
       priority
       quality={90}
@@ -177,7 +183,7 @@ The component automatically handles loading and error states, provides accessibi
 />
 
 // Custom attributes
-<Image 
+<Image
   src="https://example.com/photo.jpg"
   alt="Tracked image"
   imageAttributes={{

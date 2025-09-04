@@ -23,49 +23,58 @@ The component provides consistent styling and behavior across different use case
 ## Props Documentation
 
 ### `variant?: "media"`
+
 - **Type**: `"media" | undefined`
 - **Required**: No
 - **Default**: `undefined`
 - **Description**: Changes the styling for media content overlays. When set to "media", the close button uses media-appropriate styling (faded background, media color scheme) and positioning.
 
 ### `align?: "top" | "center"`
+
 - **Type**: `"top" | "center" | undefined`
 - **Required**: No
 - **Default**: `"top"`
 - **Description**: Controls the vertical alignment of the close button. "top" positions it at the top-right corner, "center" centers it vertically on the right side.
 
 ### `children?: React.ReactNode`
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Default**: `undefined`
 - **Description**: The content to be rendered inside the dismissible container. This can be any valid React content including text, components, or complex layouts.
 
 ### `onClose?: () => void`
+
 - **Type**: `() => void`
 - **Required**: No (but required if close button is shown)
 - **Default**: `undefined`
 - **Description**: Callback function executed when the close button is clicked. If not provided, the close button will be rendered but disabled.
 
 ### `hideCloseButton?: boolean | true`
+
 - **Type**: `boolean | true`
 - **Required**: No
 - **Default**: `false`
 - **Description**: When `true`, hides the close button entirely. This creates a union type where `closeAriaLabel` becomes optional when hiding the button.
 
 ### `closeAriaLabel: string` (when hideCloseButton is false)
+
 ### `closeAriaLabel?: string` (when hideCloseButton is true)
+
 - **Type**: `string`
 - **Required**: Yes (when close button is shown), No (when close button is hidden)
 - **Default**: None
 - **Description**: Accessibility label for the close button, used by screen readers. Required for proper accessibility when the close button is visible.
 
 ### `className?: ClassName`
+
 - **Type**: `ClassName` (string | null | undefined | false | array of these)
 - **Required**: No
 - **Default**: `undefined`
 - **Description**: Additional CSS class names to apply to the root container element.
 
 ### `attributes?: Attributes<"div">`
+
 - **Type**: `Attributes<"div">`
 - **Required**: No
 - **Default**: `undefined`
@@ -74,30 +83,27 @@ The component provides consistent styling and behavior across different use case
 ## Code Examples
 
 ### Basic Dismissible Content
+
 ```tsx
-import { Dismissible } from 'reshaped';
+import { Dismissible } from "reshaped";
 
 function BasicExample() {
   const handleClose = () => {
-    console.log('Content dismissed');
+    console.log("Content dismissed");
   };
 
   return (
-    <Dismissible 
-      closeAriaLabel="Close banner" 
-      onClose={handleClose}
-    >
-      <div>
-        This is dismissible content with a close button.
-      </div>
+    <Dismissible closeAriaLabel="Close banner" onClose={handleClose}>
+      <div>This is dismissible content with a close button.</div>
     </Dismissible>
   );
 }
 ```
 
 ### Media Overlay with Center Alignment
+
 ```tsx
-import { Dismissible, View, Image } from 'reshaped';
+import { Dismissible, View, Image } from "reshaped";
 
 function MediaOverlayExample() {
   const handleClose = () => {
@@ -106,17 +112,14 @@ function MediaOverlayExample() {
 
   return (
     <View width="400px">
-      <Dismissible 
+      <Dismissible
         variant="media"
         align="center"
-        closeAriaLabel="Close image overlay" 
+        closeAriaLabel="Close image overlay"
         onClose={handleClose}
       >
         <View aspectRatio={16 / 9}>
-          <Image 
-            height="100%" 
-            src="https://example.com/image.jpg"
-          />
+          <Image height="100%" src="https://example.com/image.jpg" />
         </View>
       </Dismissible>
     </View>
@@ -125,15 +128,16 @@ function MediaOverlayExample() {
 ```
 
 ### Hidden Close Button
+
 ```tsx
-import { Dismissible } from 'reshaped';
+import { Dismissible } from "reshaped";
 
 function HiddenCloseExample() {
   return (
     <Dismissible hideCloseButton>
       <div>
-        This content cannot be dismissed by the user.
-        The close functionality might be handled elsewhere.
+        This content cannot be dismissed by the user. The close functionality
+        might be handled elsewhere.
       </div>
     </Dismissible>
   );
@@ -141,9 +145,10 @@ function HiddenCloseExample() {
 ```
 
 ### Notification Banner
+
 ```tsx
-import { Dismissible, View, Text } from 'reshaped';
-import { useState } from 'react';
+import { Dismissible, View, Text } from "reshaped";
+import { useState } from "react";
 
 function NotificationBanner() {
   const [isVisible, setIsVisible] = useState(true);
@@ -151,15 +156,13 @@ function NotificationBanner() {
   if (!isVisible) return null;
 
   return (
-    <Dismissible 
-      closeAriaLabel="Dismiss notification" 
+    <Dismissible
+      closeAriaLabel="Dismiss notification"
       onClose={() => setIsVisible(false)}
       className="notification-banner"
     >
       <View padding={4}>
-        <Text>
-          Your changes have been saved successfully!
-        </Text>
+        <Text>Your changes have been saved successfully!</Text>
       </View>
     </Dismissible>
   );
@@ -167,24 +170,25 @@ function NotificationBanner() {
 ```
 
 ### Custom Styled Dismissible
+
 ```tsx
-import { Dismissible } from 'reshaped';
+import { Dismissible } from "reshaped";
 
 function CustomStyledExample() {
   return (
-    <Dismissible 
+    <Dismissible
       closeAriaLabel="Close custom content"
       onClose={() => {}}
       className="custom-dismissible"
       attributes={{
-        'data-testid': 'custom-dismissible',
-        style: { 
-          backgroundColor: 'var(--rs-color-background-neutral-faded)',
-          borderRadius: 'var(--rs-border-radius-medium)'
-        }
+        "data-testid": "custom-dismissible",
+        style: {
+          backgroundColor: "var(--rs-color-background-neutral-faded)",
+          borderRadius: "var(--rs-border-radius-medium)",
+        },
       }}
     >
-      <div style={{ padding: '16px' }}>
+      <div style={{ padding: "16px" }}>
         Custom styled dismissible content with data attributes.
       </div>
     </Dismissible>

@@ -74,7 +74,7 @@ The component automatically handles the complex flex-grow calculations, boundary
 ### Basic Horizontal Layout
 
 ```tsx
-import { Resizable, View } from 'reshaped';
+import { Resizable, View } from "reshaped";
 
 function BasicResizable() {
   return (
@@ -84,9 +84,9 @@ function BasicResizable() {
           Left Panel
         </View>
       </Resizable.Item>
-      
+
       <Resizable.Handle />
-      
+
       <Resizable.Item>
         <View backgroundColor="neutral-faded" padding={4}>
           Right Panel
@@ -96,12 +96,13 @@ function BasicResizable() {
   );
 }
 ```
-*Creates a basic two-panel horizontal layout with a draggable handle between them.*
+
+_Creates a basic two-panel horizontal layout with a draggable handle between them._
 
 ### Vertical Layout with Multiple Panels
 
 ```tsx
-import { Resizable, View } from 'reshaped';
+import { Resizable, View } from "reshaped";
 
 function VerticalResizable() {
   return (
@@ -111,17 +112,17 @@ function VerticalResizable() {
           Top Panel
         </View>
       </Resizable.Item>
-      
+
       <Resizable.Handle />
-      
+
       <Resizable.Item>
         <View backgroundColor="neutral-faded" padding={4}>
           Middle Panel
         </View>
       </Resizable.Item>
-      
+
       <Resizable.Handle />
-      
+
       <Resizable.Item>
         <View backgroundColor="neutral-faded" padding={4}>
           Bottom Panel
@@ -131,12 +132,13 @@ function VerticalResizable() {
   );
 }
 ```
-*Demonstrates a three-panel vertical layout with independent resize handles.*
+
+_Demonstrates a three-panel vertical layout with independent resize handles._
 
 ### Size Constraints and Bordered Variant
 
 ```tsx
-import { Resizable, View } from 'reshaped';
+import { Resizable, View } from "reshaped";
 
 function ConstrainedResizable() {
   return (
@@ -146,14 +148,10 @@ function ConstrainedResizable() {
           Flexible Panel
         </View>
       </Resizable.Item>
-      
+
       <Resizable.Handle />
-      
-      <Resizable.Item 
-        minSize="150px" 
-        maxSize="400px" 
-        defaultSize="250px"
-      >
+
+      <Resizable.Item minSize="150px" maxSize="400px" defaultSize="250px">
         <View backgroundColor="primary-faded" padding={4}>
           Constrained Panel (150px - 400px)
         </View>
@@ -162,12 +160,13 @@ function ConstrainedResizable() {
   );
 }
 ```
-*Shows how to apply size constraints and use the bordered variant for visible separators.*
+
+_Shows how to apply size constraints and use the bordered variant for visible separators._
 
 ### Custom Handle with Render Props
 
 ```tsx
-import { Resizable, View, Button } from 'reshaped';
+import { Resizable, View, Button } from "reshaped";
 
 function CustomHandleResizable() {
   return (
@@ -177,13 +176,15 @@ function CustomHandleResizable() {
           Content Area
         </View>
       </Resizable.Item>
-      
+
       <Resizable.Handle>
         {(attributes, props) => (
-          <View 
-            backgroundColor={props.status === "dragging" ? "primary" : "primary-faded"}
+          <View
+            backgroundColor={
+              props.status === "dragging" ? "primary" : "primary-faded"
+            }
             padding={2}
-            align="center" 
+            align="center"
             justify="center"
             height="100%"
             borderRadius="small"
@@ -195,7 +196,7 @@ function CustomHandleResizable() {
           </View>
         )}
       </Resizable.Handle>
-      
+
       <Resizable.Item>
         <View backgroundColor="neutral-faded" padding={4}>
           Sidebar
@@ -205,12 +206,13 @@ function CustomHandleResizable() {
   );
 }
 ```
-*Illustrates custom handle styling with visual feedback during drag operations.*
+
+_Illustrates custom handle styling with visual feedback during drag operations._
 
 ### Complex Dashboard Layout
 
 ```tsx
-import { Resizable, View, Card } from 'reshaped';
+import { Resizable, View, Card } from "reshaped";
 
 function DashboardLayout() {
   return (
@@ -221,9 +223,9 @@ function DashboardLayout() {
             <View backgroundColor="primary-faded">Header</View>
           </Card>
         </Resizable.Item>
-        
+
         <Resizable.Handle />
-        
+
         <Resizable.Item>
           <Resizable height="100%">
             <Resizable.Item minSize="200px" defaultSize="300px">
@@ -231,17 +233,17 @@ function DashboardLayout() {
                 <View backgroundColor="neutral-faded">Sidebar</View>
               </Card>
             </Resizable.Item>
-            
+
             <Resizable.Handle />
-            
+
             <Resizable.Item>
               <Card padding={3} height="100%">
                 <View backgroundColor="success-faded">Main Content</View>
               </Card>
             </Resizable.Item>
-            
+
             <Resizable.Handle />
-            
+
             <Resizable.Item minSize="150px" defaultSize="250px">
               <Card padding={3} height="100%">
                 <View backgroundColor="warning-faded">Inspector</View>
@@ -254,7 +256,8 @@ function DashboardLayout() {
   );
 }
 ```
-*Demonstrates nested resizable layouts creating a complex dashboard with header, sidebar, main content, and inspector panels.*
+
+_Demonstrates nested resizable layouts creating a complex dashboard with header, sidebar, main content, and inspector panels._
 
 ## Related Components
 

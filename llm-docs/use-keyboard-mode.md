@@ -74,80 +74,69 @@ html[data-rs-keyboard] .component:focus {
 ### Basic Usage
 
 ```tsx
-import React from 'react';
-import { useKeyboardMode } from 'reshaped';
+import React from "react";
+import { useKeyboardMode } from "reshaped";
 
 function AccessibleComponent() {
   const keyboardMode = useKeyboardMode();
-  
+
   const handleSpecialAction = () => {
     // Ensure focus indicators are visible for this interaction
     keyboardMode.activate();
   };
-  
-  return (
-    <button onClick={handleSpecialAction}>
-      Perform Action
-    </button>
-  );
+
+  return <button onClick={handleSpecialAction}>Perform Action</button>;
 }
 ```
 
 ### Temporary Disable During Animation
 
 ```tsx
-import React from 'react';
-import { useKeyboardMode } from 'reshaped';
+import React from "react";
+import { useKeyboardMode } from "reshaped";
 
 function AnimatedModal() {
   const keyboardMode = useKeyboardMode();
-  
+
   const handleOpenModal = () => {
     // Disable focus rings during opening animation
     keyboardMode.disable();
-    
+
     // Re-enable after animation completes
     setTimeout(() => {
       keyboardMode.enable();
       keyboardMode.activate(); // Ensure focus is visible
     }, 300);
   };
-  
-  return (
-    <button onClick={handleOpenModal}>
-      Open Modal
-    </button>
-  );
+
+  return <button onClick={handleOpenModal}>Open Modal</button>;
 }
 ```
 
 ### Focus Management in Complex Components
 
 ```tsx
-import React, { useRef, useEffect } from 'react';
-import { useKeyboardMode } from 'reshaped';
+import React, { useRef, useEffect } from "react";
+import { useKeyboardMode } from "reshaped";
 
 function CustomDropdown({ isOpen, onClose }) {
   const keyboardMode = useKeyboardMode();
   const dropdownRef = useRef(null);
-  
+
   useEffect(() => {
     if (isOpen) {
       // Activate keyboard mode when dropdown opens
       keyboardMode.activate();
     }
   }, [isOpen, keyboardMode]);
-  
+
   const handleMouseEnter = () => {
     // Deactivate when user starts using mouse
     keyboardMode.deactivate();
   };
-  
+
   return (
-    <div 
-      ref={dropdownRef}
-      onMouseEnter={handleMouseEnter}
-    >
+    <div ref={dropdownRef} onMouseEnter={handleMouseEnter}>
       {/* Dropdown content */}
     </div>
   );
@@ -157,28 +146,25 @@ function CustomDropdown({ isOpen, onClose }) {
 ### Integration with Focus Trapping
 
 ```tsx
-import React from 'react';
-import { useKeyboardMode } from 'reshaped';
+import React from "react";
+import { useKeyboardMode } from "reshaped";
 
 function Modal({ children, onClose }) {
   const keyboardMode = useKeyboardMode();
-  
+
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       onClose();
       // Don't activate keyboard mode for Escape key
       return;
     }
-    
+
     // Activate keyboard mode for other key interactions
     keyboardMode.activate();
   };
-  
+
   return (
-    <div 
-      role="dialog"
-      onKeyDown={handleKeyDown}
-    >
+    <div role="dialog" onKeyDown={handleKeyDown}>
       {children}
     </div>
   );
@@ -188,37 +174,31 @@ function Modal({ children, onClose }) {
 ### Conditional Focus Indicators
 
 ```tsx
-import React, { useState } from 'react';
-import { useKeyboardMode } from 'reshaped';
+import React, { useState } from "react";
+import { useKeyboardMode } from "reshaped";
 
 function ConditionalFocusComponent() {
   const keyboardMode = useKeyboardMode();
   const [isEditMode, setIsEditMode] = useState(false);
-  
+
   const enterEditMode = () => {
     setIsEditMode(true);
     // Ensure focus indicators are visible in edit mode
     keyboardMode.activate();
   };
-  
+
   const exitEditMode = () => {
     setIsEditMode(false);
     // Remove focus indicators when exiting edit mode
     keyboardMode.deactivate();
   };
-  
+
   return (
     <div>
       {isEditMode ? (
-        <input 
-          autoFocus
-          onBlur={exitEditMode}
-          placeholder="Enter text..."
-        />
+        <input autoFocus onBlur={exitEditMode} placeholder="Enter text..." />
       ) : (
-        <button onClick={enterEditMode}>
-          Click to edit
-        </button>
+        <button onClick={enterEditMode}>Click to edit</button>
       )}
     </div>
   );
@@ -254,15 +234,11 @@ function ConditionalFocusComponent() {
 The hook requires the `SingletonKeyboardModeProvider` to be present in your component tree. This is automatically included when using the `Reshaped` root component:
 
 ```tsx
-import React from 'react';
-import { Reshaped } from 'reshaped';
+import React from "react";
+import { Reshaped } from "reshaped";
 
 function App() {
-  return (
-    <Reshaped>
-      {/* Your app components */}
-    </Reshaped>
-  );
+  return <Reshaped>{/* Your app components */}</Reshaped>;
 }
 ```
 
@@ -286,7 +262,7 @@ html[data-rs-keyboard] .interactive-element:focus {
 ## Related Components
 
 - **Reshaped**: Root component that provides the keyboard mode context
-- **Button**: Automatically responds to keyboard mode for focus indicators  
+- **Button**: Automatically responds to keyboard mode for focus indicators
 - **Modal**: Benefits from keyboard mode activation when opened
 - **Dropdown**: Uses keyboard mode for proper focus management
 - **Form Controls**: All form elements work with keyboard mode detection

@@ -59,8 +59,9 @@ The component is particularly useful in design systems where consistent scrollba
 ## Code Examples
 
 ### Basic Vertical Scrolling
+
 ```tsx
-import { ScrollArea, View } from 'reshaped';
+import { ScrollArea, View } from "reshaped";
 
 function BasicExample() {
   return (
@@ -74,70 +75,76 @@ function BasicExample() {
   );
 }
 ```
+
 This example demonstrates basic vertical scrolling with a fixed height container.
 
 ### Horizontal and Vertical Scrolling
+
 ```tsx
-import { ScrollArea, View } from 'reshaped';
+import { ScrollArea, View } from "reshaped";
 
 function BidirectionalExample() {
   return (
     <ScrollArea height="150px" scrollbarDisplay="visible">
-      <View 
-        backgroundColor="elevation-base" 
-        padding={4} 
+      <View
+        backgroundColor="elevation-base"
+        padding={4}
         width="150%" // Forces horizontal scrolling
       >
-        Wide content that exceeds container width and also has enough height 
-        to require vertical scrolling. This demonstrates both scrollbars 
-        appearing when needed.
+        Wide content that exceeds container width and also has enough height to
+        require vertical scrolling. This demonstrates both scrollbars appearing
+        when needed.
       </View>
     </ScrollArea>
   );
 }
 ```
+
 This example shows how ScrollArea handles both horizontal and vertical overflow with visible scrollbars.
 
 ### Responsive Heights
+
 ```tsx
-import { ScrollArea, View } from 'reshaped';
+import { ScrollArea, View } from "reshaped";
 
 function ResponsiveExample() {
   return (
-    <ScrollArea 
+    <ScrollArea
       height={{ s: "100px", m: "150px", l: "200px" }}
       scrollbarDisplay="hover"
     >
       <View padding={4}>
-        Content that adapts its scrollable height based on screen size:
-        100px on small screens, 150px on medium, and 200px on large screens.
+        Content that adapts its scrollable height based on screen size: 100px on
+        small screens, 150px on medium, and 200px on large screens.
       </View>
     </ScrollArea>
   );
 }
 ```
+
 This example demonstrates responsive height configuration for different viewport sizes.
 
 ### Scroll Event Handling with Ref
+
 ```tsx
-import { ScrollArea, Button, View } from 'reshaped';
-import { useRef } from 'react';
+import { ScrollArea, Button, View } from "reshaped";
+import { useRef } from "react";
 
 function ScrollControlExample() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  
+
   const handleScroll = (coordinates: { x: number; y: number }) => {
-    console.log('Scroll position:', coordinates);
+    console.log("Scroll position:", coordinates);
   };
-  
+
   const scrollToTop = () => {
-    scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   return (
     <View gap={4}>
       <Button onClick={scrollToTop}>Scroll to Top</Button>
-      <ScrollArea 
+      <ScrollArea
         height="200px"
         ref={scrollRef}
         onScroll={handleScroll}
@@ -151,28 +158,33 @@ function ScrollControlExample() {
   );
 }
 ```
+
 This example shows how to control scrolling programmatically and handle scroll events.
 
 ### Hidden Scrollbars with Max Height
+
 ```tsx
-import { ScrollArea, View } from 'reshaped';
+import { ScrollArea, View } from "reshaped";
 
 function HiddenScrollbarExample() {
   return (
-    <ScrollArea 
-      maxHeight="250px" 
-      scrollbarDisplay="hidden"
-    >
+    <ScrollArea maxHeight="250px" scrollbarDisplay="hidden">
       <View padding={4}>
         <p>This content can expand up to 250px in height.</p>
-        <p>If content exceeds this height, it becomes scrollable but without visible scrollbars.</p>
-        <p>Users can still scroll using mouse wheel, keyboard, or touch gestures.</p>
+        <p>
+          If content exceeds this height, it becomes scrollable but without
+          visible scrollbars.
+        </p>
+        <p>
+          Users can still scroll using mouse wheel, keyboard, or touch gestures.
+        </p>
         <p>Add more content here to test the behavior...</p>
       </View>
     </ScrollArea>
   );
 }
 ```
+
 This example demonstrates using maxHeight with hidden scrollbars for a cleaner appearance.
 
 ## Accessibility Considerations

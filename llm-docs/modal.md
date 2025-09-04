@@ -3,6 +3,7 @@
 A versatile overlay component that presents content in a dialog above the main interface, with support for multiple positioning modes and touch gestures.
 
 ## Keywords
+
 - Dialog
 - Overlay
 - Popup
@@ -29,7 +30,7 @@ Use Modal for confirmations, forms, detailed views, settings panels, or any cont
 - **position** (`Responsive<"center" | "end" | "bottom" | "start" | "full-screen">`, optional, default: `"center"`): Determines where the modal appears on screen:
   - `"center"`: Traditional centered modal dialog
   - `"start"`: Slide-in drawer from the left edge (right edge in RTL)
-  - `"end"`: Slide-in drawer from the right edge (left edge in RTL)  
+  - `"end"`: Slide-in drawer from the right edge (left edge in RTL)
   - `"bottom"`: Bottom sheet sliding up from the bottom edge
   - `"full-screen"`: Full viewport overlay
 - **size** (`Responsive<string>`, optional): Controls the modal's dimensions. Accepts CSS size values or design system size tokens
@@ -73,22 +74,17 @@ Use Modal for confirmations, forms, detailed views, settings panels, or any cont
 ### Basic Centered Modal
 
 ```tsx
-import { Modal, Button } from 'reshaped';
-import { useState } from 'react';
+import { Modal, Button } from "reshaped";
+import { useState } from "react";
 
 function BasicModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Modal
-      </Button>
-      
-      <Modal 
-        active={isOpen} 
-        onClose={() => setIsOpen(false)}
-      >
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+
+      <Modal active={isOpen} onClose={() => setIsOpen(false)}>
         <Modal.Title>Confirm Action</Modal.Title>
         <Modal.Subtitle>Are you sure you want to proceed?</Modal.Subtitle>
         <p>This action cannot be undone.</p>
@@ -101,19 +97,17 @@ function BasicModal() {
 ### Side Drawer with Custom Size
 
 ```tsx
-import { Modal, Button } from 'reshaped';
-import { useState } from 'react';
+import { Modal, Button } from "reshaped";
+import { useState } from "react";
 
 function SideDrawer() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Settings
-      </Button>
-      
-      <Modal 
+      <Button onClick={() => setIsOpen(true)}>Open Settings</Button>
+
+      <Modal
         active={isOpen}
         position="end"
         size="400px"
@@ -121,9 +115,7 @@ function SideDrawer() {
         onClose={() => setIsOpen(false)}
       >
         <Modal.Title>Settings</Modal.Title>
-        <div>
-          {/* Settings content */}
-        </div>
+        <div>{/* Settings content */}</div>
       </Modal>
     </>
   );
@@ -133,19 +125,17 @@ function SideDrawer() {
 ### Bottom Sheet with Responsive Behavior
 
 ```tsx
-import { Modal, Button } from 'reshaped';
-import { useState } from 'react';
+import { Modal, Button } from "reshaped";
+import { useState } from "react";
 
 function ResponsiveBottomSheet() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Menu
-      </Button>
-      
-      <Modal 
+      <Button onClick={() => setIsOpen(true)}>Open Menu</Button>
+
+      <Modal
         active={isOpen}
         position={{ s: "bottom", m: "center" }}
         size={{ s: "80vh", m: "500px" }}
@@ -165,19 +155,17 @@ function ResponsiveBottomSheet() {
 ### Modal with Custom Backdrop
 
 ```tsx
-import { Modal, Button } from 'reshaped';
-import { useState } from 'react';
+import { Modal, Button } from "reshaped";
+import { useState } from "react";
 
 function CustomBackdropModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Modal
-      </Button>
-      
-      <Modal 
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+
+      <Modal
         active={isOpen}
         blurredOverlay
         disableCloseOnOutsideClick
@@ -186,9 +174,7 @@ function CustomBackdropModal() {
       >
         <Modal.Title>Important Notice</Modal.Title>
         <p>This modal requires explicit confirmation to close.</p>
-        <Button onClick={() => setIsOpen(false)}>
-          Acknowledge
-        </Button>
+        <Button onClick={() => setIsOpen(false)}>Acknowledge</Button>
       </Modal>
     </>
   );
@@ -198,33 +184,31 @@ function CustomBackdropModal() {
 ### Full-Screen Modal with Gesture Controls
 
 ```tsx
-import { Modal, Button } from 'reshaped';
-import { useState } from 'react';
+import { Modal, Button } from "reshaped";
+import { useState } from "react";
 
 function FullScreenModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = ({ reason }) => {
-    console.log('Modal closed via:', reason);
+    console.log("Modal closed via:", reason);
     setIsOpen(false);
   };
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
-        Open Full Screen
-      </Button>
-      
-      <Modal 
+      <Button onClick={() => setIsOpen(true)}>Open Full Screen</Button>
+
+      <Modal
         active={isOpen}
         position="full-screen"
         padding={0}
         overflow="visible"
         onClose={handleClose}
-        onAfterOpen={() => console.log('Modal opened')}
-        onAfterClose={() => console.log('Modal closed')}
+        onAfterOpen={() => console.log("Modal opened")}
+        onAfterClose={() => console.log("Modal closed")}
       >
-        <div style={{ height: '100vh', padding: '20px' }}>
+        <div style={{ height: "100vh", padding: "20px" }}>
           <Modal.Title>Full Screen Experience</Modal.Title>
           <p>Swipe or press escape to close this modal.</p>
         </div>

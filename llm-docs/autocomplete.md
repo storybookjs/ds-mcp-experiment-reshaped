@@ -19,6 +19,7 @@ The Autocomplete automatically handles focus management, keyboard interactions (
 **Extends all TextField props plus:**
 
 #### Core Props
+
 - **children** (`React.ReactNode`) - **Required** - The Autocomplete.Item components to display in the dropdown
 - **name** (`string`) - **Required** - Form field name for the input
 - **onChange** (`ChangeHandler<string>`) - Handler for input value changes
@@ -31,10 +32,12 @@ The Autocomplete automatically handles focus management, keyboard interactions (
 - **onClose** (`(args?: unknown) => void`) - Handler called when dropdown closes
 
 #### Advanced Props
+
 - **containerRef** (`React.RefObject<HTMLElement>`) - Reference to container element for positioning
 - **instanceRef** (`React.RefObject<DropdownMenuInstance>`) - Reference to internal dropdown instance
 
 #### TextField Inherited Props
+
 - **value** (`string`) - Current input value (for controlled usage)
 - **defaultValue** (`string`) - Default input value (for uncontrolled usage)
 - **placeholder** (`string`) - Input placeholder text
@@ -61,11 +64,13 @@ The Autocomplete automatically handles focus management, keyboard interactions (
 **Extends all MenuItem props plus:**
 
 #### Core Props
+
 - **value** (`string`) - **Required** - The value associated with this item
 - **data** (`unknown`) - Optional data object passed to onItemSelect handler
 - **children** (`React.ReactNode`) - **Required** - Content to display in the item
 
 #### MenuItem Inherited Props
+
 - **disabled** (`boolean`) - Whether the item is disabled and non-selectable
 - **highlighted** (`boolean`) - Whether the item is visually highlighted (managed internally)
 - **selected** (`boolean`) - Whether the item appears selected
@@ -84,12 +89,13 @@ The Autocomplete automatically handles focus management, keyboard interactions (
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { Autocomplete, FormControl } from 'reshaped';
+import { Autocomplete, FormControl } from "reshaped";
 
 function BasicExample() {
-  const [value, setValue] = useState('');
-  
+  const [value, setValue] = useState("");
+
   return (
     <FormControl>
       <FormControl.Label>Choose a fruit</FormControl.Label>
@@ -98,7 +104,7 @@ function BasicExample() {
         value={value}
         placeholder="Type to search..."
         onChange={(args) => setValue(args.value)}
-        onItemSelect={(args) => console.log('Selected:', args.value)}
+        onItemSelect={(args) => console.log("Selected:", args.value)}
       >
         <Autocomplete.Item value="apple">Apple</Autocomplete.Item>
         <Autocomplete.Item value="banana">Banana</Autocomplete.Item>
@@ -110,15 +116,16 @@ function BasicExample() {
 ```
 
 ### Filtered Search with Dynamic Options
+
 ```tsx
 function FilteredExample() {
-  const [query, setQuery] = useState('');
-  const fruits = ['Apple', 'Banana', 'Orange', 'Grape', 'Pineapple'];
-  
-  const filteredFruits = fruits.filter(fruit =>
-    fruit.toLowerCase().includes(query.toLowerCase())
+  const [query, setQuery] = useState("");
+  const fruits = ["Apple", "Banana", "Orange", "Grape", "Pineapple"];
+
+  const filteredFruits = fruits.filter((fruit) =>
+    fruit.toLowerCase().includes(query.toLowerCase()),
   );
-  
+
   return (
     <Autocomplete
       name="fruit"
@@ -127,7 +134,7 @@ function FilteredExample() {
       onChange={(args) => setQuery(args.value)}
       onItemSelect={(args) => setQuery(args.value)}
     >
-      {filteredFruits.map(fruit => (
+      {filteredFruits.map((fruit) => (
         <Autocomplete.Item key={fruit} value={fruit}>
           {fruit}
         </Autocomplete.Item>
@@ -138,27 +145,28 @@ function FilteredExample() {
 ```
 
 ### Multiselect with Tags
+
 ```tsx
 function MultiselectExample() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [selected, setSelected] = useState([]);
-  const options = ['Pizza', 'Burger', 'Salad', 'Pasta', 'Sushi'];
-  
+  const options = ["Pizza", "Burger", "Salad", "Pasta", "Sushi"];
+
   const handleSelect = (args) => {
-    setSelected(prev => [...prev, args.value]);
-    setQuery('');
+    setSelected((prev) => [...prev, args.value]);
+    setQuery("");
   };
-  
+
   const handleRemove = (value) => {
-    setSelected(prev => prev.filter(item => item !== value));
+    setSelected((prev) => prev.filter((item) => item !== value));
   };
-  
-  const selectedTags = selected.map(value => (
+
+  const selectedTags = selected.map((value) => (
     <Badge key={value} onDismiss={() => handleRemove(value)}>
       {value}
     </Badge>
   ));
-  
+
   return (
     <Autocomplete
       name="foods"
@@ -170,14 +178,14 @@ function MultiselectExample() {
       onItemSelect={handleSelect}
       onBackspace={() => {
         if (query.length === 0) {
-          setSelected(prev => prev.slice(0, -1));
+          setSelected((prev) => prev.slice(0, -1));
         }
       }}
     >
       {options
-        .filter(option => !selected.includes(option))
-        .filter(option => option.toLowerCase().includes(query.toLowerCase()))
-        .map(option => (
+        .filter((option) => !selected.includes(option))
+        .filter((option) => option.toLowerCase().includes(query.toLowerCase()))
+        .map((option) => (
           <Autocomplete.Item key={option} value={option}>
             {option}
           </Autocomplete.Item>
@@ -188,14 +196,15 @@ function MultiselectExample() {
 ```
 
 ### With Custom Item Data and Advanced Features
+
 ```tsx
 function AdvancedExample() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+    { id: 1, name: "John Doe", email: "john@example.com" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com" },
   ];
-  
+
   return (
     <Autocomplete
       name="user"
@@ -204,13 +213,13 @@ function AdvancedExample() {
       placeholder="Search users..."
       onChange={(args) => setValue(args.value)}
       onItemSelect={(args) => {
-        console.log('Selected user:', args.data);
+        console.log("Selected user:", args.data);
         setValue(args.value);
       }}
     >
       {users
-        .filter(user => user.name.toLowerCase().includes(value.toLowerCase()))
-        .map(user => (
+        .filter((user) => user.name.toLowerCase().includes(value.toLowerCase()))
+        .map((user) => (
           <Autocomplete.Item
             key={user.id}
             value={user.name}
@@ -219,7 +228,7 @@ function AdvancedExample() {
           >
             <div>
               <div>{user.name}</div>
-              <div style={{ fontSize: '0.875rem', opacity: 0.7 }}>
+              <div style={{ fontSize: "0.875rem", opacity: 0.7 }}>
                 {user.email}
               </div>
             </div>
@@ -231,11 +240,12 @@ function AdvancedExample() {
 ```
 
 ### Controlled Dropdown State
+
 ```tsx
 function ControlledExample() {
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState('');
-  
+  const [value, setValue] = useState("");
+
   return (
     <Autocomplete
       name="controlled"
@@ -251,7 +261,9 @@ function ControlledExample() {
       }}
     >
       <Autocomplete.Item value="option1">Option 1</Autocomplete.Item>
-      <Autocomplete.Item value="option2" disabled>Option 2 (Disabled)</Autocomplete.Item>
+      <Autocomplete.Item value="option2" disabled>
+        Option 2 (Disabled)
+      </Autocomplete.Item>
       <Autocomplete.Item value="option3">Option 3</Autocomplete.Item>
     </Autocomplete>
   );
@@ -264,7 +276,7 @@ The Autocomplete component is built with comprehensive accessibility support:
 
 - **ARIA Roles**: Input has `role="combobox"` and dropdown has `role="listbox"` with items having `role="option"`
 - **ARIA Attributes**: Includes `aria-activedescendant`, `aria-haspopup`, and `aria-autocomplete` for screen reader support
-- **Keyboard Navigation**: 
+- **Keyboard Navigation**:
   - Arrow Up/Down to navigate options
   - Enter to select highlighted option
   - Escape to close dropdown

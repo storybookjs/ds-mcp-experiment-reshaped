@@ -1,12 +1,15 @@
 # View
 
 ## Component Name
+
 View
 
 ## Brief Description
+
 A versatile layout component that provides flexbox-based container functionality with comprehensive styling, spacing, and positioning capabilities.
 
 ## Keywords
+
 Layout, Container, Flexbox, Spacing, Positioning, Grid System, Responsive Design, Composition
 
 ## Usage Description
@@ -224,6 +227,7 @@ Optional. Additional HTML attributes.
 ## Code Examples
 
 ### Basic Container Layout
+
 ```tsx
 // Simple vertical stack with spacing
 <View gap={4} padding={6}>
@@ -232,9 +236,11 @@ Optional. Additional HTML attributes.
   <Button>Action</Button>
 </View>
 ```
+
 This example demonstrates the most common View usage as a vertical container with consistent spacing between elements and padding around the container.
 
 ### Responsive Horizontal Layout
+
 ```tsx
 // Responsive direction and gap
 <View
@@ -250,9 +256,11 @@ This example demonstrates the most common View usage as a vertical container wit
   </View>
 </View>
 ```
+
 This example shows a responsive header layout that stacks vertically on small screens and becomes a horizontal navigation bar on medium screens and up.
 
 ### Grid System with View.Item
+
 ```tsx
 // 12-column responsive grid
 <View direction="row" gap={4} wrap>
@@ -267,9 +275,11 @@ This example shows a responsive header layout that stacks vertically on small sc
   </View.Item>
 </View>
 ```
+
 This example demonstrates a responsive grid where items take full width on small screens, half-width on medium screens, and one-third width on large screens.
 
 ### Advanced Layout with Divided Content
+
 ```tsx
 // Complex dashboard layout with dividers
 <View
@@ -283,14 +293,18 @@ This example demonstrates a responsive grid where items take full width on small
     <Text variant="heading">Statistics</Text>
     <Button variant="ghost" endIcon={<Icon name="more" />} />
   </View>
-  
+
   <View direction="row" gap={6} wrap>
     <View.Item grow>
-      <Text variant="caption" color="neutral">Revenue</Text>
+      <Text variant="caption" color="neutral">
+        Revenue
+      </Text>
       <Text variant="title">$12,345</Text>
     </View.Item>
     <View.Item grow>
-      <Text variant="caption" color="neutral">Users</Text>
+      <Text variant="caption" color="neutral">
+        Users
+      </Text>
       <Text variant="title">1,234</Text>
     </View.Item>
   </View>
@@ -298,28 +312,26 @@ This example demonstrates a responsive grid where items take full width on small
   <Button>View Details</Button>
 </View>
 ```
+
 This example shows a card-like statistics component with automatic dividers between sections, mixed flex and grid behaviors, and semantic visual hierarchy.
 
 ### Positioning and Overlay
+
 ```tsx
 // Floating action button positioned absolutely
 <View position="relative" height="400px">
   <View padding={4}>
     <Text>Main content area</Text>
   </View>
-  
-  <View
-    position="absolute"
-    insetEnd={4}
-    insetBottom={4}
-    zIndex={10}
-  >
+
+  <View position="absolute" insetEnd={4} insetBottom={4} zIndex={10}>
     <Button shape="circular" size="large">
       <Icon name="plus" />
     </Button>
   </View>
 </View>
 ```
+
 This example demonstrates absolute positioning for floating elements, useful for overlay buttons, tooltips, or modal positioning.
 
 ## Related Components

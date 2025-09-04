@@ -19,10 +19,12 @@ The system is particularly effective for confirming successful operations, displ
 ### ToastProvider Props
 
 **children** (React.ReactNode, optional)
+
 - The child components that will have access to the toast context
 - Typically your entire application or a section that needs toast functionality
 
 **options** (Partial<Record<Position, RegionOptions>>, optional)
+
 - Configuration options for toast positioning and behavior
 - Keys are position values ("top", "top-end", "top-start", "bottom", "bottom-start", "bottom-end")
 - Each position can specify:
@@ -32,43 +34,51 @@ The system is particularly effective for confirming successful operations, displ
 ### Toast Show Props (useToast().show() parameters)
 
 **size** ("small" | "medium" | "large", optional, default: "small")
+
 - Controls the overall size and layout of the toast
 - "small": Compact horizontal layout
 - "medium": Medium horizontal layout with more spacing
 - "large": Vertical layout with title above content
 
 **icon** (IconProps["svg"], optional)
+
 - Icon component to display at the start of the toast
 - Should be a valid Reshaped icon component
 - Automatically sized and positioned based on toast size
 
 **startSlot** (React.ReactNode, optional)
+
 - Custom content to display at the start of the toast
 - Used when you need more than just an icon in the start position
 - Only used if icon is not provided
 
 **title** (React.ReactNode, optional)
+
 - Bold title text displayed at the top or start of the toast
 - Rendered with body-3 text variant and bold weight
 - In large size, appears above the text content
 
 **text** (React.ReactNode, optional)
+
 - Main descriptive text content of the toast
 - Rendered with body-3 text variant
 - In large size, appears below the title
 
 **children** (React.ReactNode, optional)
+
 - Custom content area within the toast
 - Displayed below title/text content
 - Useful for complex layouts or custom components
 
 **actionsSlot** (React.ReactNode | React.ReactNode[], optional)
+
 - Action buttons or interactive elements
 - Can be a single element or array of elements
 - Button components are automatically styled with appropriate variants
 - First action in large toasts gets primary styling
 
 **color** ("neutral" | "primary" | "critical" | "positive" | "warning" | "inverted", optional, default: "inverted")
+
 - Visual theme/color scheme of the toast
 - "neutral": Light background with border
 - "primary": Brand color background
@@ -78,6 +88,7 @@ The system is particularly effective for confirming successful operations, displ
 - "inverted": Dark background with light text
 
 **timeout** ("short" | "long" | number, optional, default: "short")
+
 - Auto-dismiss timing for the toast
 - "short": 4000ms (4 seconds)
 - "long": 8000ms (8 seconds)
@@ -85,28 +96,34 @@ The system is particularly effective for confirming successful operations, displ
 - 0: Never auto-dismiss (requires manual dismissal)
 
 **position** ("top" | "top-end" | "top-start" | "bottom" | "bottom-start" | "bottom-end", optional, default: "bottom-end")
+
 - Screen position where the toast appears
 - Controls both vertical (top/bottom) and horizontal (start/center/end) positioning
 
 **className** (string, optional)
+
 - Additional CSS classes to apply to the toast
 
 **attributes** (HTML attributes, optional)
+
 - Additional HTML attributes to apply to the toast container
 
 ### useToast Hook Return Value
 
 **show** ((props: ToastShowProps) => string)
+
 - Function to display a new toast notification
 - Returns a unique string ID for the toast
 - Use the returned ID with hide() to programmatically dismiss
 
 **hide** ((id: string) => void)
+
 - Function to programmatically hide a specific toast
 - Takes the ID returned from show()
 - Initiates the exit animation
 
 **id** (string)
+
 - Unique identifier for the current toast context
 - Used internally for nested provider detection
 
@@ -115,7 +132,7 @@ The system is particularly effective for confirming successful operations, displ
 ### Basic Toast Setup
 
 ```tsx
-import { ToastProvider, useToast } from 'reshaped';
+import { ToastProvider, useToast } from "reshaped";
 
 function App() {
   return (
@@ -127,12 +144,12 @@ function App() {
 
 function NotificationButton() {
   const toast = useToast();
-  
+
   return (
     <Button
       onClick={() => {
         toast.show({
-          text: "Operation completed successfully!"
+          text: "Operation completed successfully!",
         });
       }}
     >
@@ -147,12 +164,12 @@ This demonstrates the basic setup with ToastProvider wrapping your app and a sim
 ### Rich Toast with Actions
 
 ```tsx
-import { useToast } from 'reshaped';
-import { CheckIcon } from 'your-icons';
+import { useToast } from "reshaped";
+import { CheckIcon } from "your-icons";
 
 function SaveButton() {
   const toast = useToast();
-  
+
   const handleSave = () => {
     const toastId = toast.show({
       icon: CheckIcon,
@@ -160,13 +177,11 @@ function SaveButton() {
       text: "Your document has been saved to the cloud",
       color: "positive",
       actionsSlot: [
-        <Button onClick={() => window.open('/documents')}>
+        <Button onClick={() => window.open("/documents")}>
           View Document
         </Button>,
-        <Button onClick={() => toast.hide(toastId)}>
-          Dismiss
-        </Button>
-      ]
+        <Button onClick={() => toast.hide(toastId)}>Dismiss</Button>,
+      ],
     });
   };
 
@@ -181,7 +196,7 @@ This shows a success toast with an icon, title, description, and interactive act
 ```tsx
 function ErrorHandler() {
   const toast = useToast();
-  
+
   const showError = () => {
     const toastId = toast.show({
       title: "Upload Failed",
@@ -190,16 +205,11 @@ function ErrorHandler() {
       timeout: 0, // Never auto-dismiss
       position: "top",
       actionsSlot: [
-        <Button onClick={() => retryUpload()}>
-          Retry
-        </Button>,
-        <Button 
-          variant="ghost" 
-          onClick={() => toast.hide(toastId)}
-        >
+        <Button onClick={() => retryUpload()}>Retry</Button>,
+        <Button variant="ghost" onClick={() => toast.hide(toastId)}>
           Close
-        </Button>
-      ]
+        </Button>,
+      ],
     });
   };
 
@@ -223,13 +233,13 @@ function CustomToasts() {
             text: "Quick notification",
             size: "small",
             position: "bottom-start",
-            timeout: "short"
+            timeout: "short",
           });
         }}
       >
         Bottom-left Toast
       </Button>
-      
+
       <Button
         onClick={() => {
           toast.show({
@@ -238,7 +248,7 @@ function CustomToasts() {
             size: "large",
             position: "top",
             timeout: "long",
-            color: "primary"
+            color: "primary",
           });
         }}
       >
@@ -258,13 +268,13 @@ function App() {
   return (
     <ToastProvider
       options={{
-        'bottom-start': {
-          width: '400px',
-          expanded: true
+        "bottom-start": {
+          width: "400px",
+          expanded: true,
         },
-        'top-end': {
-          width: '320px'
-        }
+        "top-end": {
+          width: "320px",
+        },
       }}
     >
       <AppContent />
@@ -281,9 +291,9 @@ function PromotionalToast() {
         toast.show({
           children: (
             <View gap={3} direction="row">
-              <Image 
-                src="/promo-image.jpg" 
-                width="60px" 
+              <Image
+                src="/promo-image.jpg"
+                width="60px"
                 height="60px"
                 borderRadius="medium"
               />
@@ -301,7 +311,7 @@ function PromotionalToast() {
           ),
           position: "bottom-start",
           color: "neutral",
-          timeout: 0
+          timeout: 0,
         });
       }}
     >

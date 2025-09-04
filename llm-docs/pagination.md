@@ -18,40 +18,40 @@ The component supports both controlled and uncontrolled modes, allowing it to in
 
 ### Required Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `total` | `number` | Total number of pages available |
+| Prop                | Type     | Description                                                |
+| ------------------- | -------- | ---------------------------------------------------------- |
+| `total`             | `number` | Total number of pages available                            |
 | `previousAriaLabel` | `string` | Aria-label for the previous page button for screen readers |
-| `nextAriaLabel` | `string` | Aria-label for the next page button for screen readers |
+| `nextAriaLabel`     | `string` | Aria-label for the next page button for screen readers     |
 
 ### Controlled Mode Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `page` | `number` | - | Currently selected page number (starts with 1). When provided, enables controlled component behavior |
-| `onChange` | `(args: { page: number }) => void` | - | Event handler triggered when the current page changes |
+| Prop       | Type                               | Default | Description                                                                                          |
+| ---------- | ---------------------------------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| `page`     | `number`                           | -       | Currently selected page number (starts with 1). When provided, enables controlled component behavior |
+| `onChange` | `(args: { page: number }) => void` | -       | Event handler triggered when the current page changes                                                |
 
 ### Uncontrolled Mode Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `defaultPage` | `number` | `1` | Default selected page number (starts with 1). Enables uncontrolled component behavior |
-| `onChange` | `(args: { page: number }) => void` | - | Event handler triggered when the current page changes |
+| Prop          | Type                               | Default | Description                                                                           |
+| ------------- | ---------------------------------- | ------- | ------------------------------------------------------------------------------------- |
+| `defaultPage` | `number`                           | `1`     | Default selected page number (starts with 1). Enables uncontrolled component behavior |
+| `onChange`    | `(args: { page: number }) => void` | -       | Event handler triggered when the current page changes                                 |
 
 ### Optional Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `pageAriaLabel` | `(args: { page: number }) => string` | - | Function to dynamically generate aria-label for each page button |
-| `className` | `string \| string[] \| (string \| null \| undefined \| false)[]` | - | Custom CSS class names for the root element |
-| `attributes` | `React.HTMLAttributes<HTMLDivElement> & DataAttributes` | - | Custom HTML attributes and data attributes for the root element |
+| Prop            | Type                                                             | Default | Description                                                      |
+| --------------- | ---------------------------------------------------------------- | ------- | ---------------------------------------------------------------- |
+| `pageAriaLabel` | `(args: { page: number }) => string`                             | -       | Function to dynamically generate aria-label for each page button |
+| `className`     | `string \| string[] \| (string \| null \| undefined \| false)[]` | -       | Custom CSS class names for the root element                      |
+| `attributes`    | `React.HTMLAttributes<HTMLDivElement> & DataAttributes`          | -       | Custom HTML attributes and data attributes for the root element  |
 
 ## Code Examples
 
 ### Basic Uncontrolled Usage
 
 ```tsx
-import { Pagination } from 'reshaped';
+import { Pagination } from "reshaped";
 
 function BasicPagination() {
   return (
@@ -61,7 +61,7 @@ function BasicPagination() {
       nextAriaLabel="Next page"
       pageAriaLabel={({ page }) => `Go to page ${page}`}
       onChange={({ page }) => {
-        console.log('Page changed to:', page);
+        console.log("Page changed to:", page);
       }}
     />
   );
@@ -73,8 +73,8 @@ This example shows the simplest usage where the component manages its own state,
 ### Controlled Pagination with State Management
 
 ```tsx
-import { useState } from 'react';
-import { Pagination } from 'reshaped';
+import { useState } from "react";
+import { Pagination } from "reshaped";
 
 function ControlledPagination() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -104,7 +104,7 @@ This example demonstrates controlled usage where the parent component manages th
 ### Starting from a Specific Page
 
 ```tsx
-import { Pagination } from 'reshaped';
+import { Pagination } from "reshaped";
 
 function PaginationWithDefaultPage() {
   return (
@@ -128,7 +128,7 @@ This example shows how to start the pagination from a specific page (page 5) in 
 ### Customized Styling and Attributes
 
 ```tsx
-import { Pagination } from 'reshaped';
+import { Pagination } from "reshaped";
 
 function CustomPagination() {
   return (
@@ -136,14 +136,14 @@ function CustomPagination() {
       total={8}
       className="custom-pagination"
       attributes={{
-        'data-testid': 'product-pagination',
-        'aria-label': 'Product pages navigation'
+        "data-testid": "product-pagination",
+        "aria-label": "Product pages navigation",
       }}
       previousAriaLabel="Previous products"
       nextAriaLabel="Next products"
       pageAriaLabel={({ page }) => `View products page ${page}`}
       onChange={({ page }) => {
-        analytics.track('pagination_click', { page });
+        analytics.track("pagination_click", { page });
         router.push(`/products?page=${page}`);
       }}
     />
@@ -156,8 +156,8 @@ This example shows how to customize the component with CSS classes, data attribu
 ### Integration with Data Fetching
 
 ```tsx
-import { useState, useEffect } from 'react';
-import { Pagination } from 'reshaped';
+import { useState, useEffect } from "react";
+import { Pagination } from "reshaped";
 
 function DataPagination() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -186,12 +186,12 @@ function DataPagination() {
         <div>Loading...</div>
       ) : (
         <div>
-          {data.map(item => (
+          {data.map((item) => (
             <div key={item.id}>{item.name}</div>
           ))}
         </div>
       )}
-      
+
       <Pagination
         total={totalPages}
         page={currentPage}

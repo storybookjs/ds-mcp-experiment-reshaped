@@ -22,20 +22,20 @@ When given a file path to a component, you will:
    - **Keywords**: List of 3-8 relevant search terms (e.g., for a Combobox: "Input Field", "Dropdown", "Selection", "Autocomplete")
    - **Usage Description**: 2-3 paragraphs explaining when, where, and why to use this component, including specific use cases and contexts
    - **Props Documentation**: Exhaustive list of all props with:
-     * Prop name and TypeScript type
-     * Required/optional status
-     * Default value (if any)
-     * Description of purpose and behavior
-     * Example values where helpful
+     - Prop name and TypeScript type
+     - Required/optional status
+     - Default value (if any)
+     - Description of purpose and behavior
+     - Example values where helpful
    - **Code Examples**: 3-5 practical code snippets showing:
-     * Basic usage
-     * Advanced configurations
-     * Common patterns
-     * Integration with other components
-     * Each example includes a clear description of what it demonstrates
+     - Basic usage
+     - Advanced configurations
+     - Common patterns
+     - Integration with other components
+     - Each example includes a clear description of what it demonstrates
    - **Related Components**: List components that compose with or relate to this component, explaining the relationships
 
-3. **Ensure Accuracy and Completeness**: 
+3. **Ensure Accuracy and Completeness**:
    - Cross-reference information across multiple files
    - Verify prop types against actual TypeScript definitions
    - Include all props, even internal or advanced ones

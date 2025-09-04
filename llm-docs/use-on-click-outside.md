@@ -49,6 +49,7 @@ The hook implements several sophisticated features:
 ## Code Examples
 
 ### Basic Usage
+
 ```typescript
 import React, { useRef, useState } from 'react';
 import { useOnClickOutside } from 'reshaped';
@@ -56,11 +57,11 @@ import { useOnClickOutside } from 'reshaped';
 function DropdownMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  
+
   useOnClickOutside([menuRef], () => {
     setIsOpen(false);
   });
-  
+
   return (
     <div>
       <button onClick={() => setIsOpen(!isOpen)}>
@@ -78,6 +79,7 @@ function DropdownMenu() {
 ```
 
 ### Multiple Elements
+
 ```typescript
 import React, { useRef, useState } from 'react';
 import { useOnClickOutside } from 'reshaped';
@@ -86,12 +88,12 @@ function MultiPartModal() {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  
+
   // Both the modal and trigger are considered "inside"
   useOnClickOutside([modalRef, triggerRef], () => {
     setIsOpen(false);
   });
-  
+
   return (
     <div>
       <button ref={triggerRef} onClick={() => setIsOpen(true)}>
@@ -111,6 +113,7 @@ function MultiPartModal() {
 ```
 
 ### Conditional Behavior with Options
+
 ```typescript
 import React, { useRef, useState } from 'react';
 import { useOnClickOutside } from 'reshaped';
@@ -119,13 +122,13 @@ function ConditionalPopover() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
-  
+
   useOnClickOutside([popoverRef], () => {
     setIsOpen(false);
   }, {
     disabled: isPinned // Don't close when pinned
   });
-  
+
   return (
     <div>
       <button onClick={() => setIsOpen(!isOpen)}>
@@ -135,8 +138,8 @@ function ConditionalPopover() {
         <div ref={popoverRef} className="popover">
           <div>
             <label>
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
                 checked={isPinned}
                 onChange={(e) => setIsPinned(e.target.checked)}
               />
@@ -152,6 +155,7 @@ function ConditionalPopover() {
 ```
 
 ### Complex State Management
+
 ```typescript
 import React, { useRef, useState, useCallback } from 'react';
 import { useOnClickOutside } from 'reshaped';
@@ -160,16 +164,16 @@ function StatefulComponent() {
   const [count, setCount] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Handler captures the latest state values
   const handleClickOutside = useCallback((event: Event) => {
     console.log(`Closing with count: ${count}`);
     setIsOpen(false);
     // Could also perform other actions based on current state
   }, [count]);
-  
+
   useOnClickOutside([containerRef], handleClickOutside);
-  
+
   return (
     <div>
       <button onClick={() => setIsOpen(true)}>
@@ -190,6 +194,7 @@ function StatefulComponent() {
 ```
 
 ### Integration with Flyout Components
+
 ```typescript
 import React, { useRef, useState } from 'react';
 import { useOnClickOutside } from 'reshaped';
@@ -198,18 +203,18 @@ function CustomFlyout({ trigger, children, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  
+
   const handleClose = useCallback((reason?: string) => {
     setIsOpen(false);
     onClose?.({ reason });
   }, [onClose]);
-  
+
   useOnClickOutside([triggerRef, contentRef], () => {
     handleClose('outside-click');
   }, {
     disabled: !isOpen
   });
-  
+
   return (
     <div>
       {React.cloneElement(trigger, {
@@ -228,7 +233,7 @@ function CustomFlyout({ trigger, children, onClose }) {
 // Usage
 function App() {
   return (
-    <CustomFlyout 
+    <CustomFlyout
       trigger={<button>Open Flyout</button>}
       onClose={(details) => console.log('Closed:', details.reason)}
     >
@@ -241,11 +246,13 @@ function App() {
 ## Event Handling Patterns
 
 ### Event Flow
+
 1. **mousedown/touchstart**: Tracks which elements are initially pressed
 2. **click**: Checks if the final click target is outside the specified refs
 3. **Validation**: Filters out right-clicks, non-pointer events, and invalid interactions
 
 ### Best Practices
+
 - Always provide stable refs (don't create refs inline)
 - Use `useCallback` for handlers that depend on state to avoid unnecessary re-renders
 - Consider using the `disabled` option for conditional behavior rather than conditionally calling the hook
@@ -253,6 +260,7 @@ function App() {
 - Test with both mouse and touch interactions on mobile devices
 
 ### Performance Considerations
+
 - The hook uses passive event listeners for better scroll performance
 - Event listeners are attached to `document` for global click detection
 - Cleanup happens automatically when the component unmounts
@@ -261,7 +269,7 @@ function App() {
 ## Related Components
 
 - **Flyout**: Uses `useOnClickOutside` internally for dismissible overlays
-- **Modal**: Can integrate with this hook for click-outside-to-close behavior  
+- **Modal**: Can integrate with this hook for click-outside-to-close behavior
 - **Popover**: Built-in click outside detection using this hook
 - **DropdownMenu**: Implements this hook for menu dismissal
 - **ContextMenu**: Uses this pattern for context menu closing

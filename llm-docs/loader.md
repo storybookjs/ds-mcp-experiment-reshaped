@@ -1,9 +1,11 @@
 # Loader
 
 ## Brief Description
+
 A circular spinning loader component that indicates loading or processing states.
 
 ## Keywords
+
 Loading Indicator, Spinner, Progress, Loading State, Circular Progress, Activity Indicator, Loading Animation, Progress Bar
 
 ## Usage Description
@@ -17,17 +19,19 @@ The component is designed to be semantically accessible with proper ARIA attribu
 ## Props Documentation
 
 ### `size`
+
 - **Type**: `G.Responsive<"small" | "medium" | "large">`
 - **Required**: No
 - **Default**: `"small"`
 - **Description**: Controls the physical size of the loader spinner. Supports responsive values for different viewport breakpoints.
 - **Values**:
   - `"small"` - 16px diameter with 2px stroke
-  - `"medium"` - 24px diameter with 3px stroke  
+  - `"medium"` - 24px diameter with 3px stroke
   - `"large"` - 40px diameter with 5px stroke
 - **Example**: `size="medium"` or `size={{ s: "small", m: "medium" }}`
 
 ### `color`
+
 - **Type**: `"primary" | "critical" | "positive" | "inherit"`
 - **Required**: No
 - **Default**: `"primary"`
@@ -40,6 +44,7 @@ The component is designed to be semantically accessible with proper ARIA attribu
 - **Example**: `color="critical"`
 
 ### `ariaLabel`
+
 - **Type**: `string`
 - **Required**: No
 - **Default**: `undefined`
@@ -47,6 +52,7 @@ The component is designed to be semantically accessible with proper ARIA attribu
 - **Example**: `ariaLabel="Loading user data"`
 
 ### `className`
+
 - **Type**: `G.ClassName`
 - **Required**: No
 - **Default**: `undefined`
@@ -54,6 +60,7 @@ The component is designed to be semantically accessible with proper ARIA attribu
 - **Example**: `className="my-custom-loader"`
 
 ### `attributes`
+
 - **Type**: `G.Attributes<"span">`
 - **Required**: No
 - **Default**: `undefined`
@@ -63,8 +70,9 @@ The component is designed to be semantically accessible with proper ARIA attribu
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { Loader } from 'reshaped';
+import { Loader } from "reshaped";
 
 // Simple loader with default small size and primary color
 function LoadingState() {
@@ -78,13 +86,14 @@ function LoadingState() {
 ```
 
 ### Different Sizes
+
 ```tsx
-import { Loader } from 'reshaped';
+import { Loader } from "reshaped";
 
 // Demonstrating different loader sizes
 function LoaderSizes() {
   return (
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
       <Loader size="small" ariaLabel="Small loader" />
       <Loader size="medium" ariaLabel="Medium loader" />
       <Loader size="large" ariaLabel="Large loader" />
@@ -94,8 +103,9 @@ function LoaderSizes() {
 ```
 
 ### Color Variants
+
 ```tsx
-import { Loader } from 'reshaped';
+import { Loader } from "reshaped";
 
 // Different color themes for various contexts
 function ColoredLoaders() {
@@ -103,15 +113,15 @@ function ColoredLoaders() {
     <div>
       {/* Default primary loader */}
       <Loader ariaLabel="Primary loading" />
-      
+
       {/* Error state loader */}
       <Loader color="critical" ariaLabel="Error processing" />
-      
+
       {/* Success state loader */}
       <Loader color="positive" ariaLabel="Success processing" />
-      
+
       {/* Inherit parent text color */}
-      <div style={{ color: '#6366f1' }}>
+      <div style={{ color: "#6366f1" }}>
         <Loader color="inherit" ariaLabel="Custom colored loader" />
       </div>
     </div>
@@ -120,17 +130,18 @@ function ColoredLoaders() {
 ```
 
 ### Responsive Sizing
+
 ```tsx
-import { Loader } from 'reshaped';
+import { Loader } from "reshaped";
 
 // Loader that changes size based on viewport
 function ResponsiveLoader() {
   return (
-    <Loader 
-      size={{ 
-        s: "small",    // Small on mobile
-        m: "medium",   // Medium on tablet
-        l: "large"     // Large on desktop
+    <Loader
+      size={{
+        s: "small", // Small on mobile
+        m: "medium", // Medium on tablet
+        l: "large", // Large on desktop
       }}
       ariaLabel="Responsive loading indicator"
     />
@@ -139,33 +150,38 @@ function ResponsiveLoader() {
 ```
 
 ### Loading Overlay
+
 ```tsx
-import { Loader } from 'reshaped';
+import { Loader } from "reshaped";
 
 // Centered loader for full-page loading states
 function LoadingOverlay() {
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      zIndex: 1000
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '24px',
-        borderRadius: '8px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '16px'
-      }}>
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        zIndex: 1000,
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "24px",
+          borderRadius: "8px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "16px",
+        }}
+      >
         <Loader size="large" ariaLabel="Processing request" />
         <p>Please wait while we process your request...</p>
       </div>
@@ -175,8 +191,9 @@ function LoadingOverlay() {
 ```
 
 ### Button Loading State
+
 ```tsx
-import { Loader, Button } from 'reshaped';
+import { Loader, Button } from "reshaped";
 
 // Loader integrated with button for form submission states
 function SubmitButton({ isLoading, onSubmit }) {
@@ -184,16 +201,12 @@ function SubmitButton({ isLoading, onSubmit }) {
     <Button
       disabled={isLoading}
       onClick={onSubmit}
-      style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+      style={{ display: "flex", alignItems: "center", gap: "8px" }}
     >
       {isLoading && (
-        <Loader 
-          size="small" 
-          color="inherit" 
-          ariaLabel="Submitting form"
-        />
+        <Loader size="small" color="inherit" ariaLabel="Submitting form" />
       )}
-      {isLoading ? 'Submitting...' : 'Submit'}
+      {isLoading ? "Submitting..." : "Submit"}
     </Button>
   );
 }
@@ -202,16 +215,19 @@ function SubmitButton({ isLoading, onSubmit }) {
 ## Related Components
 
 ### Progress Components
+
 - **Progress**: For determinate progress indication where completion percentage is known
 - **ProgressBar**: Linear progress indication alternative to circular loader
 - **Skeleton**: Static placeholder content for loading states with known layouts
 
-### Layout Components  
+### Layout Components
+
 - **Container**: For centering loaders within page layouts
 - **Card**: Often contains loaders during content loading states
 - **Modal**: Frequently uses loaders for async operations within dialogs
 
 ### Interactive Components
+
 - **Button**: Commonly integrates with loaders during action processing
 - **Form**: Uses loaders during submission and validation processes
 - **DataTable**: Shows loaders during data fetching and filtering operations

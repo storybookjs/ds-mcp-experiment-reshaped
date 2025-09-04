@@ -109,6 +109,7 @@ The component is particularly useful in design systems where consistent styling 
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
 import Button from 'reshaped/Button';
 
@@ -118,9 +119,9 @@ import Button from 'reshaped/Button';
 </Button>
 
 // Primary button with icon
-<Button 
-  variant="solid" 
-  color="primary" 
+<Button
+  variant="solid"
+  color="primary"
   icon={<PlusIcon />}
   onClick={handleSubmit}
 >
@@ -129,6 +130,7 @@ import Button from 'reshaped/Button';
 ```
 
 ### Variants and Colors
+
 ```tsx
 // Different button variants
 <Button variant="solid" color="primary">Solid Primary</Button>
@@ -143,6 +145,7 @@ import Button from 'reshaped/Button';
 ```
 
 ### Size and Responsive Behavior
+
 ```tsx
 // Different sizes
 <Button size="small">Small</Button>
@@ -161,10 +164,11 @@ import Button from 'reshaped/Button';
 ```
 
 ### Loading States
+
 ```tsx
 // Loading button
-<Button 
-  loading 
+<Button
+  loading
   loadingAriaLabel="Submitting form"
   disabled={isSubmitting}
   onClick={handleSubmit}
@@ -173,9 +177,9 @@ import Button from 'reshaped/Button';
 </Button>
 
 // Icon-only loading button
-<Button 
+<Button
   icon={<SaveIcon />}
-  loading 
+  loading
   loadingAriaLabel="Saving"
   rounded
   attributes={{ "aria-label": "Save document" }}
@@ -183,30 +187,32 @@ import Button from 'reshaped/Button';
 ```
 
 ### Icon Configurations
+
 ```tsx
 // Start icon
 <Button icon={<SearchIcon />}>Search</Button>
 
-// End icon  
+// End icon
 <Button endIcon={<ExternalLinkIcon />}>Open Link</Button>
 
 // Both icons
-<Button 
-  icon={<DownloadIcon />} 
+<Button
+  icon={<DownloadIcon />}
   endIcon={<ChevronDownIcon />}
 >
   Download
 </Button>
 
 // Icon-only button
-<Button 
-  icon={<MenuIcon />} 
+<Button
+  icon={<MenuIcon />}
   rounded
   attributes={{ "aria-label": "Open menu" }}
 />
 ```
 
 ### Button Groups
+
 ```tsx
 // Grouped buttons
 <Button.Group>
@@ -224,6 +230,7 @@ import Button from 'reshaped/Button';
 ```
 
 ### Button Alignment
+
 ```tsx
 // Align button within layout
 <div style={{ display: 'flex', padding: '1rem' }}>

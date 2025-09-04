@@ -23,6 +23,7 @@ The functions work together to provide a consistent API for responsive styling a
 A utility function that resolves an array of class name values into a single class name string.
 
 **Parameters**:
+
 - `...args` (Array): Variable number of class name arguments that can be strings, arrays, booleans, null, or undefined
 
 **Returns**: String containing concatenated class names
@@ -36,6 +37,7 @@ A utility function that resolves an array of class name values into a single cla
 Generates responsive class names based on a value that can be either static or responsive.
 
 **Parameters**:
+
 - `s` (Record<string, string>): CSS modules object containing the available class names
 - `className` (string | function): Base class name or resolver function
 - `value` (Responsive<Value>): Static value or responsive object with viewport-specific values
@@ -53,6 +55,7 @@ Generates responsive class names based on a value that can be either static or r
 Generates CSS custom properties (variables) for responsive values.
 
 **Parameters**:
+
 - `variableName` (CSSVariable): The base name for the CSS variable (must start with `--`)
 - `value` (Responsive<Value>, optional): Static value or responsive object with viewport-specific values
 
@@ -67,6 +70,7 @@ Generates CSS custom properties (variables) for responsive values.
 Applies a resolver function to responsive prop values, handling both static and responsive cases.
 
 **Parameters**:
+
 - `prop` (Responsive<T>): The responsive prop value to process
 - `resolver` (function): Function that processes each value
   - `value` (T): The prop value for the current viewport
@@ -92,9 +96,10 @@ type CSSVariable = `--${string}`;
 ### Viewport System
 
 The reshaped design system uses a mobile-first responsive approach with four breakpoints:
+
 - `s` (small): Base viewport, no media query
 - `m` (medium): Tablet and up
-- `l` (large): Desktop and up  
+- `l` (large): Desktop and up
 - `xl` (extra large): Large desktop and up
 
 ## Code Examples
@@ -102,47 +107,43 @@ The reshaped design system uses a mobile-first responsive approach with four bre
 ### Basic Class Names Usage
 
 ```typescript
-import { classNames } from 'reshaped/utilities/props';
+import { classNames } from "reshaped/utilities/props";
 
 // Simple concatenation
-const className = classNames('base', 'modifier', isActive && 'active');
+const className = classNames("base", "modifier", isActive && "active");
 // Result: "base modifier active"
 
 // Nested arrays
-const className = classNames(['base', 'modifier'], null, ['additional']);
+const className = classNames(["base", "modifier"], null, ["additional"]);
 // Result: "base modifier additional"
 
 // Complex conditional logic
-const className = classNames(
-  'component',
-  variant && `component--${variant}`,
-  {
-    'component--disabled': disabled,
-    'component--loading': loading
-  }
-);
+const className = classNames("component", variant && `component--${variant}`, {
+  "component--disabled": disabled,
+  "component--loading": loading,
+});
 ```
 
 ### Responsive Class Names
 
 ```typescript
-import { responsiveClassNames } from 'reshaped/utilities/props';
-import s from './Component.module.css';
+import { responsiveClassNames } from "reshaped/utilities/props";
+import s from "./Component.module.css";
 
 // Static value
-const classes = responsiveClassNames(s, 'padding', 'large');
+const classes = responsiveClassNames(s, "padding", "large");
 // Result: [s['padding-large']]
 
 // Responsive value
-const classes = responsiveClassNames(s, 'padding', {
-  s: 'small',
-  m: 'medium', 
-  l: 'large'
+const classes = responsiveClassNames(s, "padding", {
+  s: "small",
+  m: "medium",
+  l: "large",
 });
 // Result: [s['padding-small'], s['padding-medium--m'], s['padding-large--l']]
 
 // With custom resolver
-const classes = responsiveClassNames(s, (value) => `custom-${value}`, 'active');
+const classes = responsiveClassNames(s, (value) => `custom-${value}`, "active");
 // Result: [s['custom-active']]
 ```
 
@@ -163,7 +164,7 @@ const vars = responsiveVariables('--component-gap', {
 });
 // Result: {
 //   '--component-gap-s': '8px',
-//   '--component-gap-m': '16px', 
+//   '--component-gap-m': '16px',
 //   '--component-gap-l': '24px'
 // }
 
@@ -172,7 +173,7 @@ const Component = ({ gap }) => {
   const style = {
     ...responsiveVariables('--gap', gap)
   };
-  
+
   return <div style={style} className="component" />;
 };
 ```
@@ -180,16 +181,16 @@ const Component = ({ gap }) => {
 ### Responsive Prop Dependency
 
 ```typescript
-import { responsivePropDependency } from 'reshaped/utilities/props';
+import { responsivePropDependency } from "reshaped/utilities/props";
 
 // Processing responsive props
 const processedValue = responsivePropDependency(
-  { s: 'small', m: 'medium', l: 'large' },
+  { s: "small", m: "medium", l: "large" },
   (value, viewport) => ({
     className: `size-${value}`,
     cssVar: `--size-${viewport}`,
-    value
-  })
+    value,
+  }),
 );
 // Result: {
 //   s: { className: 'size-small', cssVar: '--size-s', value: 'small' },
@@ -198,8 +199,9 @@ const processedValue = responsivePropDependency(
 // }
 
 // Static value processing
-const staticResult = responsivePropDependency('large', (value, viewport) => 
-  `${value}-${viewport}`
+const staticResult = responsivePropDependency(
+  "large",
+  (value, viewport) => `${value}-${viewport}`,
 );
 // Result: "large-s"
 ```
@@ -212,11 +214,11 @@ const CustomComponent = ({ size, padding, className, ...props }) => {
   // Generate responsive classes
   const sizeClasses = responsiveClassNames(s, 'size', size);
   const paddingClasses = responsiveClassNames(s, 'padding', padding);
-  
+
   // Generate CSS variables
   const sizeVars = responsiveVariables('--custom-size', size);
   const paddingVars = responsiveVariables('--custom-padding', padding);
-  
+
   // Combine all class names
   const finalClassName = classNames(
     s.component,
@@ -224,14 +226,14 @@ const CustomComponent = ({ size, padding, className, ...props }) => {
     ...paddingClasses,
     className
   );
-  
+
   // Process additional responsive logic
   const customLogic = responsivePropDependency(size, (value, viewport) => {
     return value === 'large' ? 'enhanced' : 'standard';
   });
-  
+
   return (
-    <div 
+    <div
       className={finalClassName}
       style={{ ...sizeVars, ...paddingVars }}
       data-mode={typeof customLogic === 'object' ? customLogic.s : customLogic}
@@ -250,17 +252,17 @@ const generateComplexClasses = (baseClass, value, modifiers) => {
     s,
     (val) => {
       const base = `${baseClass}-${val}`;
-      const mods = modifiers?.filter(Boolean).join('-') || '';
+      const mods = modifiers?.filter(Boolean).join("-") || "";
       return mods ? `${base}-${mods}` : base;
     },
     value,
-    { excludeValueFromClassName: false }
+    { excludeValueFromClassName: false },
   );
 };
 
 // Theme-aware responsive variables
 const generateThemeVariables = (property, value, theme) => {
-  const themePrefix = theme === 'dark' ? 'dark' : 'light';
+  const themePrefix = theme === "dark" ? "dark" : "light";
   const varName = `--${themePrefix}-${property}`;
   return responsiveVariables(varName, value);
 };

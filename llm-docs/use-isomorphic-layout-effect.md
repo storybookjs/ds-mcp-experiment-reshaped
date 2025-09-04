@@ -20,7 +20,7 @@ The primary purpose of this hook is to solve the common problem of using `useLay
 ### Hook Signature
 
 ```typescript
-const useIsomorphicLayoutEffect: typeof React.useEffect
+const useIsomorphicLayoutEffect: typeof React.useEffect;
 ```
 
 ### Parameters
@@ -47,12 +47,12 @@ export default useIsomorphicLayoutEffect;
 The hook implementation is a simple runtime check that determines the appropriate React hook to use:
 
 ```javascript
-const useIsomorphicLayoutEffect = typeof window !== "undefined" 
-  ? React.useLayoutEffect 
-  : React.useEffect;
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 ```
 
 This implementation:
+
 - Checks for the presence of the `window` object to determine if running in a browser environment
 - Uses `React.useLayoutEffect` when `window` is available (client-side)
 - Falls back to `React.useEffect` when `window` is undefined (server-side)
@@ -62,8 +62,8 @@ This implementation:
 ### Basic Usage
 
 ```tsx
-import React, { useState } from 'react';
-import useIsomorphicLayoutEffect from 'reshaped/hooks/useIsomorphicLayoutEffect';
+import React, { useState } from "react";
+import useIsomorphicLayoutEffect from "reshaped/hooks/useIsomorphicLayoutEffect";
 
 function MyComponent() {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -89,7 +89,7 @@ function MyComponent() {
 Here's how it's used in the reshaped design system's `useResponsiveClientValue` hook:
 
 ```tsx
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 const useResponsiveClientValue = (value) => {
   const [viewport, setViewport] = React.useState(defaultViewport);
@@ -105,9 +105,9 @@ const useResponsiveClientValue = (value) => {
 
     const matchers = Object.keys(mediaQueries).map((viewport) => {
       const mq = window.matchMedia(mediaQueries[viewport]);
-      return { 
-        mq, 
-        handler: () => mq.matches && setViewport(viewport) 
+      return {
+        mq,
+        handler: () => mq.matches && setViewport(viewport),
       };
     });
 
@@ -134,7 +134,7 @@ const useResponsiveClientValue = (value) => {
 The hook is also used in Portal components for mounting management:
 
 ```tsx
-import useIsomorphicLayoutEffect from '../../../hooks/useIsomorphicLayoutEffect';
+import useIsomorphicLayoutEffect from "../../../hooks/useIsomorphicLayoutEffect";
 
 const Portal = (props) => {
   const mountedToggle = useToggle();
@@ -142,17 +142,14 @@ const Portal = (props) => {
   useIsomorphicLayoutEffect(() => {
     // Activate the portal after mount
     mountedToggle.activate();
-    
+
     // Cleanup on unmount
     return () => mountedToggle.deactivate();
   }, []);
 
   return [
-    ReactDOM.createPortal(
-      <Theme>{children}</Theme>, 
-      targetEl
-    ),
-    !mountedToggle.active && <div ref={rootRef} className={s.root} />
+    ReactDOM.createPortal(<Theme>{children}</Theme>, targetEl),
+    !mountedToggle.active && <div ref={rootRef} className={s.root} />,
   ];
 };
 ```
@@ -160,8 +157,8 @@ const Portal = (props) => {
 ### DOM Measurement Hook
 
 ```tsx
-import React, { useState, useRef } from 'react';
-import useIsomorphicLayoutEffect from 'reshaped/hooks/useIsomorphicLayoutEffect';
+import React, { useState, useRef } from "react";
+import useIsomorphicLayoutEffect from "reshaped/hooks/useIsomorphicLayoutEffect";
 
 function useElementSize() {
   const [size, setSize] = useState({ width: 0, height: 0 });
@@ -198,8 +195,8 @@ function useElementSize() {
 ### Event Listener Setup
 
 ```tsx
-import React, { useState } from 'react';
-import useIsomorphicLayoutEffect from 'reshaped/hooks/useIsomorphicLayoutEffect';
+import React, { useState } from "react";
+import useIsomorphicLayoutEffect from "reshaped/hooks/useIsomorphicLayoutEffect";
 
 function useScrollPosition() {
   const [scrollY, setScrollY] = useState(0);
@@ -213,10 +210,10 @@ function useScrollPosition() {
     handleScroll();
 
     // Add event listener
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -239,9 +236,9 @@ When using this hook, consider the following SSR implications:
 const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
 // Avoid: Assuming browser APIs are available
-const [dimensions, setDimensions] = useState({ 
+const [dimensions, setDimensions] = useState({
   width: window.innerWidth, // This will break SSR
-  height: window.innerHeight 
+  height: window.innerHeight,
 });
 ```
 
@@ -301,11 +298,11 @@ useIsomorphicLayoutEffect(() => {
   const handleResize = () => {
     // handle resize
   };
-  
-  window.addEventListener('resize', handleResize);
-  
+
+  window.addEventListener("resize", handleResize);
+
   return () => {
-    window.removeEventListener('resize', handleResize);
+    window.removeEventListener("resize", handleResize);
   };
 }, []);
 ```
@@ -318,8 +315,8 @@ useIsomorphicLayoutEffect(() => {
 useIsomorphicLayoutEffect(() => {
   // This check is often redundant since the hook handles it,
   // but can be useful for additional safety
-  if (typeof window === 'undefined') return;
-  
+  if (typeof window === "undefined") return;
+
   // Client-only code here
 }, []);
 ```
@@ -330,7 +327,7 @@ useIsomorphicLayoutEffect(() => {
 useIsomorphicLayoutEffect(() => {
   // Enable portal/modal after mount
   setMounted(true);
-  
+
   return () => {
     // Cleanup on unmount
     setMounted(false);
@@ -344,10 +341,10 @@ useIsomorphicLayoutEffect(() => {
 useIsomorphicLayoutEffect(() => {
   const computedStyle = window.getComputedStyle(element);
   const customProperties = {
-    primaryColor: computedStyle.getPropertyValue('--primary-color'),
-    spacing: computedStyle.getPropertyValue('--spacing-unit'),
+    primaryColor: computedStyle.getPropertyValue("--primary-color"),
+    spacing: computedStyle.getPropertyValue("--spacing-unit"),
   };
-  
+
   setThemeValues(customProperties);
 }, [element]);
 ```

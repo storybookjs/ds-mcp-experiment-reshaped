@@ -53,7 +53,7 @@ The component integrates seamlessly with form management systems and supports va
 ### Basic Usage
 
 ```tsx
-import { Radio } from 'reshaped';
+import { Radio } from "reshaped";
 
 // Uncontrolled radio button
 function BasicExample() {
@@ -68,32 +68,32 @@ function BasicExample() {
 ### Controlled Radio Button
 
 ```tsx
-import { Radio } from 'reshaped';
-import { useState } from 'react';
+import { Radio } from "reshaped";
+import { useState } from "react";
 
 function ControlledExample() {
-  const [selectedValue, setSelectedValue] = useState('');
-  
+  const [selectedValue, setSelectedValue] = useState("");
+
   const handleChange = ({ value, checked }) => {
     if (checked) {
       setSelectedValue(value);
     }
   };
-  
+
   return (
     <div>
-      <Radio 
-        name="animal" 
-        value="cat" 
-        checked={selectedValue === 'cat'}
+      <Radio
+        name="animal"
+        value="cat"
+        checked={selectedValue === "cat"}
         onChange={handleChange}
       >
         Cat
       </Radio>
-      <Radio 
-        name="animal" 
-        value="dog" 
-        checked={selectedValue === 'dog'}
+      <Radio
+        name="animal"
+        value="dog"
+        checked={selectedValue === "dog"}
         onChange={handleChange}
       >
         Dog
@@ -106,7 +106,7 @@ function ControlledExample() {
 ### Size Variations
 
 ```tsx
-import { Radio } from 'reshaped';
+import { Radio } from "reshaped";
 
 function SizeExample() {
   return (
@@ -128,13 +128,13 @@ function SizeExample() {
 ### Responsive Size
 
 ```tsx
-import { Radio } from 'reshaped';
+import { Radio } from "reshaped";
 
 function ResponsiveExample() {
   return (
-    <Radio 
-      name="responsive" 
-      value="option" 
+    <Radio
+      name="responsive"
+      value="option"
       size={{ s: "small", m: "medium", l: "large" }}
     >
       Responsive Radio
@@ -146,7 +146,7 @@ function ResponsiveExample() {
 ### Error and Disabled States
 
 ```tsx
-import { Radio } from 'reshaped';
+import { Radio } from "reshaped";
 
 function StateExample() {
   return (
@@ -154,11 +154,11 @@ function StateExample() {
       <Radio name="error" value="option1" hasError>
         Radio with Error
       </Radio>
-      
+
       <Radio name="disabled" value="option2" disabled>
         Disabled Radio
       </Radio>
-      
+
       <Radio name="disabled-checked" value="option3" disabled checked>
         Disabled Checked Radio
       </Radio>
@@ -170,16 +170,16 @@ function StateExample() {
 ### With Custom Styling
 
 ```tsx
-import { Radio } from 'reshaped';
+import { Radio } from "reshaped";
 
 function CustomExample() {
   return (
-    <Radio 
-      name="custom" 
+    <Radio
+      name="custom"
       value="option"
       className="my-custom-radio"
-      attributes={{ 'data-testid': 'custom-radio' }}
-      inputAttributes={{ 'aria-describedby': 'helper-text' }}
+      attributes={{ "data-testid": "custom-radio" }}
+      inputAttributes={{ "aria-describedby": "helper-text" }}
     >
       Custom Styled Radio
     </Radio>

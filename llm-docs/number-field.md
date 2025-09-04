@@ -17,16 +17,19 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Core Props
 
 **increaseAriaLabel** (required)
+
 - Type: `string`
 - Description: Accessible label for the increment button, read by screen readers
 - Example: `"Increase value"`, `"Add one"`
 
 **decreaseAriaLabel** (required)
+
 - Type: `string`
 - Description: Accessible label for the decrement button, read by screen readers
 - Example: `"Decrease value"`, `"Subtract one"`
 
 **name** (required)
+
 - Type: `string`
 - Description: Form field name for form submission and identification
 - Example: `"quantity"`, `"price"`
@@ -34,11 +37,13 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Value Management (Controlled)
 
 **value** (controlled)
+
 - Type: `number | null`
 - Description: Current numeric value of the field. Use for controlled components
 - Example: `42`, `3.14`, `null`
 
 **onChange** (controlled)
+
 - Type: `(args: { name: string; value: number }) => void`
 - Description: Callback fired when the value changes
 - Example: `(args) => setValue(args.value)`
@@ -46,6 +51,7 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Value Management (Uncontrolled)
 
 **defaultValue** (uncontrolled)
+
 - Type: `number`
 - Description: Initial value for uncontrolled components
 - Example: `0`, `100`
@@ -53,18 +59,21 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Number Constraints
 
 **min**
+
 - Type: `number`
 - Default: `undefined`
 - Description: Minimum allowed value. Controls will be disabled when reached
 - Example: `0`, `-100`
 
 **max**
+
 - Type: `number`
 - Default: `undefined`
 - Description: Maximum allowed value. Controls will be disabled when reached
 - Example: `100`, `999`
 
 **step**
+
 - Type: `number`
 - Default: `1`
 - Description: Increment/decrement step size. Supports decimal values
@@ -73,60 +82,71 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Inherited TextField Props
 
 **size**
+
 - Type: `"small" | "medium" | "large" | "xlarge"` (Responsive)
 - Default: `"medium"`
 - Description: Visual size of the input field and controls
 - Example: `"large"`, `{ s: "small", m: "medium" }`
 
 **disabled**
+
 - Type: `boolean`
 - Default: `false`
 - Description: Disables the entire component
 - Example: `true`
 
 **hasError**
+
 - Type: `boolean`
 - Default: `false`
 - Description: Indicates validation error state
 - Example: `true`
 
 **placeholder**
+
 - Type: `string`
 - Description: Placeholder text shown when field is empty
 - Example: `"Enter quantity"`
 
 **variant**
+
 - Type: `"outline" | "faded" | "headless"`
 - Default: `"outline"`
 - Description: Visual style variant of the input field
 - Example: `"faded"`
 
 **focused**
+
 - Type: `boolean`
 - Description: Controls focused state programmatically
 - Example: `true`
 
 **icon**
+
 - Type: `IconProps["svg"]`
 - Description: Icon to display at the start of the field
 - Example: `DollarIcon`
 
 **endIcon**
+
 - Type: `IconProps["svg"]`
 - Description: Icon to display before the controls (limited space)
 - Example: `PercentIcon`
 
 **startSlot**
+
 - Type: `React.ReactNode`
 - Description: Custom content at the start of the field
 - Example: `<Text>$</Text>`
 
 **prefix**
+
 - Type: `React.ReactNode`
 - Description: Prefix content inside the input
 - Example: `"$"`
 
 **suffix**
+
 - Type: `React.ReactNode`
 - Description: Suffix content inside the input
 - Example: `"%"`
@@ -134,11 +154,13 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Event Handlers
 
 **onFocus**
+
 - Type: `(e: React.FocusEvent<HTMLInputElement>) => void`
 - Description: Callback fired when field gains focus
 - Example: `(e) => console.log('focused')`
 
 **onBlur**
+
 - Type: `(e: React.FocusEvent<HTMLInputElement>) => void`
 - Description: Callback fired when field loses focus
 - Example: `(e) => validateValue()`
@@ -146,16 +168,19 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ### Styling Props
 
 **className**
+
 - Type: `string | string[]`
 - Description: Additional CSS classes for custom styling
 - Example: `"custom-number-field"`, `["field", "highlighted"]`
 
 **attributes**
+
 - Type: `React.HTMLAttributes<HTMLDivElement>`
 - Description: Additional HTML attributes for the root container
 - Example: `{ "data-testid": "number-field" }`
 
 **inputAttributes**
+
 - Type: `React.HTMLAttributes<HTMLInputElement>`
 - Description: Additional HTML attributes for the input element
 - Example: `{ "data-cy": "number-input" }`
@@ -163,12 +188,13 @@ The NumberField supports both controlled and uncontrolled usage patterns, integr
 ## Code Examples
 
 ### Basic Usage
+
 ```tsx
-import { NumberField } from 'reshaped';
+import { NumberField } from "reshaped";
 
 function QuantitySelector() {
   const [quantity, setQuantity] = useState(1);
-  
+
   return (
     <NumberField
       name="quantity"
@@ -182,15 +208,17 @@ function QuantitySelector() {
   );
 }
 ```
+
 Basic controlled NumberField with min/max constraints for a quantity selector.
 
 ### Price Input with Decimal Step
+
 ```tsx
-import { NumberField } from 'reshaped';
+import { NumberField } from "reshaped";
 
 function PriceInput() {
   const [price, setPrice] = useState(0);
-  
+
   return (
     <NumberField
       name="price"
@@ -207,18 +235,20 @@ function PriceInput() {
   );
 }
 ```
+
 Price input field with decimal precision and currency prefix.
 
 ### Uncontrolled with Default Value
+
 ```tsx
-import { NumberField } from 'reshaped';
+import { NumberField } from "reshaped";
 
 function AgeField() {
   return (
     <NumberField
       name="age"
       defaultValue={18}
-      onChange={({ value }) => console.log('Age:', value)}
+      onChange={({ value }) => console.log("Age:", value)}
       increaseAriaLabel="Increase age"
       decreaseAriaLabel="Decrease age"
       min={0}
@@ -228,15 +258,17 @@ function AgeField() {
   );
 }
 ```
+
 Uncontrolled NumberField with default value and faded variant styling.
 
 ### Form Integration with Validation
+
 ```tsx
-import { NumberField, FormControl, Text } from 'reshaped';
+import { NumberField, FormControl, Text } from "reshaped";
 
 function WeightInput({ hasError, errorMessage }) {
   const [weight, setWeight] = useState(null);
-  
+
   return (
     <FormControl hasError={hasError}>
       <FormControl.Label>
@@ -264,15 +296,17 @@ function WeightInput({ hasError, errorMessage }) {
   );
 }
 ```
+
 NumberField integrated with FormControl for proper labeling and error handling.
 
 ### Custom Styling and Large Step
+
 ```tsx
-import { NumberField } from 'reshaped';
+import { NumberField } from "reshaped";
 
 function BulkOrderQuantity() {
   const [quantity, setQuantity] = useState(10);
-  
+
   return (
     <NumberField
       name="bulkQuantity"
@@ -286,11 +320,12 @@ function BulkOrderQuantity() {
       size="xlarge"
       suffix="units"
       className="bulk-order-field"
-      attributes={{ 'data-category': 'bulk-orders' }}
+      attributes={{ "data-category": "bulk-orders" }}
     />
   );
 }
 ```
+
 Large-stepped NumberField with custom step size for bulk ordering scenarios.
 
 ## Related Components

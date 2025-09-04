@@ -17,12 +17,14 @@ The component supports both global and scoped theming, allowing you to apply the
 ## Props Documentation
 
 ### children
+
 - **Type**: `React.ReactNode`
 - **Required**: No
 - **Default**: `undefined`
 - **Description**: The React elements to render within the design system context. Typically your entire application.
 
 ### theme
+
 - **Type**: `string | string[]`
 - **Required**: No
 - **Default**: `undefined`
@@ -30,6 +32,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `"reshaped"`, `"slate"`, `["base", "custom"]`
 
 ### defaultTheme
+
 - **Type**: `string | string[]`
 - **Required**: No
 - **Default**: `"reshaped"`
@@ -37,6 +40,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `"reshaped"`, `"slate"`
 
 ### colorMode
+
 - **Type**: `"light" | "dark"`
 - **Required**: No
 - **Default**: `undefined`
@@ -44,6 +48,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `"dark"`, `"light"`
 
 ### defaultColorMode
+
 - **Type**: `"light" | "dark"`
 - **Required**: No
 - **Default**: `"light"` (or inherits from parent if nested)
@@ -51,6 +56,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `"dark"`
 
 ### defaultRTL
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -58,6 +64,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `true`
 
 ### defaultViewport
+
 - **Type**: `"s" | "m" | "l" | "xl"`
 - **Required**: No
 - **Default**: `"s"`
@@ -65,6 +72,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `"m"`, `"xl"`
 
 ### toastOptions
+
 - **Type**: `Partial<Record<ToastPosition, { width?: string; expanded?: boolean }>>`
 - **Required**: No
 - **Default**: `undefined`
@@ -72,6 +80,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `{ "top": { width: "400px", expanded: true } }`
 
 ### scoped
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -79,6 +88,7 @@ The component supports both global and scoped theming, allowing you to apply the
 - **Example**: `true`
 
 ### className
+
 - **Type**: `string | string[] | (string | null | undefined | false)[]`
 - **Required**: No
 - **Default**: `undefined`
@@ -88,8 +98,9 @@ The component supports both global and scoped theming, allowing you to apply the
 ## Code Examples
 
 ### Basic Setup
+
 ```jsx
-import { Reshaped } from 'reshaped';
+import { Reshaped } from "reshaped";
 
 function App() {
   return (
@@ -99,11 +110,13 @@ function App() {
   );
 }
 ```
+
 This example shows the most basic setup for initializing the Reshaped design system with the default theme and light mode.
 
 ### Dark Mode by Default
+
 ```jsx
-import { Reshaped } from 'reshaped';
+import { Reshaped } from "reshaped";
 
 function App() {
   return (
@@ -113,41 +126,45 @@ function App() {
   );
 }
 ```
+
 This example initializes the design system with dark mode as the default color scheme.
 
 ### Controlled Color Mode with State
+
 ```jsx
-import { useState } from 'react';
-import { Reshaped, Button } from 'reshaped';
+import { useState } from "react";
+import { Reshaped, Button } from "reshaped";
 
 function App() {
-  const [colorMode, setColorMode] = useState('light');
-  
+  const [colorMode, setColorMode] = useState("light");
+
   const toggleColorMode = () => {
-    setColorMode(mode => mode === 'light' ? 'dark' : 'light');
+    setColorMode((mode) => (mode === "light" ? "dark" : "light"));
   };
-  
+
   return (
     <Reshaped theme="reshaped" colorMode={colorMode}>
       <Button onClick={toggleColorMode}>
-        Switch to {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+        Switch to {colorMode === "light" ? "Dark" : "Light"} Mode
       </Button>
       <YourAppContent />
     </Reshaped>
   );
 }
 ```
+
 This example demonstrates controlled color mode management, allowing users to toggle between light and dark themes.
 
 ### RTL Support for International Applications
+
 ```jsx
-import { Reshaped } from 'reshaped';
+import { Reshaped } from "reshaped";
 
 function ArabicApp() {
   return (
-    <Reshaped 
-      theme="reshaped" 
-      defaultColorMode="light" 
+    <Reshaped
+      theme="reshaped"
+      defaultColorMode="light"
       defaultRTL={true}
       defaultViewport="m"
     >
@@ -156,17 +173,19 @@ function ArabicApp() {
   );
 }
 ```
+
 This example shows how to enable RTL support for right-to-left languages with a medium default viewport.
 
 ### Scoped Theming for Component Libraries
+
 ```jsx
-import { Reshaped } from 'reshaped';
+import { Reshaped } from "reshaped";
 
 function AppWithNestedThemes() {
   return (
     <Reshaped theme="reshaped" defaultColorMode="light">
       <MainContent />
-      
+
       {/* Scoped theme section */}
       <Reshaped theme="slate" scoped>
         <SpecialSection />
@@ -175,21 +194,23 @@ function AppWithNestedThemes() {
   );
 }
 ```
+
 This example demonstrates nested theming where a specific section uses a different theme (slate) while the rest of the app uses the main theme (reshaped).
 
 ### Advanced Configuration with Toast Options
+
 ```jsx
-import { Reshaped } from 'reshaped';
+import { Reshaped } from "reshaped";
 
 function App() {
   const toastConfig = {
-    'top': { width: '420px', expanded: true },
-    'bottom-end': { width: '350px', expanded: false }
+    top: { width: "420px", expanded: true },
+    "bottom-end": { width: "350px", expanded: false },
   };
-  
+
   return (
-    <Reshaped 
-      theme="reshaped" 
+    <Reshaped
+      theme="reshaped"
       defaultColorMode="dark"
       defaultViewport="l"
       toastOptions={toastConfig}
@@ -200,6 +221,7 @@ function App() {
   );
 }
 ```
+
 This example shows a comprehensive setup with custom toast positioning, large default viewport, dark mode, and custom CSS classes.
 
 ## Related Components
@@ -215,6 +237,7 @@ This example shows a comprehensive setup with custom toast positioning, large de
 ## Accessibility Considerations
 
 The Reshaped component includes several accessibility features:
+
 - Automatic `color-scheme` CSS property management for proper browser UI theming
 - Keyboard navigation detection that adds appropriate focus indicators
 - Reduced motion support that respects user preferences for animations
@@ -224,8 +247,9 @@ The Reshaped component includes several accessibility features:
 ## Architecture Notes
 
 The component uses a layered provider architecture:
+
 1. **GlobalColorMode** - Manages color scheme state and CSS custom properties
-2. **PrivateTheme** - Handles theme loading and CSS class application  
+2. **PrivateTheme** - Handles theme loading and CSS class application
 3. **SingletonKeyboardModeProvider** - Detects and manages keyboard navigation state
 4. **SingletonEnvironmentContext** - Provides RTL and viewport context
 5. **SingletonHotkeysProvider** - Manages global keyboard shortcuts

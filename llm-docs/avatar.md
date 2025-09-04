@@ -1,12 +1,15 @@
 # Avatar
 
 ## Component Name
+
 Avatar
 
 ## Brief Description
+
 A versatile component for displaying user profile images, initials, or icons with customizable sizing, colors, and variants.
 
 ## Keywords
+
 - User Profile
 - Profile Picture
 - Initials Display
@@ -27,6 +30,7 @@ The component supports both circular and squared variants, making it suitable fo
 ## Props Documentation
 
 ### `src` (optional)
+
 - **Type**: `string`
 - **Required**: No
 - **Default**: `undefined`
@@ -34,6 +38,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"https://example.com/user-avatar.jpg"`
 
 ### `alt` (optional)
+
 - **Type**: `string`
 - **Required**: No
 - **Default**: `undefined`
@@ -41,6 +46,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"User profile picture"`
 
 ### `imageAttributes` (optional)
+
 - **Type**: `G.Attributes<"img">`
 - **Required**: No
 - **Default**: `undefined`
@@ -48,6 +54,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `{ loading: "lazy", crossOrigin: "anonymous" }`
 
 ### `renderImage` (optional)
+
 - **Type**: `(attributes: Omit<G.Attributes<"img">, "src" | "alt"> & { src: string; alt: string; }) => React.ReactNode`
 - **Required**: No
 - **Default**: `undefined`
@@ -55,6 +62,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `(attrs) => <NextImage {...attrs} width={100} height={100} />`
 
 ### `initials` (optional)
+
 - **Type**: `string`
 - **Required**: No
 - **Default**: `undefined`
@@ -62,6 +70,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"JD"` or `"RS"`
 
 ### `icon` (optional)
+
 - **Type**: `IconProps["svg"]` (React.ReactElement | React.ComponentType)
 - **Required**: No
 - **Default**: `undefined`
@@ -69,6 +78,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `<UserIcon />` or `IconUser`
 
 ### `squared` (optional)
+
 - **Type**: `boolean`
 - **Required**: No
 - **Default**: `false`
@@ -76,6 +86,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `true`
 
 ### `variant` (optional)
+
 - **Type**: `"solid" | "faded"`
 - **Required**: No
 - **Default**: `"solid"`
@@ -83,6 +94,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"faded"`
 
 ### `color` (optional)
+
 - **Type**: `"neutral" | "critical" | "warning" | "positive" | "primary"`
 - **Required**: No
 - **Default**: `"neutral"`
@@ -90,6 +102,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"primary"`
 
 ### `size` (optional)
+
 - **Type**: `G.Responsive<number>`
 - **Required**: No
 - **Default**: `12`
@@ -97,6 +110,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `20` or `{ s: 10, m: 16, l: 20 }`
 
 ### `className` (optional)
+
 - **Type**: `G.ClassName`
 - **Required**: No
 - **Default**: `undefined`
@@ -104,6 +118,7 @@ The component supports both circular and squared variants, making it suitable fo
 - **Example**: `"custom-avatar"` or `["avatar", "large"]`
 
 ### `attributes` (optional)
+
 - **Type**: `G.Attributes<"div">`
 - **Required**: No
 - **Default**: `undefined`
@@ -113,64 +128,60 @@ The component supports both circular and squared variants, making it suitable fo
 ## Code Examples
 
 ### Basic Usage with Image
+
 ```jsx
-<Avatar 
-  src="https://example.com/user-avatar.jpg" 
-  alt="John Doe profile picture" 
+<Avatar
+  src="https://example.com/user-avatar.jpg"
+  alt="John Doe profile picture"
 />
 ```
+
 Displays a circular avatar with the provided image and alternative text for accessibility.
 
 ### Initials Fallback
+
 ```jsx
-<Avatar 
-  src="https://example.com/broken-image.jpg" 
-  alt="Jane Smith" 
-  initials="JS" 
+<Avatar
+  src="https://example.com/broken-image.jpg"
+  alt="Jane Smith"
+  initials="JS"
 />
 ```
+
 Shows initials "JS" if the image fails to load, providing a graceful fallback experience.
 
 ### Icon Avatar with Custom Styling
+
 ```jsx
-<Avatar 
-  icon={<UserIcon />} 
-  color="primary" 
-  variant="faded" 
-  size={16}
-  squared
-/>
+<Avatar icon={<UserIcon />} color="primary" variant="faded" size={16} squared />
 ```
+
 Displays a squared avatar with a user icon, primary color scheme, faded variant, and custom size.
 
 ### Responsive Sizing
+
 ```jsx
-<Avatar 
-  initials="AB" 
-  size={{ s: 10, m: 16, l: 24 }}
-  color="positive"
-/>
+<Avatar initials="AB" size={{ s: 10, m: 16, l: 24 }} color="positive" />
 ```
+
 Creates a responsive avatar that scales from 10 units on small screens to 24 units on large screens.
 
 ### Custom Image Rendering with Next.js
+
 ```jsx
-<Avatar 
+<Avatar
   src="/user-profiles/john-doe.jpg"
   alt="John Doe"
   renderImage={(attrs) => (
-    <Image 
-      {...attrs} 
-      width={200} 
-      height={200} 
-      priority 
-    />
+    <Image {...attrs} width={200} height={200} priority />
   )}
 />
 ```
+
 Integrates with Next.js Image component for optimized image loading and performance.
 
 ### Team Member List
+
 ```jsx
 <View direction="row" gap={3}>
   <Avatar src="/team/alice.jpg" alt="Alice Johnson" size={12} />
@@ -178,6 +189,7 @@ Integrates with Next.js Image component for optimized image loading and performa
   <Avatar icon={<PlusIcon />} color="neutral" variant="faded" size={12} />
 </View>
 ```
+
 Shows a row of team member avatars with mixed content types and consistent sizing.
 
 ## Related Components
