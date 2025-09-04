@@ -1,11 +1,14 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "mcp__reshaped-mcp__list_all",
+      "mcp__reshaped-mcp__get_documentation",
+      "mcp__storybook-mcp__get_ui_building_instructions"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "storybook-mcp"
-  ],
-  "permissions": {
-    "allow": [
-      "Bash(find:*)"
-    ]
-  }
+  ]
 }
