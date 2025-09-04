@@ -52,7 +52,7 @@ Pass in the id that you get from the ${LIST_TOOL_NAME} tool, for the item you wa
 First use the ${LIST_TOOL_NAME} tool to get a list of available components, React hooks and utility functions and their ids.`
 	}] };
 	try {
-		const documentation = await fs.readFile(path, "utf-8");
+		const documentation = await fs.readFile(resolvedPath, "utf-8");
 		return { content: [{
 			type: "text",
 			text: documentation

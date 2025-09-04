@@ -64,7 +64,7 @@ First use the ${LIST_TOOL_NAME} tool to get a list of available components, Reac
       };
     }
     try {
-      const documentation = await fs.readFile(path, "utf-8");
+      const documentation = await fs.readFile(resolvedPath, "utf-8");
       return {
         content: [{ type: "text", text: documentation }],
       };
