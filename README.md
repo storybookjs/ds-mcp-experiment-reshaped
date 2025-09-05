@@ -4,6 +4,10 @@ The repository is an experiment that explores using LLM-generated documentation 
 
 The Storybook team is researching how LLMs usage of design system's components can be improved - read more in the RFC [here](TK).
 
+<div align="center">
+   <img src="./ds-mcp-screenshot.png" alt="Design System MCP Server demo usage in Claude Code" />
+</div>
+
 ## Trying It Out
 
 We'd love for anyone to try this out for yourself and see and report how it performs.
